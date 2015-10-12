@@ -128,6 +128,13 @@ static NSString * const kCSKStylesheetBookmarkKey = @"sketchCSS-StylesheetBookma
     NSURL *stylesheetURL = [CSKMainController stylesheetURLForPage:page
                                                      pluginCommand:command];
     
+    if (!stylesheetURL) {
+        // No URL, select stylesheet!
+        [self selectStylesheetWithContext:context];
+        
+        return;
+    }
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if (![fileManager fileExistsAtPath:stylesheetURL.path]) {
@@ -384,6 +391,10 @@ static NSString * const kCSKStylesheetBookmarkKey = @"sketchCSS-StylesheetBookma
         openPanel.allowsMultipleSelection = false;
         openPanel.title = @"Choose a stylesheet for this page";
         openPanel.prompt = @"Choose";
+        
+        // open panel should show Sketch document's folder
+        openPanel.directoryURL = [document.fileURL URLByDeletingLastPathComponent];
+        
         [openPanel beginWithCompletionHandler:^(NSInteger result) {
             
             if (result == NSFileHandlingPanelOKButton) {
@@ -417,6 +428,12 @@ static NSString * const kCSKStylesheetBookmarkKey = @"sketchCSS-StylesheetBookma
         NSString *bookmarkString = [pluginCommand valueForKey:kCSKStylesheetBookmarkKey
                                               onLayer:page
                                   forPluginIdentifier:kCSKPluginIdentifier];
+        
+        if (!bookmarkString) {
+            NSLog(@"no bookmark found");
+            
+            return nil;
+        }
         
         NSData *bookmark = [[NSData alloc] initWithBase64EncodedString:bookmarkString
                                                                options:0];
