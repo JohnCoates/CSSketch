@@ -1,0 +1,33 @@
+{
+  "name": "CSSketch",
+  "description" : "CSS properties inside of Sketch",
+  "author" : "John Coates",
+  "authorEmail" : "acapulco1988@gmail.com",
+  "homepage": "https://github.com/JohnCoates/CSSketch",
+  "version" : "1.0",
+  "identifier" : "com.johncoates.CSSketch",
+  "compatibleVersion": "3.3",
+  "bundleVersion": "1",
+  "commands" : [
+    {
+      "name" : "Set Page's Stylesheet",
+      "script" : "src/CSSketch_cached.js",
+      "handler" : "setPageStylesheet",
+      "identifier" : "setPageStylesheet",
+      "shortcut" : "cmd ctrl 4",
+    },
+    {
+      "name" : "Layout Layers",
+      "script" : "src/CSSketch_cached.js",
+      "handler" : "layoutLayers",
+      "identifier" : "layoutLayers",
+      "shortcut" : "cmd ctrl 0",
+    }
+  ],
+  "menu" : {
+    "items" :[
+      "setPageStylesheet",
+      "layoutLayers"
+    ]
+  }
+}

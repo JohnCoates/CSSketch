@@ -1,0 +1,578 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA0E95DB1BCB279C00CDD8EF /* NSString+Paths.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0E95DA1BCB279C00CDD8EF /* NSString+Paths.m */; settings = {ASSET_TAGS = (); }; };
+		FA20626E1BC21C4B003079A1 /* CSKStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FA20626D1BC21C4B003079A1 /* CSKStylesheet.m */; settings = {ASSET_TAGS = (); }; };
+		FA2FE3B71BC71BCD0017A90A /* embedded.css in Resources */ = {isa = PBXBuildFile; fileRef = FA2FE3B61BC71BCD0017A90A /* embedded.css */; settings = {ASSET_TAGS = (); }; };
+		FA2FE3BB1BC85F6F0017A90A /* CSKLayerCSS.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE3BA1BC85F6F0017A90A /* CSKLayerCSS.m */; settings = {ASSET_TAGS = (); }; };
+		FA38F4B01BC325D200787508 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA38F4AF1BC325D200787508 /* AppKit.framework */; };
+		FA38F4B41BC3272100787508 /* CSKToolbarProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38F4B31BC3272100787508 /* CSKToolbarProxy.m */; settings = {ASSET_TAGS = (); }; };
+		FA38F4B71BC33AB900787508 /* icon-layout.png in Resources */ = {isa = PBXBuildFile; fileRef = FA38F4B61BC33AB900787508 /* icon-layout.png */; settings = {ASSET_TAGS = (); }; };
+		FA38F4B91BC3A70F00787508 /* icon-layout24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA38F4B81BC3A70F00787508 /* icon-layout24.png */; settings = {ASSET_TAGS = (); }; };
+		FA38F4BE1BC3C93F00787508 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38F4BD1BC3C93F00787508 /* RegExCategories.m */; settings = {ASSET_TAGS = (); }; };
+		FA56F7E01BC0DDE7005673E0 /* CSKFileMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = FA56F7DF1BC0DDE7005673E0 /* CSKFileMonitor.m */; settings = {ASSET_TAGS = (); }; };
+		FA56F7E31BC0E15E005673E0 /* CSSketch Helper.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA56F7CF1BC0D6C4005673E0 /* CSSketch Helper.bundle */; };
+		FA7D76C21BC1A5BA00FCDEF5 /* CSKLess.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76C11BC1A5BA00FCDEF5 /* CSKLess.m */; settings = {ASSET_TAGS = (); }; };
+		FA7D76D81BC1AB6900FCDEF5 /* CSK_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76D71BC1AB6900FCDEF5 /* CSK_Tests.m */; };
+		FA7D76E41BC1ABFD00FCDEF5 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76E21BC1ABF600FCDEF5 /* JavaScriptCore.framework */; };
+		FA7D76E61BC1CAC900FCDEF5 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76E51BC1CAC900FCDEF5 /* WebKit.framework */; };
+		FA7D76EB1BC1CBFB00FCDEF5 /* CSSketch Helper in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76EA1BC1CBFB00FCDEF5 /* CSSketch Helper */; };
+		FA7D76EE1BC1CC1B00FCDEF5 /* CSKDOM.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76ED1BC1CC1B00FCDEF5 /* CSKDOM.m */; settings = {ASSET_TAGS = (); }; };
+		FA901AA01BC9D6A3005F8FAE /* less-rhino-1.7.5.js in Resources */ = {isa = PBXBuildFile; fileRef = FA901A9F1BC9D6A3005F8FAE /* less-rhino-1.7.5.js */; settings = {ASSET_TAGS = (); }; };
+		FADE15451BC2644D002FDE5C /* CSKSketchHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15441BC2644D002FDE5C /* CSKSketchHeaders.m */; settings = {ASSET_TAGS = (); }; };
+		FADE15481BC26492002FDE5C /* CSKMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15471BC26492002FDE5C /* CSKMainController.m */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FA56F7E21BC0E153005673E0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PROJECT_DIR)/../CSSketch.sketchplugin";
+			dstSubfolderSpec = 0;
+			files = (
+				FA56F7E31BC0E15E005673E0 /* CSSketch Helper.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FA0E95D91BCB279C00CDD8EF /* NSString+Paths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Paths.h"; sourceTree = "<group>"; };
+		FA0E95DA1BCB279C00CDD8EF /* NSString+Paths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Paths.m"; sourceTree = "<group>"; };
+		FA20626C1BC21C4B003079A1 /* CSKStylesheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKStylesheet.h; sourceTree = "<group>"; };
+		FA20626D1BC21C4B003079A1 /* CSKStylesheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKStylesheet.m; sourceTree = "<group>"; };
+		FA2FE3B61BC71BCD0017A90A /* embedded.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = embedded.css; sourceTree = "<group>"; };
+		FA2FE3B91BC85F6F0017A90A /* CSKLayerCSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKLayerCSS.h; sourceTree = "<group>"; };
+		FA2FE3BA1BC85F6F0017A90A /* CSKLayerCSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKLayerCSS.m; sourceTree = "<group>"; };
+		FA38F4AF1BC325D200787508 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		FA38F4B21BC3272100787508 /* CSKToolbarProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKToolbarProxy.h; sourceTree = "<group>"; };
+		FA38F4B31BC3272100787508 /* CSKToolbarProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKToolbarProxy.m; sourceTree = "<group>"; };
+		FA38F4B61BC33AB900787508 /* icon-layout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-layout.png"; sourceTree = "<group>"; };
+		FA38F4B81BC3A70F00787508 /* icon-layout24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-layout24.png"; sourceTree = "<group>"; };
+		FA38F4BC1BC3C93F00787508 /* RegExCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegExCategories.h; sourceTree = "<group>"; };
+		FA38F4BD1BC3C93F00787508 /* RegExCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegExCategories.m; sourceTree = "<group>"; };
+		FA56F7CF1BC0D6C4005673E0 /* CSSketch Helper.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSSketch Helper.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA56F7D21BC0D6C4005673E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA56F7D81BC0D72F005673E0 /* CSSketch Helper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSSketch Helper-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA56F7DE1BC0DDE7005673E0 /* CSKFileMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKFileMonitor.h; sourceTree = "<group>"; };
+		FA56F7DF1BC0DDE7005673E0 /* CSKFileMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKFileMonitor.m; sourceTree = "<group>"; };
+		FA7D76C01BC1A5BA00FCDEF5 /* CSKLess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKLess.h; sourceTree = "<group>"; };
+		FA7D76C11BC1A5BA00FCDEF5 /* CSKLess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKLess.m; sourceTree = "<group>"; };
+		FA7D76D51BC1AB6900FCDEF5 /* CSK Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSK Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7D76D71BC1AB6900FCDEF5 /* CSK_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSK_Tests.m; sourceTree = "<group>"; };
+		FA7D76D91BC1AB6900FCDEF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA7D76E21BC1ABF600FCDEF5 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FA7D76E51BC1CAC900FCDEF5 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FA7D76EA1BC1CBFB00FCDEF5 /* CSSketch Helper */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "CSSketch Helper"; path = "../../../../../Library/Developer/Xcode/DerivedData/CSSketch_Helper-ekizehgrgjxbnbewqtweicoiegfb/Build/Products/Debug/CSSketch Helper.bundle/Contents/MacOS/CSSketch Helper"; sourceTree = "<group>"; };
+		FA7D76EC1BC1CC1B00FCDEF5 /* CSKDOM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKDOM.h; sourceTree = "<group>"; };
+		FA7D76ED1BC1CC1B00FCDEF5 /* CSKDOM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKDOM.m; sourceTree = "<group>"; };
+		FA901A9F1BC9D6A3005F8FAE /* less-rhino-1.7.5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "less-rhino-1.7.5.js"; sourceTree = "<group>"; };
+		FADE15431BC2644D002FDE5C /* CSKSketchHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKSketchHeaders.h; sourceTree = "<group>"; };
+		FADE15441BC2644D002FDE5C /* CSKSketchHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKSketchHeaders.m; sourceTree = "<group>"; };
+		FADE15461BC26492002FDE5C /* CSKMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKMainController.h; sourceTree = "<group>"; };
+		FADE15471BC26492002FDE5C /* CSKMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKMainController.m; sourceTree = "<group>"; };
+		FADE15491BC26738002FDE5C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA56F7CC1BC0D6C4005673E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA38F4B01BC325D200787508 /* AppKit.framework in Frameworks */,
+				FA7D76E61BC1CAC900FCDEF5 /* WebKit.framework in Frameworks */,
+				FA7D76E41BC1ABFD00FCDEF5 /* JavaScriptCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7D76D21BC1AB6900FCDEF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7D76EB1BC1CBFB00FCDEF5 /* CSSketch Helper in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA0E95D81BCB276E00CDD8EF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				FA0E95D91BCB279C00CDD8EF /* NSString+Paths.h */,
+				FA0E95DA1BCB279C00CDD8EF /* NSString+Paths.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		FA20626B1BC21C08003079A1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA20626C1BC21C4B003079A1 /* CSKStylesheet.h */,
+				FA20626D1BC21C4B003079A1 /* CSKStylesheet.m */,
+				FADE15461BC26492002FDE5C /* CSKMainController.h */,
+				FADE15471BC26492002FDE5C /* CSKMainController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FA2FE3B81BC746810017A90A /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				FA2FE3B91BC85F6F0017A90A /* CSKLayerCSS.h */,
+				FA2FE3BA1BC85F6F0017A90A /* CSKLayerCSS.m */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		FA38F4B11BC3270600787508 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				FA38F4B21BC3272100787508 /* CSKToolbarProxy.h */,
+				FA38F4B31BC3272100787508 /* CSKToolbarProxy.m */,
+			);
+			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		FA38F4B51BC33A8500787508 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA901A9F1BC9D6A3005F8FAE /* less-rhino-1.7.5.js */,
+				FA38F4B81BC3A70F00787508 /* icon-layout24.png */,
+				FA38F4B61BC33AB900787508 /* icon-layout.png */,
+				FA2FE3B61BC71BCD0017A90A /* embedded.css */,
+			);
+			name = Resources;
+			path = ../Resources;
+			sourceTree = "<group>";
+		};
+		FA38F4BA1BC3C91600787508 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				FA38F4BB1BC3C92D00787508 /* Regex */,
+			);
+			name = External;
+			path = ../External;
+			sourceTree = "<group>";
+		};
+		FA38F4BB1BC3C92D00787508 /* Regex */ = {
+			isa = PBXGroup;
+			children = (
+				FA38F4BC1BC3C93F00787508 /* RegExCategories.h */,
+				FA38F4BD1BC3C93F00787508 /* RegExCategories.m */,
+			);
+			path = Regex;
+			sourceTree = "<group>";
+		};
+		FA56F7C61BC0D6C4005673E0 = {
+			isa = PBXGroup;
+			children = (
+				FA7D76EF1BC1CC2900FCDEF5 /* Frameworks */,
+				FA56F7D11BC0D6C4005673E0 /* CSSketch Helper */,
+				FA7D76D61BC1AB6900FCDEF5 /* CSK Tests */,
+				FA56F7D01BC0D6C4005673E0 /* Products */,
+				FA7D76EA1BC1CBFB00FCDEF5 /* CSSketch Helper */,
+				FA56F7D81BC0D72F005673E0 /* CSSketch Helper-Bridging-Header.h */,
+			);
+			sourceTree = "<group>";
+		};
+		FA56F7D01BC0D6C4005673E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA56F7CF1BC0D6C4005673E0 /* CSSketch Helper.bundle */,
+				FA7D76D51BC1AB6900FCDEF5 /* CSK Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA56F7D11BC0D6C4005673E0 /* CSSketch Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FA38F4BA1BC3C91600787508 /* External */,
+				FA38F4B51BC33A8500787508 /* Resources */,
+				FA56F7DB1BC0D740005673E0 /* src */,
+				FA56F7D21BC0D6C4005673E0 /* Info.plist */,
+			);
+			path = "CSSketch Helper";
+			sourceTree = "<group>";
+		};
+		FA56F7DB1BC0D740005673E0 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FA0E95D81BCB276E00CDD8EF /* Categories */,
+				FADE15421BC26431002FDE5C /* Headers */,
+				FA20626B1BC21C08003079A1 /* Controllers */,
+				FA56F7DC1BC0D74D005673E0 /* Models */,
+			);
+			name = src;
+			path = ../src;
+			sourceTree = "<group>";
+		};
+		FA56F7DC1BC0D74D005673E0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA2FE3B81BC746810017A90A /* Layout */,
+				FA38F4B11BC3270600787508 /* Toolbar */,
+				FA7D76E81BC1CAE000FCDEF5 /* DOM */,
+				FA7D76BF1BC1A59E00FCDEF5 /* Less */,
+				FA56F7DD1BC0D755005673E0 /* Files */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FA56F7DD1BC0D755005673E0 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA56F7DE1BC0DDE7005673E0 /* CSKFileMonitor.h */,
+				FA56F7DF1BC0DDE7005673E0 /* CSKFileMonitor.m */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		FA7D76BF1BC1A59E00FCDEF5 /* Less */ = {
+			isa = PBXGroup;
+			children = (
+				FA7D76C01BC1A5BA00FCDEF5 /* CSKLess.h */,
+				FA7D76C11BC1A5BA00FCDEF5 /* CSKLess.m */,
+			);
+			path = Less;
+			sourceTree = "<group>";
+		};
+		FA7D76D61BC1AB6900FCDEF5 /* CSK Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FA7D76D71BC1AB6900FCDEF5 /* CSK_Tests.m */,
+				FA7D76D91BC1AB6900FCDEF5 /* Info.plist */,
+			);
+			path = "CSK Tests";
+			sourceTree = "<group>";
+		};
+		FA7D76E81BC1CAE000FCDEF5 /* DOM */ = {
+			isa = PBXGroup;
+			children = (
+				FA7D76EC1BC1CC1B00FCDEF5 /* CSKDOM.h */,
+				FA7D76ED1BC1CC1B00FCDEF5 /* CSKDOM.m */,
+			);
+			path = DOM;
+			sourceTree = "<group>";
+		};
+		FA7D76EF1BC1CC2900FCDEF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA38F4AF1BC325D200787508 /* AppKit.framework */,
+				FA7D76E51BC1CAC900FCDEF5 /* WebKit.framework */,
+				FA7D76E21BC1ABF600FCDEF5 /* JavaScriptCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FADE15421BC26431002FDE5C /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				FADE15491BC26738002FDE5C /* PrefixHeader.pch */,
+				FADE15431BC2644D002FDE5C /* CSKSketchHeaders.h */,
+				FADE15441BC2644D002FDE5C /* CSKSketchHeaders.m */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FA56F7CE1BC0D6C4005673E0 /* CSSketch Helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA56F7D51BC0D6C4005673E0 /* Build configuration list for PBXNativeTarget "CSSketch Helper" */;
+			buildPhases = (
+				FA56F7CB1BC0D6C4005673E0 /* Sources */,
+				FA56F7CC1BC0D6C4005673E0 /* Frameworks */,
+				FA56F7CD1BC0D6C4005673E0 /* Resources */,
+				FA56F7E21BC0E153005673E0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CSSketch Helper";
+			productName = "CSSketch Helper";
+			productReference = FA56F7CF1BC0D6C4005673E0 /* CSSketch Helper.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		FA7D76D41BC1AB6900FCDEF5 /* CSK Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7D76DD1BC1AB6900FCDEF5 /* Build configuration list for PBXNativeTarget "CSK Tests" */;
+			buildPhases = (
+				FA7D76D11BC1AB6900FCDEF5 /* Sources */,
+				FA7D76D21BC1AB6900FCDEF5 /* Frameworks */,
+				FA7D76D31BC1AB6900FCDEF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CSK Tests";
+			productName = "CSK Tests";
+			productReference = FA7D76D51BC1AB6900FCDEF5 /* CSK Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA56F7C71BC0D6C4005673E0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "John Coates";
+				TargetAttributes = {
+					FA56F7CE1BC0D6C4005673E0 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					FA7D76D41BC1AB6900FCDEF5 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = FA56F7CA1BC0D6C4005673E0 /* Build configuration list for PBXProject "CSSketch Helper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FA56F7C61BC0D6C4005673E0;
+			productRefGroup = FA56F7D01BC0D6C4005673E0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA56F7CE1BC0D6C4005673E0 /* CSSketch Helper */,
+				FA7D76D41BC1AB6900FCDEF5 /* CSK Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FA56F7CD1BC0D6C4005673E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA901AA01BC9D6A3005F8FAE /* less-rhino-1.7.5.js in Resources */,
+				FA38F4B91BC3A70F00787508 /* icon-layout24.png in Resources */,
+				FA38F4B71BC33AB900787508 /* icon-layout.png in Resources */,
+				FA2FE3B71BC71BCD0017A90A /* embedded.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7D76D31BC1AB6900FCDEF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA56F7CB1BC0D6C4005673E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7D76C21BC1A5BA00FCDEF5 /* CSKLess.m in Sources */,
+				FA20626E1BC21C4B003079A1 /* CSKStylesheet.m in Sources */,
+				FA7D76EE1BC1CC1B00FCDEF5 /* CSKDOM.m in Sources */,
+				FADE15451BC2644D002FDE5C /* CSKSketchHeaders.m in Sources */,
+				FA2FE3BB1BC85F6F0017A90A /* CSKLayerCSS.m in Sources */,
+				FADE15481BC26492002FDE5C /* CSKMainController.m in Sources */,
+				FA38F4BE1BC3C93F00787508 /* RegExCategories.m in Sources */,
+				FA56F7E01BC0DDE7005673E0 /* CSKFileMonitor.m in Sources */,
+				FA0E95DB1BCB279C00CDD8EF /* NSString+Paths.m in Sources */,
+				FA38F4B41BC3272100787508 /* CSKToolbarProxy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7D76D11BC1AB6900FCDEF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7D76D81BC1AB6900FCDEF5 /* CSK_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FA56F7D31BC0D6C4005673E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = src/Headers/PrefixHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		FA56F7D41BC0D6C4005673E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = src/Headers/PrefixHeader.pch;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		FA56F7D61BC0D6C4005673E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CSSketch Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.johncoates.CSSketch-Helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "CSSketch Helper-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		FA56F7D71BC0D6C4005673E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CSSketch Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.johncoates.CSSketch-Helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "CSSketch Helper-Bridging-Header.h";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		FA7D76DE1BC1AB6900FCDEF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CSK Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.johncoates.CSK-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FA7D76DF1BC1AB6900FCDEF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CSK Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.johncoates.CSK-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA56F7CA1BC0D6C4005673E0 /* Build configuration list for PBXProject "CSSketch Helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA56F7D31BC0D6C4005673E0 /* Debug */,
+				FA56F7D41BC0D6C4005673E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA56F7D51BC0D6C4005673E0 /* Build configuration list for PBXNativeTarget "CSSketch Helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA56F7D61BC0D6C4005673E0 /* Debug */,
+				FA56F7D71BC0D6C4005673E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA7D76DD1BC1AB6900FCDEF5 /* Build configuration list for PBXNativeTarget "CSK Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA7D76DE1BC1AB6900FCDEF5 /* Debug */,
+				FA7D76DF1BC1AB6900FCDEF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA56F7C71BC0D6C4005673E0 /* Project object */;
+}

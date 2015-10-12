@@ -1,0 +1,26 @@
+// Check if we're in Sketch
+if (!NSClassFromString("MSDocument")){
+	// launch sketch
+	// TODO: fix hardcoded path
+	var url = [NSURL fileURLWithPath:"/Users/macbook/Dev/Extensions/Sketch/CSSketch/CSSketch-remote.coscript"];
+	var app = [COScript app:"Sketch"];
+	var delegate = [app delegate];
+
+	[delegate runPluginAtURL:url];
+	
+}
+else {
+	if (!NSClassFromString("CSKFileMonitor")) {
+		//TODO: fix hardcoded path
+		loadBundle("/Users/macbook/Dev/Extensions/Sketch/CSSketch/CSSketch.sketchplugin/CSSketch Helper.bundle");
+	}
+	var mainController = CSKMainController.sharedInstance();
+	mainController.layoutLayersWithContext(sketch);
+}
+
+function loadBundle(filePath) {
+	log("loadBundle: " + filePath);
+	var bundleURL = NSURL.fileURLWithPath(filePath);
+	var bundle = [NSBundle bundleWithURL: bundleURL];
+	[bundle load];
+}
