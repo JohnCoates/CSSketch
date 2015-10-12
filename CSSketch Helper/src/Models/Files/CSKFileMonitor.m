@@ -46,6 +46,13 @@
     return self;
 }
 
+- (void)dealloc {
+    if (DEBUG) {
+        NSLog(@"filemonitor dealloc");
+    }
+    [self stopMonitoring];
+}
+
 - (BOOL)startMonitoring {
     if (self.isMonitoring) {
         return true;
@@ -66,6 +73,7 @@
                                                       queue);
     self.source = source;
     
+    CSKFileMonitor * __weak weakSelf = self;
     dispatch_source_set_event_handler(source, ^
     {
         if (DEBUG) {
@@ -83,18 +91,18 @@
                 bookmarkOptions = NSURLBookmarkResolutionWithSecurityScope;
             }
             
-            NSURL *currentURL = self.fileURL;
+            NSURL *currentURL = weakSelf.fileURL;
             NSError *error;
-            NSURL *newURL = [NSURL URLByResolvingBookmarkData:self.fileBookmark
+            NSURL *newURL = [NSURL URLByResolvingBookmarkData:weakSelf.fileBookmark
                                                       options:bookmarkOptions relativeToURL:nil bookmarkDataIsStale:NULL error:&error];
             if (error) {
                 NSLog(@"couldn't resolve file bookmark, error: %@", error);
             }
-            self.fileURL = newURL;
+            weakSelf.fileURL = newURL;
             if (DEBUG) {
                 NSLog(@"%@ renamed to %@", currentURL, newURL);
             }
-            self.renameBlock(self, currentURL, newURL);
+            weakSelf.renameBlock(weakSelf, currentURL, newURL);
         }
         else {
             NSTimeInterval timestamp = [NSDate date].timeIntervalSince1970;
@@ -104,22 +112,22 @@
             
             int64_t minimumTimePassed = 200;
             
-            if (timestampMS - self.lastChangeMS >= minimumTimePassed) {
-                self.lastChangeMS = timestampMS;
-                self.changeBlock(self);
+            if (timestampMS - weakSelf.lastChangeMS >= minimumTimePassed) {
+                weakSelf.lastChangeMS = timestampMS;
+                weakSelf.changeBlock(weakSelf);
             }
         }
         
         // cancel
-        [self stopMonitoring];
+        [weakSelf stopMonitoring];
         // re-start
-        [self startMonitoring];
+        [weakSelf startMonitoring];
     });
     
     dispatch_source_set_cancel_handler(source, ^
     {
         close(fileDescriptor);
-        [self.fileURL stopAccessingSecurityScopedResource];
+        [weakSelf.fileURL stopAccessingSecurityScopedResource];
     });
     
     dispatch_resume(source);
