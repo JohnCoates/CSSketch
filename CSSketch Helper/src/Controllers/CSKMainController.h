@@ -15,8 +15,10 @@
 @property (nonatomic, strong) NSString *embeddedStylesheet;
 @property (nonatomic, strong) NSBundle *pluginBundle;
 
-- (void)layoutLayersWithDOMTree:(NSDictionary *)DOMTree;
+// Plugin Entry Points
 - (void)layoutLayersWithContext:(NSDictionary *)context;
+
+
 - (void)refreshDocument;
 
 + (NSBundle *)pluginBundle;

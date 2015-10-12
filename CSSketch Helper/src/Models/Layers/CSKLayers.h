@@ -10,6 +10,8 @@
 
 @interface CSKLayers : NSObject
 
++ (void)layoutLayersWithDOMTree:(NSDictionary *)DOMTree;
+
 + (NSDictionary *)layerTreeFromLayer:(CSK_MSLayer *)layer stylesheetOuput:(NSString **)stylesheetOutput;
 
 @end

@@ -8,10 +8,63 @@
 
 #import "CSKLayers.h"
 
-static const BOOL DEBUG_WriteOutLayerTree = TRUE;
+static const BOOL DEBUG_WriteOutLayerTree = FALSE;
 @implementation CSKLayers
 
+#pragma mark - Laying Out
 
++ (void)layoutLayersWithDOMTree:(NSDictionary *)DOMTree {
+    if (![CSKMainController inSketch]) {
+        return;
+    }
+    
+    
+    BOOL hasChildren = FALSE;
+    NSArray *children = DOMTree[@"children"];
+    
+    if (children && children.count) {
+        hasChildren = TRUE;
+    }
+    
+    CSK_MSLayer *layer = DOMTree[@"layer"];
+    
+    // check to see if object should have size & position set
+    if (!hasChildren) {
+        if (DEBUG) {
+            NSLog(@"setting CSS for %@", DOMTree[@"name"]);
+        }
+        
+        // layout
+        [CSKLayerCSS handleFrameWithDOMLeaf:DOMTree layer:layer];
+        
+        // border
+        [CSKLayerCSS handleBorderWithDOMLeaf:DOMTree layer:layer];
+        
+        // shadow
+        [CSKLayerCSS handleShadowWithDOMLeaf:DOMTree layer:layer];
+        
+        // background color
+        [CSKLayerCSS handleBackgroundColorWithDOMLeaf:DOMTree layer:layer];
+        
+        // opacity
+        
+    }
+    
+    
+    if (hasChildren) {
+        for (NSDictionary *child in children) {
+            [self layoutLayersWithDOMTree:child];
+        }
+        
+        // reset group ounds
+        if ([layer isKindOfClass:NSClassFromString(@"MSLayerGroup")]) {
+            [layer resizeRoot:true];
+        }
+    }
+}
+
+
+#pragma mark - Layer Tree
 + (NSDictionary *)layerTreeFromLayer:(CSK_MSLayer *)layer stylesheetOuput:(NSString **)stylesheetOutput {
     NSMutableDictionary *leaf = [NSMutableDictionary new];
     

@@ -26,9 +26,6 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 @property (strong) NSString *documentStylesheetRules;
 @property (strong) NSArray *fileMonitors;
 
-
-@property (strong) NSArray *documentControllers;
-
 @end
 
 @implementation CSKMainController
@@ -109,59 +106,6 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 - (void)refreshDocument {
     [self.document.currentView refresh];
 }
-
-- (void)layoutLayersWithDOMTree:(NSDictionary *)DOMTree {
-    if (![self inSketch]) {
-        [self walkDOMTree:DOMTree];
-        return;
-    }
-    
-//    NSNumber *CSSOptIn = DOMTree[@"CSSOptIn"];
-    
-    BOOL hasChildren = FALSE;
-    NSArray *children = DOMTree[@"children"];
-    
-    if (children && children.count) {
-        hasChildren = TRUE;
-    }
-    
-    CSK_MSLayer *layer = DOMTree[@"layer"];
-    
-    // check to see if object should have size & position set
-    if (!hasChildren) {
-        if (DEBUG) {
-            NSLog(@"setting CSS for %@", DOMTree[@"name"]);
-        }
-    
-        // layout
-        [CSKLayerCSS handleFrameWithDOMLeaf:DOMTree layer:layer];
-        
-        // border
-        [CSKLayerCSS handleBorderWithDOMLeaf:DOMTree layer:layer];
-        
-        // shadow
-        [CSKLayerCSS handleShadowWithDOMLeaf:DOMTree layer:layer];
-        
-        // background color
-        [CSKLayerCSS handleBackgroundColorWithDOMLeaf:DOMTree layer:layer];
-        
-        // opacity
-
-    }
-    
-    
-    if (hasChildren) {
-        for (NSDictionary *child in children) {
-            [self layoutLayersWithDOMTree:child];
-        }
-        
-        // reset group ounds
-        if ([layer isKindOfClass:NSClassFromString(@"MSLayerGroup")]) {
-            [layer resizeRoot:true];
-        }
-    }
-}
-
 
 
 #pragma mark - Debugging
@@ -292,22 +236,12 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
         return documentController;
     }
     
-    NSMutableArray *documentControllers = self.documentControllers.mutableCopy;
-    if (!documentControllers) {
-        documentControllers = [NSMutableArray new];
-    }
-    
-    
     documentController = [[CSKDocumentController alloc] initWithDocument:document];
     
     // associate controller with document
     objc_setAssociatedObject(document,
                              kCSKDocumentControllerAssociatedObjectKey,
                              documentController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    [documentControllers addObject:documentController];
-    
-    self.documentControllers = documentControllers;
     
     return documentController;
 }
@@ -457,6 +391,22 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
     fileMonitor.page = document.currentPage;
     fileMonitor.command = command;
     [fileMonitor setChangeBlock:^(CSKFileMonitor *fileMonitor) {
+        if (DEBUG) {
+            NSLog(@"page: %@, document: %@", fileMonitor.page, fileMonitor.document);
+        }
+        
+        // remove file monitor if page doesn't exist anymore
+        if (fileMonitor.page == nil || fileMonitor.document == nil || fileMonitor.command == nil) {
+            
+            if (DEBUG) {
+                NSLog(@"removing filemonitors from: %@", self.fileMonitors);
+            }
+            NSMutableArray *newFileMonitors = self.fileMonitors.mutableCopy;
+            [newFileMonitors removeObject:fileMonitor];
+            self.fileMonitors = newFileMonitors;
+            
+            return;
+        }
         
         // don't do anything if we're on another page
         if (fileMonitor.page != fileMonitor.document.currentPage) {
