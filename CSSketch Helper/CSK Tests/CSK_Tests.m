@@ -58,7 +58,7 @@
     NSURL *stylesheetURL = [NSURL fileURLWithPath:stylesheetPath];
     CSKStylesheet *stylesheetController = [[CSKStylesheet alloc] initWithFile:stylesheetURL];
 
-    NSString *plistPath = @"/Users/macbook/Dev/Extensions/Sketch/Sketch-CSS/debug.plist";
+    NSString *plistPath = @"/Users/macbook/Dev/Extensions/Sketch/CSSketch/debug.plist";
     NSData *treeData = [NSData dataWithContentsOfFile:plistPath];
     
     NSMutableDictionary *layerTree = [NSPropertyListSerialization propertyListWithData:treeData
@@ -86,8 +86,8 @@
     
     // launch Sketch
     // TODO: change to relative path
-//    [[NSWorkspace sharedWorkspace] openFile:@"/Users/macbook/Dev/Extensions/Sketch/CSSketch/Examples/Less - Netflix Player Redesign.sketch"];
-    [[NSWorkspace sharedWorkspace] openFile:@"/Users/macbook/Dev/Extensions/Sketch/CSSketch/Examples/flexBox.sketch"];
+    [[NSWorkspace sharedWorkspace] openFile:@"/Users/macbook/Dev/Extensions/Sketch/CSSketch/Examples/Less - Netflix Player Redesign.sketch"];
+//    [[NSWorkspace sharedWorkspace] openFile:@"/Users/macbook/Dev/Extensions/Sketch/CSSketch/Examples/flexBox.sketch"];
     
     // sleep for a bit while Sketch launches
     sleep(2);

@@ -8,13 +8,13 @@
 
 #import "CSKMainController.h"
 #import "CSKToolbarProxy.h"
-
-static BOOL DEBUG_WriteOutLayerTree = FALSE;
+#import <objc/runtime.h>
 
 static NSString * const kCSKPluginIdentifier = @"sketchCSSPlugin";
 static NSString * const kCSKStylesheetURLKey = @"sketchCSS-StylesheetURL";
 static NSString * const kCSKStylesheetRelativeURLKey = @"sketchCSS-StylesheetRelativeURL";
 static NSString * const kCSKStylesheetBookmarkKey = @"sketchCSS-StylesheetBookmark";
+static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentControllerAssociatedObjectKey";
 
 @interface CSKMainController ()
 
@@ -25,6 +25,9 @@ static NSString * const kCSKStylesheetBookmarkKey = @"sketchCSS-StylesheetBookma
 @property (strong) NSArray *domModels;
 @property (strong) NSString *documentStylesheetRules;
 @property (strong) NSArray *fileMonitors;
+
+
+@property (strong) NSArray *documentControllers;
 
 @end
 
@@ -105,187 +108,6 @@ static NSString * const kCSKStylesheetBookmarkKey = @"sketchCSS-StylesheetBookma
 
 - (void)refreshDocument {
     [self.document.currentView refresh];
-}
-
-- (void)layoutLayersWithContext:(NSDictionary *)context {
-    self.domModels = [NSArray array];
-    
-    if (DEBUG) {
-        NSLog(@"context (%@): %@", NSStringFromClass([context class]), context);
-    }
-    CSK_MSPluginCommand *command = context[@"command"];
-    CSK_MSDocument *document = context[@"document"];
-    CSK_MSPage *page = document.currentPage;
-    self.document = document;
-    self.pluginCommand = command;
-    
-    // add toolbar icon on UI Thread
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self addToolbarAsRequired:context];
-
-    });
-    
-    NSURL *stylesheetURL = [CSKMainController stylesheetURLForPage:page
-                                                     pluginCommand:command];
-    
-    if (!stylesheetURL) {
-        // No URL, select stylesheet!
-        [self selectStylesheetWithContext:context];
-        
-        return;
-    }
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if (![fileManager fileExistsAtPath:stylesheetURL.path]) {
-        NSLog(@"error: stylesheet file %@ doesn't exist", stylesheetURL);
-        return;
-    }
-    
-    if (DEBUG) {
-        NSLog(@"stylesheet: %@", stylesheetURL);
-    }
-    
-    self.documentStylesheetRules = @"\n";
-    
-    NSDictionary *layerTree = [self layerTreeFromLayer:page];
-    if (DEBUG_WriteOutLayerTree) {
-        [self saveDebugTree:layerTree];
-    }
-    
-    if (DEBUG) {
-        NSLog(@"layer tree: %@", layerTree);
-    }
-
-    self.stylesheetController = [[CSKStylesheet alloc] initWithFile:stylesheetURL];
-    [self.stylesheetController parseStylesheet:^(NSError *error, NSString *compiledStylesheet) {
-        // Call WebKit on UI thread
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // add stylesheet rules
-            // prior so their precedence is worst
-            NSString *mergedStylesheet = [self.documentStylesheetRules stringByAppendingString:compiledStylesheet];
-            
-            CSKDOM *domModel = [[CSKDOM alloc] initWithStylesheet:mergedStylesheet callback:^(NSError *error, NSDictionary *DOMTree) {
-                
-                if (DEBUG) {
-                    NSLog(@"computed dom: %@", DOMTree);
-                }
-                
-                if (error) {
-                    NSLog(@"error: %@", error);
-                    return;
-                }
-                else {
-                    [[CSKMainController sharedInstance] layoutLayersWithDOMTree:DOMTree];
-                    [[CSKMainController sharedInstance] refreshDocument];
-                }
-                
-                // remove DOM from array
-                NSMutableArray *models = [self.domModels mutableCopy];
-                [models removeObject:domModel];
-                self.domModels = models;
-                
-            } layerTree:layerTree];
-            
-            // add dom model to array
-            NSMutableArray *models = [self.domModels mutableCopy];
-            [models addObject:domModel];
-            self.domModels = models;
-            
-        });
-    }];
-    
-    
-}
-
-- (void)saveDebugTree:(NSDictionary *)layerTree {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_async(queue, ^{
-        NSDictionary *saveableTree = [self saveableTree:layerTree];
-        
-        BOOL wrote = [saveableTree writeToFile:@"/Users/macbook/Dev/Extensions/Sketch/Sketch-CSS/debug.plist"
-                                 atomically:TRUE];
-        if (DEBUG) {
-            NSLog(@"wrote to file: %d", wrote);
-        }
-    });
-}
-
-- (NSDictionary *)saveableTree:(NSDictionary *)tree {
-    NSMutableDictionary *leaf = [tree mutableCopy];
-    
-    // remove layer so we can serialize this tree
-    [leaf removeObjectForKey:@"layer"];
-    
-    NSMutableArray *children = [NSMutableArray new];
-    
-    for (NSDictionary *child in leaf[@"children"]) {
-        [children addObject:[self saveableTree:child]];
-    }
-    
-    // replace children with saveable children
-    leaf[@"children"] = children;
-    
-    return leaf;
-}
-
-- (NSDictionary *)layerTreeFromLayer:(CSK_MSLayer *)layer {
-    NSMutableDictionary *leaf = [NSMutableDictionary new];
-    
-    NSString *name = layer.name;
-    
-    if (!DEBUG_WriteOutLayerTree) {
-        leaf[@"layer"] = layer;
-    }
-    
-    leaf[@"name"] = name;
-    leaf[@"objectID"] = layer.objectID;
-    
-    NSNumber *left =@(layer.rect.origin.x);
-    NSNumber *top = @(layer.rect.origin.y);
-    if (MSLayerIsArtboard(layer)) {
-        left = @(0);
-        top = @(0);
-    }
-    
-    if (!MSLayerIsPage(layer))
-    {
-        NSNumber *width = @(layer.rect.size.width);
-        NSNumber *height = @(layer.rect.size.height);
-        
-        // add size rule
-        NSString *styleSheetRule;
-        styleSheetRule = [NSString stringWithFormat:@"[objectID=\"%@\"] {\nposition:absolute; left:%@; top:%@; width: %@px; height: %@px;\n}\n",
-                          layer.objectID,
-                          left, top,
-                          width,
-                          height];
-        
-        self.documentStylesheetRules = [self.documentStylesheetRules
-                                        stringByAppendingString:styleSheetRule];
-    }
-    
-    if (MSLayerIsGroup(layer)) {
-        NSMutableArray *childrenList;
-        childrenList = [NSMutableArray new];
-        
-        NSArray *children = layer.layers;
-        
-        for (CSK_MSLayer *childLayer in children) {
-            NSDictionary *childTree = [self layerTreeFromLayer:childLayer];
-            
-            if (childTree) {
-                [childrenList addObject:childTree];
-            }
-        }
-        
-        // reverse order so it's correctly ordered
-        leaf[@"children"] = childrenList.reverseObjectEnumerator.allObjects;
-    }
-    
-    return leaf;
 }
 
 - (void)layoutLayersWithDOMTree:(NSDictionary *)DOMTree {
@@ -410,9 +232,84 @@ static NSString * const kCSKStylesheetBookmarkKey = @"sketchCSS-StylesheetBookma
             }
             
         }];
+    }); // Open Panel file callback
+}
+
+- (void)layoutLayersWithContext:(NSDictionary *)context {
+    self.domModels = [NSArray array];
+    
+    if (DEBUG) {
+        NSLog(@"context (%@): %@", NSStringFromClass([context class]), context);
+    }
+    CSK_MSPluginCommand *command = context[@"command"];
+    CSK_MSDocument *document = context[@"document"];
+    CSK_MSPage *page = document.currentPage;
+    self.document = document;
+    self.pluginCommand = command;
+    
+    // add toolbar icon on UI Thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self addToolbarAsRequired:context];
+        
     });
     
+    NSURL *stylesheetURL = [CSKMainController stylesheetURLForPage:page
+                                                     pluginCommand:command];
     
+    if (!stylesheetURL) {
+        // No URL, select stylesheet!
+        [self selectStylesheetWithContext:context];
+        
+        return;
+    }
+    
+    if (DEBUG) {
+        NSLog(@"stylesheet: %@", stylesheetURL);
+    }
+    
+    
+    CSKDocumentController *documentController;
+    documentController = [self documentControllerForDocument:document];
+    
+    if (!documentController) {
+        [self.class displayError:@"Couldn't get document controller!"];
+        return;
+    }
+    
+    [documentController layoutCurrentPageWithStylesheetURL:stylesheetURL];
+}
+
+#pragma mark - Document Controllers
+
+- (CSKDocumentController *)documentControllerForDocument:(CSK_MSDocument *)document {
+    
+    CSKDocumentController *documentController;
+    
+    // try for associated object first
+    documentController = objc_getAssociatedObject(document, kCSKDocumentControllerAssociatedObjectKey);
+    
+    if (documentController) {
+        return documentController;
+    }
+    
+    NSMutableArray *documentControllers = self.documentControllers.mutableCopy;
+    if (!documentControllers) {
+        documentControllers = [NSMutableArray new];
+    }
+    
+    
+    documentController = [[CSKDocumentController alloc] initWithDocument:document];
+    
+    // associate controller with document
+    objc_setAssociatedObject(document,
+                             kCSKDocumentControllerAssociatedObjectKey,
+                             documentController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    [documentControllers addObject:documentController];
+    
+    self.documentControllers = documentControllers;
+    
+    return documentController;
 }
 
 #pragma mark - Stylesheet Resolving

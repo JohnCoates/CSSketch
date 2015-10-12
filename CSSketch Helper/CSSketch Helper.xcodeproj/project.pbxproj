@@ -25,6 +25,8 @@
 		FA7D76EB1BC1CBFB00FCDEF5 /* CSSketch Helper in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76EA1BC1CBFB00FCDEF5 /* CSSketch Helper */; };
 		FA7D76EE1BC1CC1B00FCDEF5 /* CSKDOM.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76ED1BC1CC1B00FCDEF5 /* CSKDOM.m */; settings = {ASSET_TAGS = (); }; };
 		FA901AA01BC9D6A3005F8FAE /* less-rhino-1.7.5.js in Resources */ = {isa = PBXBuildFile; fileRef = FA901A9F1BC9D6A3005F8FAE /* less-rhino-1.7.5.js */; settings = {ASSET_TAGS = (); }; };
+		FACF8FBA1BCC28320062D8F8 /* CSKDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF8FB91BCC28320062D8F8 /* CSKDocumentController.m */; settings = {ASSET_TAGS = (); }; };
+		FACF8FBE1BCC2DB10062D8F8 /* CSKLayers.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF8FBD1BCC2DB10062D8F8 /* CSKLayers.m */; settings = {ASSET_TAGS = (); }; };
 		FADE15451BC2644D002FDE5C /* CSKSketchHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15441BC2644D002FDE5C /* CSKSketchHeaders.m */; settings = {ASSET_TAGS = (); }; };
 		FADE15481BC26492002FDE5C /* CSKMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15471BC26492002FDE5C /* CSKMainController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -73,6 +75,10 @@
 		FA7D76EC1BC1CC1B00FCDEF5 /* CSKDOM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKDOM.h; sourceTree = "<group>"; };
 		FA7D76ED1BC1CC1B00FCDEF5 /* CSKDOM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKDOM.m; sourceTree = "<group>"; };
 		FA901A9F1BC9D6A3005F8FAE /* less-rhino-1.7.5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "less-rhino-1.7.5.js"; sourceTree = "<group>"; };
+		FACF8FB81BCC28320062D8F8 /* CSKDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKDocumentController.h; sourceTree = "<group>"; };
+		FACF8FB91BCC28320062D8F8 /* CSKDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKDocumentController.m; sourceTree = "<group>"; };
+		FACF8FBC1BCC2DB10062D8F8 /* CSKLayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKLayers.h; sourceTree = "<group>"; };
+		FACF8FBD1BCC2DB10062D8F8 /* CSKLayers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKLayers.m; sourceTree = "<group>"; };
 		FADE15431BC2644D002FDE5C /* CSKSketchHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKSketchHeaders.h; sourceTree = "<group>"; };
 		FADE15441BC2644D002FDE5C /* CSKSketchHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKSketchHeaders.m; sourceTree = "<group>"; };
 		FADE15461BC26492002FDE5C /* CSKMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKMainController.h; sourceTree = "<group>"; };
@@ -118,6 +124,8 @@
 				FA20626D1BC21C4B003079A1 /* CSKStylesheet.m */,
 				FADE15461BC26492002FDE5C /* CSKMainController.h */,
 				FADE15471BC26492002FDE5C /* CSKMainController.m */,
+				FACF8FB81BCC28320062D8F8 /* CSKDocumentController.h */,
+				FACF8FB91BCC28320062D8F8 /* CSKDocumentController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -217,6 +225,7 @@
 		FA56F7DC1BC0D74D005673E0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FACF8FBB1BCC2D910062D8F8 /* Layers */,
 				FA2FE3B81BC746810017A90A /* Layout */,
 				FA38F4B11BC3270600787508 /* Toolbar */,
 				FA7D76E81BC1CAE000FCDEF5 /* DOM */,
@@ -270,6 +279,15 @@
 				FA7D76E21BC1ABF600FCDEF5 /* JavaScriptCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FACF8FBB1BCC2D910062D8F8 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				FACF8FBC1BCC2DB10062D8F8 /* CSKLayers.h */,
+				FACF8FBD1BCC2DB10062D8F8 /* CSKLayers.m */,
+			);
+			path = Layers;
 			sourceTree = "<group>";
 		};
 		FADE15421BC26431002FDE5C /* Headers */ = {
@@ -388,6 +406,8 @@
 				FADE15451BC2644D002FDE5C /* CSKSketchHeaders.m in Sources */,
 				FA2FE3BB1BC85F6F0017A90A /* CSKLayerCSS.m in Sources */,
 				FADE15481BC26492002FDE5C /* CSKMainController.m in Sources */,
+				FACF8FBA1BCC28320062D8F8 /* CSKDocumentController.m in Sources */,
+				FACF8FBE1BCC2DB10062D8F8 /* CSKLayers.m in Sources */,
 				FA38F4BE1BC3C93F00787508 /* RegExCategories.m in Sources */,
 				FA56F7E01BC0DDE7005673E0 /* CSKFileMonitor.m in Sources */,
 				FA0E95DB1BCB279C00CDD8EF /* NSString+Paths.m in Sources */,

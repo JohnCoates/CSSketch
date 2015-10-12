@@ -18,6 +18,8 @@
 #import "RegExCategories.h"
 #import "CSKLayerCSS.h"
 #import "NSString+Paths.h"
+#import "CSKDocumentController.h"
+#import "CSKLayers.h"
 
 #ifdef DEBUG
     #define DEBUG 1
