@@ -13,7 +13,7 @@
 
 @implementation CSKLess
 + (void)compileLessStylesheet:(NSString *)stylesheet
-                   completion:(LessCompileCompletionBlock)completionBlock;  {
+                   completion:(LessCompileCompletionBlock)completionBlock  {
     
     NSString *lessScriptPath = [[CSKMainController pluginBundle] pathForResource:@"less-rhino-1.7.5" ofType:@"js"];
     NSError *error = nil;
@@ -52,6 +52,8 @@
             completionBlock(errorFromJSError(jsError), nil);
             return;
         }
+        
+        JSContext *context = [JSContext currentContext];
         
         context[@"parsedTree"] = tree;
         JSValue *compiledCSS = [context evaluateScript:@"parsedTree.toCSS({})"];
