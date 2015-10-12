@@ -32,6 +32,12 @@
     return self;
 }
 
+- (void)dealloc {
+    if (DEBUG) {
+        NSLog(@"CSKDocumentController dealloc");
+    }
+}
+
 #pragma mark - Entry Point
 
 - (void)layoutCurrentPageWithStylesheetURL:(NSURL *)stylesheetURL {
@@ -41,15 +47,15 @@
     
     NSString *stylesheet = nil;
     NSDictionary *layerTree = [CSKLayers layerTreeFromLayer:page stylesheetOuput:&stylesheet];
-    NSLog(@"layer tree: %@", layerTree);
     
     self.stylesheetController = [[CSKStylesheet alloc] initWithFile:stylesheetURL];
     
     [self.stylesheetController parseStylesheet:^(NSError *error, NSString *compiledStylesheet) {
-        
+    
+        // CSKDOM uses WebKit which needs a UI thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            // add stylesheet rules
-            // prior so their precedence is worst
+            // add calculated stylesheet rules
+            // prior to custom stylesheet so their precedence is worst
             NSString *mergedStylesheet = [stylesheet stringByAppendingString:compiledStylesheet];
             
             CSKDOM *domModel = [[CSKDOM alloc] initWithStylesheet:mergedStylesheet callback:^(NSError *error, NSDictionary *DOMTree) {
@@ -63,17 +69,16 @@
                     return;
                 }
                 else {
-                    [[CSKMainController sharedInstance] layoutLayersWithDOMTree:DOMTree];
+                    [CSKLayers layoutLayersWithDOMTree:DOMTree];
                     [[CSKMainController sharedInstance] refreshDocument];
                 }
-                
 
                 self.domModel = nil;
                 
-            } layerTree:layerTree];
+            } layerTree:layerTree]; // DOM completion
             
             self.domModel = domModel;
-        }); // DOM completion
+        }); // async dispatch
         
         
         self.stylesheetController = nil;
