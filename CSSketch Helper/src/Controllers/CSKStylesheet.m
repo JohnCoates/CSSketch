@@ -29,12 +29,17 @@
     
     if (self) {
         _fileURL = fileURL;
-        // to-do: monitor file
     }
     
     return self;
 }
 
+
+- (void)dealloc {
+    if (DEBUG) {
+        NSLog(@"CSKStylesheet dealloc");
+    }
+}
 
 // parses stylesheet
 - (void)parseStylesheet {
@@ -51,10 +56,11 @@
                 return;
             }
             else {
-                [[CSKMainController sharedInstance] layoutLayersWithDOMTree:DOMTree];
+                [CSKLayers layoutLayersWithDOMTree:DOMTree];
                 [[CSKMainController sharedInstance] refreshDocument];
             }
-            
+         
+            self.domModel = nil;
         } layerTree:self.layerTree];
         });
     }];
