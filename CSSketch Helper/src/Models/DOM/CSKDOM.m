@@ -12,7 +12,6 @@
 
 @interface CSKDOM ()
 
-@property (strong) id store;
 @property (strong) WebView *webView;
 @property (strong) JSContext *context;
 @property (copy) CSKDOMComputedCallback callbackBlock;
@@ -49,8 +48,7 @@
                                 stringWithFormat:@"<html><head><style>%@\n%@</style></head><body></body></html>",
                                 resetDefaultStylesheet,
                                 stylesheet];
-        NSURL *baseURL = [NSURL URLWithString:@"about:blank"];
-        baseURL = [NSURL URLWithString:@"working"];
+        NSURL *baseURL = [NSURL URLWithString:@"internal"];
         _webView = [WebView new];
         [_webView.mainFrame loadHTMLString:HTMLString baseURL:baseURL];
         _webView.frameLoadDelegate = self;
@@ -85,7 +83,10 @@
 
     self.document = document;
     
+    // create DOM elements
     [self walkLayerTree:(NSMutableDictionary *)self.layerTree parentElement:body];
+    
+    // store CSS attributes from DOM elements
     [self walkLayerTreeAndStoreComputedProperties:(NSMutableDictionary *)self.layerTree];
     NSString *finalHTML = document.documentElement.outerHTML;
    
@@ -110,18 +111,6 @@
 }
 
 - (void)walkLayerTree:(NSMutableDictionary *)layerTree parentElement:(DOMElement *)parent {
-    NSString *tagName = @"layer";
-    
-    CSK_MSLayer *layer = layerTree[@"layer"];
-    if (layer) {
-        if (MSLayerIsArtboard(layer)) {
-            tagName = @"artboard";
-        }
-        else if(MSLayerIsPage(layer)) {
-            tagName = @"page";
-        }
-    }
-    
     DOMElement *element = [self.document createElement:@"layer"];
     [element setAttribute:@"name" value:layerTree[@"name"]];
     [element setAttribute:@"objectID" value:layerTree[@"objectID"]];
@@ -231,7 +220,6 @@
             currentElement = nil;
         }
     }
-    
     
     computedProperties[@"offsetTop"] = @(offsetTop);
     computedProperties[@"offsetLeft"] = @(offsetLeft);
