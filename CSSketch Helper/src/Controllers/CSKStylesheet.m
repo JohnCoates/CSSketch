@@ -79,7 +79,46 @@
     
     if (error) {
         NSLog(@"error retrieving contents of Less stylesheet: %@", error);
+        NSString *errorString = [NSString stringWithFormat:@"Couldn't read stylesheet %@", self.fileURL.path];
+        [CSKMainController displayError:errorString];
         return FALSE;
+    }
+    
+    // process @import
+    // un-escaped regex: @import[\s]+?(\([^)]+\)[\s]+)?['"]([^'"]+)['"];
+    // targetting: @import (keyword) "filename";
+    NSArray *importMatches = [lessStylesheet matchesWithDetails:RX(@"@import[\\s]+?(\\([^)]+\\)[\\s]+)?['\"]([^'\"]+)['\"];")];
+    
+    if (importMatches.count) {
+        for (RxMatch *match in importMatches) {
+            RxMatchGroup *wholeMatch = match.groups[0];
+//            RxMatchGroup *keywordMatch = match.groups[1];
+            RxMatchGroup *filenameMatch = match.groups[2];
+            NSString *filename = filenameMatch.value;
+            
+            NSString *pathComponent = [NSString stringWithFormat:@"/../%@", filename];
+            NSString *filenamePath = [[self.fileURL.path stringByAppendingPathComponent:pathComponent] stringByStandardizingPath];
+            
+            if ([CSKMainController inSandbox] == FALSE) {
+                NSString *importContents = [NSString stringWithContentsOfFile:filenamePath
+                                                                     encoding:NSUTF8StringEncoding
+                                                                        error:&error];
+                
+                if (error) {
+                    NSString *errorString = [NSString stringWithFormat:@"Couldn't import stylesheet %@", filenamePath];
+                    [CSKMainController displayError:errorString];
+                    return FALSE;
+                }
+                lessStylesheet = [lessStylesheet stringByReplacingOccurrencesOfString:wholeMatch.value withString:importContents];
+                
+            }
+            else {
+                // TODO: add prompt for file selection or for directory access
+                NSString *error = [NSString stringWithFormat:@"@import is not supported in Sandboxed Sketch!"];
+                [CSKMainController displayError:error];
+            }
+            
+        }
     }
     
     if (DEBUG) {
@@ -88,7 +127,7 @@
     
     [CSKLess compileLessStylesheet:lessStylesheet completion:^(NSError *error, NSString *compiledCSS) {
         if (error) {
-            NSLog(@"error compiling styelsheet: %@", error);
+            NSLog(@"error compiling stylesheet: %@", error);
         }
         
         if (DEBUG) {
