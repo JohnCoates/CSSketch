@@ -51,6 +51,14 @@
     self.stylesheetController = [[CSKStylesheet alloc] initWithFile:stylesheetURL];
     
     [self.stylesheetController parseStylesheet:^(NSError *error, NSString *compiledStylesheet) {
+        
+        if (error) {
+            NSString *message = [NSString stringWithFormat:@"Couln't compile stylesheet: %@", error.localizedDescription];
+            [CSKMainController displayError:message];
+            self.stylesheetController = nil;
+            return;
+            
+        }
     
         // CSKDOM uses WebKit which needs a UI thread
         dispatch_async(dispatch_get_main_queue(), ^{
