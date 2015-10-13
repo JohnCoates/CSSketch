@@ -115,6 +115,13 @@
     [element setAttribute:@"name" value:layerTree[@"name"]];
     [element setAttribute:@"objectID" value:layerTree[@"objectID"]];
     
+    CSK_MSLayer *layer = layerTree[@"layer"];
+    
+    if ([layer isKindOfClass:NSClassFromString(@"MSTextLayer")]) {
+        [element setAttribute:@"type" value:@"text"];
+    }
+    
+    
     NSString *name = layerTree[@"name"];
     NSArray *allClasses = [name matches:RX(@"(^|\\s)\\.([^\\s]+)")];
     
