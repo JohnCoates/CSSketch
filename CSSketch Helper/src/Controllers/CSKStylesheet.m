@@ -88,7 +88,7 @@
     
     [CSKLess compileLessStylesheet:lessStylesheet completion:^(NSError *error, NSString *compiledCSS) {
         if (error) {
-            return;
+            NSLog(@"error compiling styelsheet: %@", error);
         }
         
         if (DEBUG) {
