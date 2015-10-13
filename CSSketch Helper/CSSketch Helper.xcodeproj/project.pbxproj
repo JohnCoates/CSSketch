@@ -64,6 +64,8 @@
 		FA56F7D81BC0D72F005673E0 /* CSSketch Helper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSSketch Helper-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA56F7DE1BC0DDE7005673E0 /* CSKFileMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKFileMonitor.h; sourceTree = "<group>"; };
 		FA56F7DF1BC0DDE7005673E0 /* CSKFileMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKFileMonitor.m; sourceTree = "<group>"; };
+		FA7BFD801BCCAD5C000D9AFB /* RS_MSTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RS_MSTextLayer.h; sourceTree = "<group>"; };
+		FA7BFD811BCCAD5C000D9AFB /* RS_MSTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RS_MSTextLayer.m; sourceTree = "<group>"; };
 		FA7D76C01BC1A5BA00FCDEF5 /* CSKLess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKLess.h; sourceTree = "<group>"; };
 		FA7D76C11BC1A5BA00FCDEF5 /* CSKLess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKLess.m; sourceTree = "<group>"; };
 		FA7D76D51BC1AB6900FCDEF5 /* CSK Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSK Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +215,7 @@
 		FA56F7DB1BC0D740005673E0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				FA7BFD7F1BCCAD3B000D9AFB /* Research */,
 				FA0E95D81BCB276E00CDD8EF /* Categories */,
 				FADE15421BC26431002FDE5C /* Headers */,
 				FA20626B1BC21C08003079A1 /* Controllers */,
@@ -242,6 +245,15 @@
 				FA56F7DF1BC0DDE7005673E0 /* CSKFileMonitor.m */,
 			);
 			path = Files;
+			sourceTree = "<group>";
+		};
+		FA7BFD7F1BCCAD3B000D9AFB /* Research */ = {
+			isa = PBXGroup;
+			children = (
+				FA7BFD801BCCAD5C000D9AFB /* RS_MSTextLayer.h */,
+				FA7BFD811BCCAD5C000D9AFB /* RS_MSTextLayer.m */,
+			);
+			path = Research;
 			sourceTree = "<group>";
 		};
 		FA7D76BF1BC1A59E00FCDEF5 /* Less */ = {
@@ -512,6 +524,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = ../External;
 				INFOPLIST_FILE = "CSSketch Helper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
@@ -529,6 +542,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = ../External;
 				INFOPLIST_FILE = "CSSketch Helper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
