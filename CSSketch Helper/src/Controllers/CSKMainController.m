@@ -99,12 +99,15 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
     [toolbarProxies addObject:toolbarProxy];
     self.toolbarProxies = toolbarProxies;
     
-    [toolbar insertItemWithItemIdentifier:@"CSSketch"
-                                  atIndex:toolbar.visibleItems.count - 1];
+    if (toolbar.visibleItems.count > 0) {
+        [toolbar insertItemWithItemIdentifier:@"CSSketch"
+                                      atIndex:toolbar.visibleItems.count - 1];
+    }
 }
 
 - (void)refreshDocument {
     [self.document.currentView refresh];
+    [self.document reloadInspector];
 }
 
 
