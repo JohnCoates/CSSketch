@@ -10,9 +10,6 @@
 
 @interface CSKLayerCSS : NSObject
 
-+ (void)handleBorderWithDOMLeaf:(NSDictionary *)leaf layer:(CSK_MSLayer *)layer;
-+ (void)handleFrameWithDOMLeaf:(NSDictionary *)leaf layer:(CSK_MSLayer *)layer;
-+ (void)handleShadowWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer;
-+ (void)handleBackgroundColorWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer;
++ (void)handleCSSPropertiesWithDOMLeaf:(NSDictionary *)leaf layer:(CSK_MSLayer *)layer;
 
 @end

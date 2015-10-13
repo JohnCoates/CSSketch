@@ -34,19 +34,8 @@ static const BOOL DEBUG_WriteOutLayerTree = FALSE;
             NSLog(@"setting CSS for %@", DOMTree[@"name"]);
         }
         
-        // layout
-        [CSKLayerCSS handleFrameWithDOMLeaf:DOMTree layer:layer];
-        
-        // border
-        [CSKLayerCSS handleBorderWithDOMLeaf:DOMTree layer:layer];
-        
-        // shadow
-        [CSKLayerCSS handleShadowWithDOMLeaf:DOMTree layer:layer];
-        
-        // background color
-        [CSKLayerCSS handleBackgroundColorWithDOMLeaf:DOMTree layer:layer];
-        
-        // opacity
+        // CSS handler
+        [CSKLayerCSS handleCSSPropertiesWithDOMLeaf:DOMTree layer:layer];
         
     }
     

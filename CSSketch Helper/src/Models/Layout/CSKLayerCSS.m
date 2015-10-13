@@ -10,8 +10,28 @@
 
 @implementation CSKLayerCSS
 
-#pragma mark - Layout, Size
+#pragma mark - Entry Point
 
++ (void)handleCSSPropertiesWithDOMLeaf:(NSDictionary *)leaf layer:(CSK_MSLayer *)layer {
+
+    // layout
+    [self handleFrameWithDOMLeaf:leaf layer:layer];
+    
+    // border
+    [self handleBorderWithDOMLeaf:leaf layer:layer];
+    
+    // shadow
+    [self handleShadowWithDOMLeaf:leaf layer:layer];
+    
+    // background color
+    [self handleBackgroundColorWithDOMLeaf:leaf layer:layer];
+    
+    // text color
+    [self handleTextColorWithDOMLeaf:leaf layer:layer];
+    
+}
+
+#pragma mark - Layout, Size
 
 + (void)handleFrameWithDOMLeaf:(NSDictionary *)leaf layer:(CSK_MSLayer *)layer {
     NSRect artboardFrame = layer.frameInArtboard;
@@ -155,7 +175,16 @@
         return;
     }
     
+    // don't apply to text
+    if ([layer isKindOfClass:NSClassFromString(@"MSTextLayer")]) {
+        return;
+    }
+    
     CSK_MSColor *backgroundColor = [self colorFromString:backgroundColorString];
+    
+    if (!backgroundColor) {
+        return;
+    }
     
     if (!layer.style.fills.count) {
         [layer.style.fills addNewStylePart];
@@ -170,6 +199,57 @@
     fill.color = backgroundColor;
 }
 
+#pragma mark - Text
+
++ (void)handleTextColorWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer {
+    NSDictionary *rules = DOMLeaf[@"rules"];
+    
+    NSString *colorString = rules[@"color"];
+    
+    if (!colorString) {
+        return;
+    }
+    
+    // only apply to text
+    if ([layer isKindOfClass:NSClassFromString(@"MSTextLayer")] == FALSE) {
+        return;
+    }
+    
+    CSK_MSColor *color = [self colorFromString:colorString];
+    
+    if (!color) {
+        return;
+    }
+    
+    
+    CSK_MSTextLayer *textLayer = (CSK_MSTextLayer *)layer;
+    // Having text update immediately took a lot of figuring out
+    // I hope you appreciate it!
+    
+    [textLayer markLayerDirtyOfType:CSKMSLayerDirtyTypeTextColor];
+    
+    [textLayer prepareForUndo];
+//    textLayer.textColor = color;
+    
+    [textLayer setStringValue:textLayer.stringValue.copy];
+    
+    NSTextStorage *storage = textLayer.storage;
+    [storage beginEditing];
+    storage.foregroundColor = [NSColor colorWithRed:color.red
+                                              green:color.green
+                                               blue:color.blue
+                                              alpha:color.alpha];
+    
+    [storage endEditing];
+    
+    [textLayer syncTextStyleAttributes];
+    [textLayer layerDidChange];
+    
+    [textLayer invalidateLightweightCopy:nil];
+    
+}
+
+
 #pragma mark - Helpers
 
 + (CSK_MSColor *)colorFromString:(NSString *)colorString {
@@ -178,7 +258,7 @@
     
     if (rgbaMatch) {
         if (DEBUG) {
-            NSLog(@"%@ matches: %@", colorString, rgbaMatch.groups);
+//            NSLog(@"%@ matches: %@", colorString, rgbaMatch.groups);
         }
         RxMatchGroup *rGroup = rgbaMatch.groups[1];
         RxMatchGroup *gGroup = rgbaMatch.groups[2];
