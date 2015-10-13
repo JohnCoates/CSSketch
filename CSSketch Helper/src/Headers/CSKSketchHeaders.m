@@ -14,6 +14,13 @@
     return true;
 }
 
+- (void)invalidateLightweightCopy:(id)arg1 {
+    
+}
+
+- (void)hideSelectionTemporarily {
+    
+}
 @end
 
 @implementation CSK_MSDocument
@@ -27,6 +34,10 @@
 
 - (CSK_MSContentDrawView *)currentView{
     return nil;
+}
+
+- (void)reloadInspector {
+    
 }
 
 @end

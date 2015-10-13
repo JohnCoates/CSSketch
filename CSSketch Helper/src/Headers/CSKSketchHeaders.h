@@ -12,9 +12,13 @@
 #import <AppKit/AppKit.h>
 
 @class CSK_MSLayer, CSK_MSContentDrawView, CSK_MSStyle, CSK_MSStyleBorder, CSK_MSColor;
-@class CSK_MSStyleShadow, CSK_MSPage, CSK_MSStyleFill;
+@class CSK_MSStyleShadow, CSK_MSPage, CSK_MSStyleFill, CSK_MSTextLayer;
 
 @interface CSK_MSColor : NSObject
+@property(readonly, nonatomic) double red;
+@property(readonly, nonatomic) double green;
+@property(readonly, nonatomic) double blue;
+@property(readonly, nonatomic) double alpha;
     + (id)colorWithRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
 @end
 
@@ -63,6 +67,7 @@ typedef NS_ENUM(long long, MSStyleBorderPosition) {
 - (CSK_MSPage *)currentPage;
 - (CSK_MSContentDrawView *)currentView;
 - (void)displayMessage:(NSString *)message;
+- (void)reloadInspector;
 @end
 
 @interface CSK_MSLayer : NSObject
@@ -74,8 +79,23 @@ typedef NS_ENUM(long long, MSStyleBorderPosition) {
     @property (readonly) CSK_MSStyle *style;
 
 
+    - (void)invalidateLightweightCopy:(id)arg1;
     // groups only
     - (BOOL)resizeRoot:(BOOL)resize;
+
+    - (void)hideSelectionTemporarily;
+@end
+
+static const long long CSKMSLayerDirtyTypeTextColor = 3;
+
+@interface CSK_MSTextLayer : CSK_MSLayer
+    @property(copy, nonatomic) NSString *stringValue;
+    @property(copy, nonatomic) CSK_MSColor *textColor;
+    @property(retain, nonatomic) NSTextStorage *storage;
+    - (void)markLayerDirtyOfType:(unsigned long long)arg1;
+    - (void)layerDidChange;
+    - (void)syncTextStyleAttributes;
+    - (void)prepareForUndo;
 @end
 
 @interface CSK_MSPage : CSK_MSLayer
