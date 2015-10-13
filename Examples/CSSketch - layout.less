@@ -1,0 +1,41 @@
+.reset() {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+[name="rectangle"]:nth-child(odd) {
+  background-color: #B65A59;
+}
+
+[name="rectangle"]:nth-child(even) {
+  background-color: #6B9EC3;
+}
+
+[name="table"] {
+  .reset;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  justify-content:center;
+}
+
+[name="rectangle"] {
+  .reset;
+  @size : 80px;
+  width: @size;
+  height: @size;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 20px;
+}
+
+[type="text"] {
+  color: #000;
+}
+
+[name="font one"] {
+  background-color: #fff;
+}
