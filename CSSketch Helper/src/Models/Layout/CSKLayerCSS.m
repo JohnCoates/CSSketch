@@ -191,6 +191,13 @@
         return;
     }
     
+    if ([layer isKindOfClass:NSClassFromString(@"MSArtboardGroup")]) {
+        CSK_MSArtboardGroup *artboard = (CSK_MSArtboardGroup *)layer;
+        artboard.backgroundColor = backgroundColor;
+        
+        return;
+    }
+    
     if (!layer.style.fills.count) {
         [layer.style.fills addNewStylePart];
     }

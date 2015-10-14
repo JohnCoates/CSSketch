@@ -28,7 +28,9 @@ static const BOOL DEBUG_WriteOutLayerTree = FALSE;
     
     CSK_MSLayer *layer = DOMTree[@"layer"];
     
-    // check to see if object should have size & position set
+//    NSNumber *CSSOptIn = DOMTree[@"CSSOptIn"];
+    
+    // we can normally skip groups for css properties
     if (!hasChildren) {
         if (DEBUG) {
             NSLog(@"setting CSS for %@", DOMTree[@"name"]);
@@ -37,6 +39,9 @@ static const BOOL DEBUG_WriteOutLayerTree = FALSE;
         // CSS handler
         [CSKLayerCSS handleCSSPropertiesWithDOMLeaf:DOMTree layer:layer];
         
+    }
+    else if ([layer isKindOfClass:NSClassFromString(@"MSArtboardGroup")]) {
+        [CSKLayerCSS handleBackgroundColorWithDOMLeaf:DOMTree layer:layer];
     }
     
     

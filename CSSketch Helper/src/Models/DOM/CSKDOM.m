@@ -119,6 +119,9 @@
     if ([layer isKindOfClass:NSClassFromString(@"MSTextLayer")]) {
         [element setAttribute:@"type" value:@"text"];
     }
+    else if ([layer isKindOfClass:NSClassFromString(@"MSArtboardGroup")]) {
+        [element setAttribute:@"type" value:@"artboard"];
+    }
     
     NSString *name = layerTree[@"name"];
     NSArray *allClasses = [name matches:RX(@"(^|\\s)\\.([^\\s]+)")];

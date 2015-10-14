@@ -70,6 +70,7 @@ typedef NS_ENUM(long long, MSStyleBorderPosition) {
 - (void)reloadInspector;
 @end
 
+
 @interface CSK_MSLayer : NSObject
     @property (readonly) NSString *name;
     @property (readonly) NSArray *layers;
@@ -84,6 +85,11 @@ typedef NS_ENUM(long long, MSStyleBorderPosition) {
     - (BOOL)resizeRoot:(BOOL)resize;
 
     - (void)hideSelectionTemporarily;
+@end
+
+@interface CSK_MSArtboardGroup : CSK_MSLayer
+@property(nonatomic) BOOL hasBackgroundColor;
+@property(copy, nonatomic) CSK_MSColor *backgroundColor;
 @end
 
 static const long long CSKMSLayerDirtyTypeTextColor = 3;
