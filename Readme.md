@@ -21,6 +21,8 @@ Two ways to install:
 
 * To enable CSSketch you must run the menu bar option every time Sketch 3 launches. You can find it on the menu bar at Plugins -> CSSketch -> Layout Layers.
 * A stylesheet is set on a per-page basis. Set the stylesheet at Plugins -> CSSketch -> Set Page's Stylesheet for every page you want a stylesheet for. Once this is set, simply make changes to the stylesheet and save them to see the effects.
+* Take a look in Examples/ for examples of what you can do right now.
+* **Please Note:** Handling for many CSS rules is missing currently.
 
 
 ## Features
