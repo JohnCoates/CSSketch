@@ -112,7 +112,6 @@
 
 - (void)walkLayerTree:(NSMutableDictionary *)layerTree parentElement:(DOMElement *)parent {
     DOMElement *element = [self.document createElement:@"layer"];
-    [element setAttribute:@"name" value:layerTree[@"name"]];
     [element setAttribute:@"objectID" value:layerTree[@"objectID"]];
     
     CSK_MSLayer *layer = layerTree[@"layer"];
@@ -121,18 +120,27 @@
         [element setAttribute:@"type" value:@"text"];
     }
     
-    
     NSString *name = layerTree[@"name"];
     NSArray *allClasses = [name matches:RX(@"(^|\\s)\\.([^\\s]+)")];
     
     if (allClasses.count) {
         NSString *classes = [allClasses componentsJoinedByString:@" "];
+        
+        // clean up name
+        name = [name stringByReplacingOccurrencesOfString:classes withString:@""];
+        name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
         // strip .
         classes = [classes stringByReplacingOccurrencesOfString:@"." withString:@""];
         
         [element setAttribute:@"class" value:classes];
-        layerTree[@"CSSOptIn"] = @(TRUE);
+        
+//        if ([classes containsString:@".optIn"]) {
+//            layerTree[@"CSSOptIn"] = @(TRUE);
+//        }
     }
+    
+    [element setAttribute:@"name" value:name];
     
     [parent appendChild:element];
     
