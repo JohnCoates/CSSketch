@@ -46,7 +46,7 @@
         completionBlock(errorFromJSError(format), nil);
         
     }];
-    
+    __block BOOL parserBlockRan = FALSE;
     void (^parserBlock)(JSValue *error, JSValue *output) = ^(JSValue *jsError, JSValue *tree) {
         if (![jsError isNull]) {
             completionBlock(errorFromJSError(jsError), nil);
@@ -58,6 +58,8 @@
         context[@"parsedTree"] = tree;
         JSValue *compiledCSS = [context evaluateScript:@"parsedTree.toCSS({})"];
         completionBlock(nil, compiledCSS.toString);
+        
+        parserBlockRan = true;
     };
     
     [context setObject:parserBlock forKeyedSubscript:@"parserBlock"];
@@ -66,6 +68,11 @@
     context[@"lessStylesheet"] = stylesheet;
     [context evaluateScript:@"var parser = new(less.Parser);"];
     [context evaluateScript:@"parser.parse(lessStylesheet, parserBlock);"];
+    
+    // error in case parser block didn't run;
+    if (parserBlockRan == FALSE) {
+        completionBlock(errorFromJSError(@"Couldn't run Less Parser!"), nil);
+    }
     
 }
 
