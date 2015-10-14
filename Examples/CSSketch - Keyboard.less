@@ -1,0 +1,105 @@
+@import "common.less";
+
+.row {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.second {
+  top: 50;
+}
+.third {
+  top: 100px;
+}
+
+[name="letters"] {
+  position: absolute;
+  left: 0;
+  top: 31px;
+  width: 640px;
+  display: flex;
+  justify-content:center;
+  background-color: red;
+}
+
+[name="boxes"] {
+  // .reset;
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width: 640px;
+  display: flex;
+  justify-content: center;
+  float: left;
+}
+
+[type="text"], [name="Shift-key"], [name="Delete-key"] {
+  .reset;
+  width: @keyWidth;
+  margin-left: @keyMarginLeft;
+  color: @keyForegroundColor;
+  text-transform: uppercase;
+}
+
+[name="boxes"] > layer {
+  .reset;
+  width: @keyWidth;
+  margin-left: @keyMarginLeft;
+  background-color: @keyBackgroundColor;
+}
+
+.delete, [name="boxes"] > .delete {
+  width: @deleteKeyWidth;
+}
+.shift, [name="boxes"] > .shift {
+  width: @shiftKeyWidth;
+}
+
+[name="Shift"] {
+  width: 18.56px;
+  height: 15.52px;
+  margin-top: 9px;
+  margin-left: (@shiftKeyWidth / 2) - (18.56 / 2);
+  background-color: @keyForegroundColor;
+}
+
+[name="Delete"] {
+  width: 22px;
+  height: 16px;
+  margin-top: 10px;
+  margin-left: (@deleteKeyWidth / 2) - (22px / 2) - 1;
+  background-color: @keyForegroundColor;
+}
+
+// Key Sizes
+@keyWidth: 36px;
+@keyMarginLeft: 14px;
+
+// Non-Standard keys
+@deleteKeyWidth: @keyWidth + 8;
+@shiftKeyWidth: @deleteKeyWidth;
+
+// Palette - light
+@light-keyForeground: #fff;
+@light-keyBackground: #555;
+
+// Palette - dark
+@dark-keyForeground: #74D4FE;
+@dark-keyBackground: #2D3134;
+
+// Palette choices
+@paletteLight: light;
+@paletteDark: dark;
+
+// Palette variables
+@_keyForeground: "@{currentPalette}-keyForeground";
+@_keyBackground: "@{currentPalette}-keyBackground";
+
+// Key Colors
+@keyForegroundColor: @@_keyForeground;
+@keyBackgroundColor: @@_keyBackground;
+
+
+// Current Palette
+@currentPalette: @paletteDark;
