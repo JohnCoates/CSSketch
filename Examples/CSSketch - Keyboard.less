@@ -1,5 +1,13 @@
+
+/* Imports */
 @import "common.less";
 
+[type="artboard"] {
+  background-color: @background;
+}
+
+@originX: 0;
+@originY: 100;
 .row {
   position: absolute;
   left: 0;
@@ -16,18 +24,17 @@
 [name="letters"] {
   position: absolute;
   left: 0;
-  top: 31px;
+  top: @originY + 31px;
   width: 640px;
   display: flex;
   justify-content:center;
-  background-color: red;
 }
 
 [name="boxes"] {
   // .reset;
   position: absolute;
   left: 0;
-  top: 30px;
+  top:  @originY + 30px;
   width: 640px;
   display: flex;
   justify-content: center;
@@ -72,34 +79,42 @@
   background-color: @keyForegroundColor;
 }
 
-// Key Sizes
-@keyWidth: 36px;
-@keyMarginLeft: 14px;
-
 // Non-Standard keys
 @deleteKeyWidth: @keyWidth + 8;
 @shiftKeyWidth: @deleteKeyWidth;
 
-// Palette - light
-@light-keyForeground: #fff;
-@light-keyBackground: #555;
-
-// Palette - dark
-@dark-keyForeground: #74D4FE;
-@dark-keyBackground: #2D3134;
-
-// Palette choices
-@paletteLight: light;
-@paletteDark: dark;
-
 // Palette variables
+@_background: "@{currentPalette}-background";
 @_keyForeground: "@{currentPalette}-keyForeground";
 @_keyBackground: "@{currentPalette}-keyBackground";
 
 // Key Colors
 @keyForegroundColor: @@_keyForeground;
 @keyBackgroundColor: @@_keyBackground;
+@background: @@_background;
 
+
+
+
+// Palette - light
+@light-background: #404C5B;
+@light-keyForeground: #D3707E;
+@light-keyBackground: #F9F9F9;
+
+// Palette - dark
+@dark-background: #7B848F;
+@dark-keyForeground: #74D4FE;
+@dark-keyBackground: #2B3134;
+
+// Palette choices
+@paletteLight: light;
+@paletteDark: dark;
+
+/* Quick Customizing */
 
 // Current Palette
-@currentPalette: @paletteDark;
+@currentPalette: @paletteLight;
+
+// Key Sizes
+@keyWidth: 36px;
+@keyMarginLeft: 14px;
