@@ -35,6 +35,11 @@ Two ways to install:
 - **Find a bug?** [Open an issue](https://github.com/JohnCoates/CSSketch/issues/new). Try to be as specific as possible.
 - **Have a feature request** [Open an issue](https://github.com/JohnCoates/CSSketch/issues/new). Tell me why this feature would be useful, and why you and others would want it.
 
+## Contribute
+Lot of CSS rules have yet to be added. They're decently easy to add. I appreciate all pull requests! You'll want to modify the following files to add CSS rule handling:
+* CSS Rule handlers: [CSSketch Helper/src/Models/Layout/CSKLayerCSS.m](https://github.com/JohnCoates/CSSketch/blob/master/CSSketch%20Helper/src/Models/Layout/CSKLayerCSS.m)
+* Sketch Header Stubs: [CSketch Helper/src/Headers/CSSketchHeaders.h](https://github.com/JohnCoates/CSSketch/blob/master/CSSketch%20Helper/src/Headers/CSKSketchHeaders.h)
+
 ## Changelog
 
 - October 2015 - 1.0: first release
