@@ -26,8 +26,13 @@
     // background color
     [self handleBackgroundColorWithDOMLeaf:leaf layer:layer];
     
-    // text color
-    [self handleTextColorWithDOMLeaf:leaf layer:layer];
+    if ([layer isKindOfClass:NSClassFromString(@"MSTextLayer")]) {
+        // color
+        [self handleTextColorWithDOMLeaf:leaf layer:layer];
+        
+        // text-tranform
+        [self handleTextTransformWithDOMLeaf:leaf layer:layer];
+    }
     
 }
 
@@ -201,6 +206,39 @@
 
 #pragma mark - Text
 
++ (void)handleTextTransformWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer {
+    NSDictionary *rules = DOMLeaf[@"rules"];
+    
+    NSString *textTransform = rules[@"text-transform"];
+    
+    if (!textTransform) {
+        return;
+    }
+    
+    CSK_MSTextLayer *textLayer = (CSK_MSTextLayer *)layer;
+
+    NSString *currentString = textLayer.stringValue;
+    NSString *newString = nil;
+    
+    if ([textTransform isEqualToString:@"capitalize"]) {
+        newString = [currentString capitalizedString];
+    }
+    else if ([textTransform isEqualToString:@"uppercase"]) {
+        newString = [currentString uppercaseString];
+    }
+    else if ([textTransform isEqualToString:@"loweracse"]) {
+        newString = [currentString lowercaseString];
+    }
+    else {
+        
+        NSString *error = [NSString stringWithFormat:@"unsupported text-transform: %@", textTransform];
+        [CSKMainController displayError:error];
+        return;
+    }
+    
+    textLayer.stringValue = newString;
+}
+
 + (void)handleTextColorWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer {
     NSDictionary *rules = DOMLeaf[@"rules"];
     
@@ -210,10 +248,6 @@
         return;
     }
     
-    // only apply to text
-    if ([layer isKindOfClass:NSClassFromString(@"MSTextLayer")] == FALSE) {
-        return;
-    }
     
     CSK_MSColor *color = [self colorFromString:colorString];
     
@@ -229,9 +263,6 @@
     [textLayer markLayerDirtyOfType:CSKMSLayerDirtyTypeTextColor];
     
     [textLayer prepareForUndo];
-//    textLayer.textColor = color;
-    
-    [textLayer setStringValue:textLayer.stringValue.copy];
     
     NSTextStorage *storage = textLayer.storage;
     [storage beginEditing];
