@@ -5,7 +5,7 @@ It supports [{less}](http://lesscss.org) stylesheets, which means you can put fu
 CSSketch is completely open source, so feel free to contribute to its development!
 
 ## The Story Behind CSSketch
-#### [Programmers Design Differently: Why I Built a CSS Plugin for Sketch 3](https://medium.com/@punksomething/programmers-design-differently-why-i-built-a-css-plugin-for-sketch-3-52a1246305a4)
+#### [Programmers Design Differently: Why I Built a CSS Plugin for Sketch 3](https://medium.com/@punksomething/programmers-design-differently-why-i-built-a-css-plugin-for-sketch-3-52a1246305a4) on Medium.com
 
 ## Screencast
 
