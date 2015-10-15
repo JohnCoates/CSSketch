@@ -33,6 +33,18 @@ Two ways to install:
 * **Sandbox Support:** CSSketch works with the Mac App Store version of Sketch 3 as well as the regular version.
 * **Stylesheet Path Store In Document:** You only ever have to set the stylesheet path once. It's then stored in the document for future use.
 
+## Supported CSS
+* CSSketch uses the system version of WebKit. Upgrade to El Capitan for the best compatibility with CSS standards.
+* All layout variables should work fine.
+* All elements are given default values of absolute, top, and left, with their current positions on the artboard.
+* For selectors: All layers are the element type "layer". The name attribute is set to a layer's name, minus the classes. The type attribute is set to "text" for text, and "artboard" for artboards.
+* Background-color is supported
+* Border is supported (only solid lines)
+* Shadow is supported
+* Color is supported
+* Text-transform is supported
+
+
 ## Community
 - **Find a bug?** [Open an issue](https://github.com/JohnCoates/CSSketch/issues/new). Try to be as specific as possible.
 - **Have a feature request** [Open an issue](https://github.com/JohnCoates/CSSketch/issues/new). Tell me why this feature would be useful, and why you and others would want it.
