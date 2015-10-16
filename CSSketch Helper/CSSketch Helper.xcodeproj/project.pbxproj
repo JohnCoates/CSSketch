@@ -24,7 +24,7 @@
 		FA7D76E61BC1CAC900FCDEF5 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76E51BC1CAC900FCDEF5 /* WebKit.framework */; };
 		FA7D76EB1BC1CBFB00FCDEF5 /* CSSketch Helper in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76EA1BC1CBFB00FCDEF5 /* CSSketch Helper */; };
 		FA7D76EE1BC1CC1B00FCDEF5 /* CSKDOM.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76ED1BC1CC1B00FCDEF5 /* CSKDOM.m */; settings = {ASSET_TAGS = (); }; };
-		FA901AA01BC9D6A3005F8FAE /* less-rhino-1.7.5.js in Resources */ = {isa = PBXBuildFile; fileRef = FA901A9F1BC9D6A3005F8FAE /* less-rhino-1.7.5.js */; settings = {ASSET_TAGS = (); }; };
+		FA8BA46B1BD1778100AA5808 /* external in Resources */ = {isa = PBXBuildFile; fileRef = FA8BA46A1BD1778100AA5808 /* external */; settings = {ASSET_TAGS = (); }; };
 		FACF8FBA1BCC28320062D8F8 /* CSKDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF8FB91BCC28320062D8F8 /* CSKDocumentController.m */; settings = {ASSET_TAGS = (); }; };
 		FACF8FBE1BCC2DB10062D8F8 /* CSKLayers.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF8FBD1BCC2DB10062D8F8 /* CSKLayers.m */; settings = {ASSET_TAGS = (); }; };
 		FADE15451BC2644D002FDE5C /* CSKSketchHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15441BC2644D002FDE5C /* CSKSketchHeaders.m */; settings = {ASSET_TAGS = (); }; };
@@ -76,7 +76,7 @@
 		FA7D76EA1BC1CBFB00FCDEF5 /* CSSketch Helper */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "CSSketch Helper"; path = "../../../../../Library/Developer/Xcode/DerivedData/CSSketch_Helper-ekizehgrgjxbnbewqtweicoiegfb/Build/Products/Debug/CSSketch Helper.bundle/Contents/MacOS/CSSketch Helper"; sourceTree = "<group>"; };
 		FA7D76EC1BC1CC1B00FCDEF5 /* CSKDOM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKDOM.h; sourceTree = "<group>"; };
 		FA7D76ED1BC1CC1B00FCDEF5 /* CSKDOM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKDOM.m; sourceTree = "<group>"; };
-		FA901A9F1BC9D6A3005F8FAE /* less-rhino-1.7.5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "less-rhino-1.7.5.js"; sourceTree = "<group>"; };
+		FA8BA46A1BD1778100AA5808 /* external */ = {isa = PBXFileReference; lastKnownFileType = folder; path = external; sourceTree = "<group>"; };
 		FACF8FB81BCC28320062D8F8 /* CSKDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKDocumentController.h; sourceTree = "<group>"; };
 		FACF8FB91BCC28320062D8F8 /* CSKDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKDocumentController.m; sourceTree = "<group>"; };
 		FACF8FBC1BCC2DB10062D8F8 /* CSKLayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKLayers.h; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 		FA38F4B51BC33A8500787508 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FA901A9F1BC9D6A3005F8FAE /* less-rhino-1.7.5.js */,
+				FA8BA46A1BD1778100AA5808 /* external */,
 				FA38F4B81BC3A70F00787508 /* icon-layout24.png */,
 				FA38F4B61BC33AB900787508 /* icon-layout.png */,
 				FA2FE3B61BC71BCD0017A90A /* embedded.css */,
@@ -391,10 +391,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA901AA01BC9D6A3005F8FAE /* less-rhino-1.7.5.js in Resources */,
 				FA38F4B91BC3A70F00787508 /* icon-layout24.png in Resources */,
 				FA38F4B71BC33AB900787508 /* icon-layout.png in Resources */,
 				FA2FE3B71BC71BCD0017A90A /* embedded.css in Resources */,
+				FA8BA46B1BD1778100AA5808 /* external in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

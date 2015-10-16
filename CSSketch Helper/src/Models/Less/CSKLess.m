@@ -15,17 +15,20 @@
 + (void)compileLessStylesheet:(NSString *)stylesheet
                    completion:(LessCompileCompletionBlock)completionBlock  {
     
-    NSString *lessScriptPath = [[CSKMainController pluginBundle] pathForResource:@"less-rhino-1.7.5" ofType:@"js"];
+    NSString *lessScriptPath = [[CSKMainController pluginBundle] pathForResource:@"less-rhino-1.7.5"
+                                                                          ofType:@"js"
+                                                                     inDirectory:@"external"];
     NSError *error = nil;
     NSString *lessScript = [NSString stringWithContentsOfFile:lessScriptPath
                                                     encoding:NSUTF8StringEncoding
-                                                       error:nil];
+                                                       error:&error];
     
     if (error) {
         NSLog(@"Error, couldn't read Less script %@", lessScriptPath);
         [CSKMainController displayError:@"Couldn't read Less script!"];
         return;
     }
+    
     JSContext *context = [JSContext new];
 
     NSError *(^errorFromJSError)(id error) = ^(id jsError) {
