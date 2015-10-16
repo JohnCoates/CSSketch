@@ -39,7 +39,7 @@ Two ways to install:
 ## Supported CSS
 * CSSketch uses the system version of WebKit. Upgrade to El Capitan for the best compatibility with CSS standards.
 * All layout variables should work fine.
-* All elements are given default values of absolute, top, and left, with their current positions on the artboard.
+* All elements are given default values of position:absolute, top, and left, with their current positions on the artboard.
 * For selectors: All layers are the element type "layer". The name attribute is set to a layer's name, minus the classes. The type attribute is set to "text" for text, and "artboard" for artboards.
 * Background-color is supported
 * Border is supported (only solid lines)
