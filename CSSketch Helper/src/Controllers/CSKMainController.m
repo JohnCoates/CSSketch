@@ -480,7 +480,17 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 }
 
 + (void)displayError:(NSString *)error {
-    [[CSKMainController sharedInstance].document displayMessage:error];
+    NSString *prefixedMessage = [@"CSSketch: " stringByAppendingString:error];
+    
+    // message only shows if app is active
+    [[CSKMainController sharedInstance].document displayMessage:prefixedMessage];
+    
+    // NSUserNotification only shows if app is inactive
+    NSUserNotification *notification =  [[NSUserNotification alloc] init];
+    notification.title = @"CSSketch";
+    notification.informativeText = error;
+    notification.soundName = NSUserNotificationDefaultSoundName;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 - (NSString *)embeddedStylesheet {
