@@ -12,6 +12,9 @@ CSSketch is completely open source, so feel free to contribute to its developmen
 ![Screencast](https://raw.githubusercontent.com/JohnCoates/CSSketch/master/screencast.gif)
 
 ## Download & Install
+#### CSSketch is available through [Sketch Toolbox](http://sketchtoolbox.com/). This is the best option for installation, as it automatically keeps CSSketch up to date.
+
+## Download & Install Manually
 Download from [Github](https://github.com/JohnCoates/CSSketch/archive/master.zip)
 
 Two ways to install:
