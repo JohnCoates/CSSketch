@@ -33,6 +33,7 @@
         // text-tranform
         [self handleTextTransformWithDOMLeaf:leaf layer:layer];
 
+        // font-size
         [self handleFontSizeWithDOMLeaf:leaf layer:layer];
     }
     
@@ -254,17 +255,15 @@
     NSString *fontSize = rules[@"font-size"];
 
     if (!fontSize) {
-        NSString *error = @"no font size";
-        [CSKMainController displayError:error];
         return;
     }
 
     CSK_MSTextLayer *textLayer = (CSK_MSTextLayer *)layer;
 
-    NSLog(@"fontSize %@", fontSize);
-    NSString *error = [NSString stringWithFormat:@"font size is %@",fontSize];
-        [CSKMainController displayError:error];
-    textLayer.stringValue = fontSize;
+    if (DEBUG) {
+        NSLog(@"setting font-size to %@", fontSize);
+    }
+    
     textLayer.fontSize = fontSize.floatValue;
 }
 
