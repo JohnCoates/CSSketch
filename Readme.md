@@ -31,6 +31,15 @@ Two ways to install:
 * **Please Note:** Handling for many CSS rules is missing currently.
 
 
+## Targeting Your Sketch File
+
+You can use the following attributes to target various components of your sketch file in combination with other css targeting methods:
+
+* `[type="artboard"]` - To target all artboards
+* `[type="text"]` - To target all text
+* `[name="yourLayerName"]` - To target all layers with `yourLayerName` in their name
+* `.className` - To target all layers named `.className`
+
 ## Features
 * **Less Support:** Variables and functions are supported. Find out more at [LessCSS.org](http://lesscss.org)
 * **Auto Detect Stylesheet changes:** Set the stylesheet once, and that's it. Changes are detected and applied as soon as you save the stylesheet.
