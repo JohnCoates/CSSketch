@@ -52,7 +52,7 @@ function pluginPathURL() {
 }
 
 function showNotification(message) {
-  // NSUserNotification only shows if app is active
+  // NSUserNotification only shows if app is in-active
   var notification =  [[NSUserNotification alloc] init];
   notification.title = @"CSSketch";
   notification.informativeText = message;
