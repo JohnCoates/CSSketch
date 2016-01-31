@@ -107,10 +107,10 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 
 - (void)refreshDocument {
     
-    if ([self.document respondsToSelector:@selector(refresh)]) {
+    if ([self.document.currentView respondsToSelector:@selector(refresh)]) {
         [self.document.currentView refresh];
     }
-    else if([self.document respondsToSelector:@selector(refreshTiles)]) {
+    else if([self.document.currentView respondsToSelector:@selector(refreshTiles)]) {
         [self.document.currentView refreshTiles];
     }
     else {
