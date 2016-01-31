@@ -81,6 +81,7 @@
         }
         dispatch_source_vnode_flags_t flags = dispatch_source_get_data(source);
         
+        
         if (flags & DISPATCH_VNODE_RENAME) {
             if (DEBUG) {
                 NSLog(@"renamed!");
@@ -98,11 +99,13 @@
             if (error) {
                 NSLog(@"couldn't resolve file bookmark, error: %@", error);
             }
-            weakSelf.fileURL = newURL;
-            if (DEBUG) {
-                NSLog(@"%@ renamed to %@", currentURL, newURL);
+            else {
+                weakSelf.fileURL = newURL;
+                if (DEBUG) {
+                    NSLog(@"%@ renamed to %@", currentURL, newURL);
+                }
+                weakSelf.renameBlock(weakSelf, currentURL, newURL);
             }
-            weakSelf.renameBlock(weakSelf, currentURL, newURL);
         }
         else {
             NSTimeInterval timestamp = [NSDate date].timeIntervalSince1970;
