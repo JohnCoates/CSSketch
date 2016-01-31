@@ -134,7 +134,7 @@
             }
             
             if (DEBUG) {
-                NSLog(@"css stylesheet: %@", compiledCSS);
+                NSLog(@"compiled less stylesheet: %@", compiledCSS);
             }
             
             completionBlock(error, compiledCSS);
@@ -145,14 +145,19 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             NSError *error = nil;
             NSString *compiledCSS = [CocoaSass compileSass:lessStylesheet extension:extension error:&error];
-            error = nil;
             
-            if (error != nil) {
+            if (error != nil || !compiledCSS) {
                 NSLog(@"Error compiling Sass stylesheet: %@", error);
                 compiledCSS = @"";
             }
             
-            completionBlock(error, compiledCSS);
+            
+            if (DEBUG) {
+                NSLog(@"compiled %@ stylesheet: %@", extension, compiledCSS);
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(error, compiledCSS);
+            });
         });
     }
     else {
