@@ -10,6 +10,10 @@
 
 @implementation CSK_MSLayer
 
+- (BOOL)resizeToFitChildrenWithOption:(long long)option {
+    return true;
+}
+
 - (BOOL)resizeRoot:(BOOL)resize {
     return true;
 }
@@ -56,6 +60,7 @@
 
 @implementation CSK_MSContentDrawView
 - (void)refresh {}
+- (void)refreshTiles {}
 @end
 
 @implementation CSK_MSColor

@@ -82,7 +82,11 @@ typedef NS_ENUM(long long, MSStyleBorderPosition) {
 
     - (void)invalidateLightweightCopy:(id)arg1;
     // groups only
+    // version < 3.5
     - (BOOL)resizeRoot:(BOOL)resize;
+    // version >= 3.5
+    - (BOOL)resizeToFitChildrenWithOption:(long long)option;
+
 
     - (void)hideSelectionTemporarily;
 @end
@@ -121,5 +125,8 @@ forPluginIdentifier:(NSString *)pluginIdentifier;
 
 @interface CSK_MSContentDrawView : NSObject
 
+// Sketch < 3.5
 - (void)refresh;
+// Sketch >= 3.5
+- (void)refreshTiles;
 @end

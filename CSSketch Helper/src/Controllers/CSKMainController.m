@@ -106,7 +106,17 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 }
 
 - (void)refreshDocument {
-    [self.document.currentView refresh];
+    
+    if ([self.document respondsToSelector:@selector(refresh)]) {
+        [self.document.currentView refresh];
+    }
+    else if([self.document respondsToSelector:@selector(refreshTiles)]) {
+        [self.document.currentView refreshTiles];
+    }
+    else {
+        NSLog(@"Error: Can't refresh current view, missing refresh method!");
+    }
+    
     [self.document reloadInspector];
 }
 

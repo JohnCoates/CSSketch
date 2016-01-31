@@ -50,9 +50,17 @@ static const BOOL DEBUG_WriteOutLayerTree = FALSE;
             [self layoutLayersWithDOMTree:child];
         }
         
-        // reset group ounds
+        // reset group bounds
         if ([layer isKindOfClass:NSClassFromString(@"MSLayerGroup")]) {
-            [layer resizeRoot:true];
+            if ([layer respondsToSelector:@selector(resizeToFitChildrenWithOption:)]) {
+                [layer resizeToFitChildrenWithOption:1];
+            }
+            else if ([layer respondsToSelector:@selector(resizeRoot:)]) {
+                [layer resizeRoot:true];
+            }
+            else {
+                NSLog(@"ERROR: Can't resize MSLayerGroup to fit children, methods missing!");
+            }
         }
     }
 }
