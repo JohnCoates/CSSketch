@@ -7,20 +7,47 @@ if (!NSClassFromString("MSDocument")){
 	var delegate = [app delegate];
 
 	[delegate runPluginAtURL:url];
-	
 }
 else {
 	if (!NSClassFromString("CSKFileMonitor")) {
 		//TODO: fix hardcoded path
-		loadBundle("/Users/macbook/Dev/Extensions/Sketch/CSSketch/CSSketch.sketchplugin/CSSketch Helper.bundle");
+		var bundlePath;
+		bundlePath = "/Users/macbook/Dev/Extensions/Sketch/CSSketch/CSSketch.sketchplugin/CSSketch Helper.bundle";
+		var error = null;
+		if (!loadBundle(bundlePath)) {
+			log("error");
+		}
 	}
 	var mainController = CSKMainController.sharedInstance();
 	mainController.layoutLayersWithContext(sketch);
 }
 
+
 function loadBundle(filePath) {
-	log("loadBundle: " + filePath);
 	var bundleURL = NSURL.fileURLWithPath(filePath);
 	var bundle = [NSBundle bundleWithURL: bundleURL];
-	[bundle load];
+	if (bundle == null) {
+		showNotification("Bundle missing!");
+		error = error;
+		return false;
+	}
+	
+	var loaded = [bundle load];
+	
+	if (!loaded) {
+		showNotification("Couldn't load CSSketch bundle.");
+	}
+	else {
+//		log("loaded bundle!")
+	}
+	return loaded;
 }
+
+function showNotification(message) {
+	var notification =  [[NSUserNotification alloc] init];
+	notification.title = @"CSSketch";
+	notification.informativeText = message;
+	notification.soundName = NSUserNotificationDefaultSoundName;
+	[[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
