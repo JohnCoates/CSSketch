@@ -32,6 +32,9 @@
         
         // text-tranform
         [self handleTextTransformWithDOMLeaf:leaf layer:layer];
+
+        // font-size
+        [self handleFontSizeWithDOMLeaf:leaf layer:layer];
     }
     
 }
@@ -244,6 +247,24 @@
     }
     
     textLayer.stringValue = newString;
+}
+
++ (void)handleFontSizeWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer{
+    NSDictionary *rules = DOMLeaf[@"rules"];
+
+    NSString *fontSize = rules[@"font-size"];
+
+    if (!fontSize) {
+        return;
+    }
+
+    CSK_MSTextLayer *textLayer = (CSK_MSTextLayer *)layer;
+
+    if (DEBUG) {
+        NSLog(@"setting font-size to %@", fontSize);
+    }
+    
+    textLayer.fontSize = fontSize.floatValue;
 }
 
 + (void)handleTextColorWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer {

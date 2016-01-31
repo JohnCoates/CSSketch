@@ -99,6 +99,7 @@ typedef NS_ENUM(long long, MSStyleBorderPosition) {
 static const long long CSKMSLayerDirtyTypeTextColor = 3;
 
 @interface CSK_MSTextLayer : CSK_MSLayer
+    @property(nonatomic) double fontSize;
     @property(copy, nonatomic) NSString *stringValue;
     @property(copy, nonatomic) CSK_MSColor *textColor;
     @property(retain, nonatomic) NSTextStorage *storage;
