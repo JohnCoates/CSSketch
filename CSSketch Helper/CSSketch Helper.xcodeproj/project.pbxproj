@@ -7,29 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA0E95DB1BCB279C00CDD8EF /* NSString+Paths.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0E95DA1BCB279C00CDD8EF /* NSString+Paths.m */; settings = {ASSET_TAGS = (); }; };
-		FA20626E1BC21C4B003079A1 /* CSKStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FA20626D1BC21C4B003079A1 /* CSKStylesheet.m */; settings = {ASSET_TAGS = (); }; };
-		FA2FE3B71BC71BCD0017A90A /* embedded.css in Resources */ = {isa = PBXBuildFile; fileRef = FA2FE3B61BC71BCD0017A90A /* embedded.css */; settings = {ASSET_TAGS = (); }; };
-		FA2FE3BB1BC85F6F0017A90A /* CSKLayerCSS.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE3BA1BC85F6F0017A90A /* CSKLayerCSS.m */; settings = {ASSET_TAGS = (); }; };
+		FA0E95DB1BCB279C00CDD8EF /* NSString+Paths.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0E95DA1BCB279C00CDD8EF /* NSString+Paths.m */; };
+		FA20626E1BC21C4B003079A1 /* CSKStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FA20626D1BC21C4B003079A1 /* CSKStylesheet.m */; };
+		FA2FE3B71BC71BCD0017A90A /* embedded.css in Resources */ = {isa = PBXBuildFile; fileRef = FA2FE3B61BC71BCD0017A90A /* embedded.css */; };
+		FA2FE3BB1BC85F6F0017A90A /* CSKLayerCSS.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE3BA1BC85F6F0017A90A /* CSKLayerCSS.m */; };
 		FA38F4B01BC325D200787508 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA38F4AF1BC325D200787508 /* AppKit.framework */; };
-		FA38F4B41BC3272100787508 /* CSKToolbarProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38F4B31BC3272100787508 /* CSKToolbarProxy.m */; settings = {ASSET_TAGS = (); }; };
-		FA38F4B71BC33AB900787508 /* icon-layout.png in Resources */ = {isa = PBXBuildFile; fileRef = FA38F4B61BC33AB900787508 /* icon-layout.png */; settings = {ASSET_TAGS = (); }; };
-		FA38F4B91BC3A70F00787508 /* icon-layout24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA38F4B81BC3A70F00787508 /* icon-layout24.png */; settings = {ASSET_TAGS = (); }; };
-		FA38F4BE1BC3C93F00787508 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38F4BD1BC3C93F00787508 /* RegExCategories.m */; settings = {ASSET_TAGS = (); }; };
-		FA56F7E01BC0DDE7005673E0 /* CSKFileMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = FA56F7DF1BC0DDE7005673E0 /* CSKFileMonitor.m */; settings = {ASSET_TAGS = (); }; };
+		FA38F4B41BC3272100787508 /* CSKToolbarProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38F4B31BC3272100787508 /* CSKToolbarProxy.m */; };
+		FA38F4B71BC33AB900787508 /* icon-layout.png in Resources */ = {isa = PBXBuildFile; fileRef = FA38F4B61BC33AB900787508 /* icon-layout.png */; };
+		FA38F4B91BC3A70F00787508 /* icon-layout24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA38F4B81BC3A70F00787508 /* icon-layout24.png */; };
+		FA38F4BE1BC3C93F00787508 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38F4BD1BC3C93F00787508 /* RegExCategories.m */; };
+		FA56F7E01BC0DDE7005673E0 /* CSKFileMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = FA56F7DF1BC0DDE7005673E0 /* CSKFileMonitor.m */; };
 		FA56F7E31BC0E15E005673E0 /* CSSketch Helper.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA56F7CF1BC0D6C4005673E0 /* CSSketch Helper.bundle */; };
-		FA7D76C21BC1A5BA00FCDEF5 /* CSKLess.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76C11BC1A5BA00FCDEF5 /* CSKLess.m */; settings = {ASSET_TAGS = (); }; };
+		FA6F46F41C5EB0A0002EE579 /* libCocoaSass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F46F31C5EB095002EE579 /* libCocoaSass.a */; };
+		FA6F46F71C5EB74F002EE579 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F46F61C5EB74F002EE579 /* libc++.tbd */; };
+		FA7D76C21BC1A5BA00FCDEF5 /* CSKLess.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76C11BC1A5BA00FCDEF5 /* CSKLess.m */; };
 		FA7D76D81BC1AB6900FCDEF5 /* CSK_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76D71BC1AB6900FCDEF5 /* CSK_Tests.m */; };
 		FA7D76E41BC1ABFD00FCDEF5 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76E21BC1ABF600FCDEF5 /* JavaScriptCore.framework */; };
 		FA7D76E61BC1CAC900FCDEF5 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76E51BC1CAC900FCDEF5 /* WebKit.framework */; };
 		FA7D76EB1BC1CBFB00FCDEF5 /* CSSketch Helper in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76EA1BC1CBFB00FCDEF5 /* CSSketch Helper */; };
-		FA7D76EE1BC1CC1B00FCDEF5 /* CSKDOM.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76ED1BC1CC1B00FCDEF5 /* CSKDOM.m */; settings = {ASSET_TAGS = (); }; };
-		FA8BA46B1BD1778100AA5808 /* external in Resources */ = {isa = PBXBuildFile; fileRef = FA8BA46A1BD1778100AA5808 /* external */; settings = {ASSET_TAGS = (); }; };
-		FACF8FBA1BCC28320062D8F8 /* CSKDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF8FB91BCC28320062D8F8 /* CSKDocumentController.m */; settings = {ASSET_TAGS = (); }; };
-		FACF8FBE1BCC2DB10062D8F8 /* CSKLayers.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF8FBD1BCC2DB10062D8F8 /* CSKLayers.m */; settings = {ASSET_TAGS = (); }; };
-		FADE15451BC2644D002FDE5C /* CSKSketchHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15441BC2644D002FDE5C /* CSKSketchHeaders.m */; settings = {ASSET_TAGS = (); }; };
-		FADE15481BC26492002FDE5C /* CSKMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15471BC26492002FDE5C /* CSKMainController.m */; settings = {ASSET_TAGS = (); }; };
+		FA7D76EE1BC1CC1B00FCDEF5 /* CSKDOM.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76ED1BC1CC1B00FCDEF5 /* CSKDOM.m */; };
+		FA8BA46B1BD1778100AA5808 /* external in Resources */ = {isa = PBXBuildFile; fileRef = FA8BA46A1BD1778100AA5808 /* external */; };
+		FACF8FBA1BCC28320062D8F8 /* CSKDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF8FB91BCC28320062D8F8 /* CSKDocumentController.m */; };
+		FACF8FBE1BCC2DB10062D8F8 /* CSKLayers.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF8FBD1BCC2DB10062D8F8 /* CSKLayers.m */; };
+		FADE15451BC2644D002FDE5C /* CSKSketchHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15441BC2644D002FDE5C /* CSKSketchHeaders.m */; };
+		FADE15481BC26492002FDE5C /* CSKMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15471BC26492002FDE5C /* CSKMainController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA6F46F21C5EB095002EE579 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA6F46131C5EA968002EE579;
+			remoteInfo = CocoaSass;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FA56F7E21BC0E153005673E0 /* CopyFiles */ = {
@@ -64,6 +76,9 @@
 		FA56F7D81BC0D72F005673E0 /* CSSketch Helper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSSketch Helper-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA56F7DE1BC0DDE7005673E0 /* CSKFileMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKFileMonitor.h; sourceTree = "<group>"; };
 		FA56F7DF1BC0DDE7005673E0 /* CSKFileMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKFileMonitor.m; sourceTree = "<group>"; };
+		FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaSass.xcodeproj; path = ../external/CocoaSass/CocoaSass.xcodeproj; sourceTree = "<group>"; };
+		FA6F46F51C5EB0B7002EE579 /* CocoaSass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CocoaSass.h; path = ../external/CocoaSass/CocoaSass/CocoaSass.h; sourceTree = "<group>"; };
+		FA6F46F61C5EB74F002EE579 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		FA7BFD801BCCAD5C000D9AFB /* RS_MSTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RS_MSTextLayer.h; sourceTree = "<group>"; };
 		FA7BFD811BCCAD5C000D9AFB /* RS_MSTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RS_MSTextLayer.m; sourceTree = "<group>"; };
 		FA7D76C01BC1A5BA00FCDEF5 /* CSKLess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKLess.h; sourceTree = "<group>"; };
@@ -93,6 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6F46F71C5EB74F002EE579 /* libc++.tbd in Frameworks */,
+				FA6F46F41C5EB0A0002EE579 /* libCocoaSass.a in Frameworks */,
 				FA38F4B01BC325D200787508 /* AppKit.framework in Frameworks */,
 				FA7D76E61BC1CAC900FCDEF5 /* WebKit.framework in Frameworks */,
 				FA7D76E41BC1ABFD00FCDEF5 /* JavaScriptCore.framework in Frameworks */,
@@ -183,6 +200,7 @@
 		FA56F7C61BC0D6C4005673E0 = {
 			isa = PBXGroup;
 			children = (
+				FA6F46ED1C5EB088002EE579 /* External */,
 				FA7D76EF1BC1CC2900FCDEF5 /* Frameworks */,
 				FA56F7D11BC0D6C4005673E0 /* CSSketch Helper */,
 				FA7D76D61BC1AB6900FCDEF5 /* CSK Tests */,
@@ -247,6 +265,23 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		FA6F46ED1C5EB088002EE579 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				FA6F46F51C5EB0B7002EE579 /* CocoaSass.h */,
+				FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		FA6F46EF1C5EB095002EE579 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA6F46F31C5EB095002EE579 /* libCocoaSass.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		FA7BFD7F1BCCAD3B000D9AFB /* Research */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +321,7 @@
 		FA7D76EF1BC1CC2900FCDEF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA6F46F61C5EB74F002EE579 /* libc++.tbd */,
 				FA38F4AF1BC325D200787508 /* AppKit.framework */,
 				FA7D76E51BC1CAC900FCDEF5 /* WebKit.framework */,
 				FA7D76E21BC1ABF600FCDEF5 /* JavaScriptCore.framework */,
@@ -378,6 +414,12 @@
 			mainGroup = FA56F7C61BC0D6C4005673E0;
 			productRefGroup = FA56F7D01BC0D6C4005673E0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FA6F46EF1C5EB095002EE579 /* Products */;
+					ProjectRef = FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FA56F7CE1BC0D6C4005673E0 /* CSSketch Helper */,
@@ -385,6 +427,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FA6F46F31C5EB095002EE579 /* libCocoaSass.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCocoaSass.a;
+			remoteRef = FA6F46F21C5EB095002EE579 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FA56F7CD1BC0D6C4005673E0 /* Resources */ = {

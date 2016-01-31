@@ -21,6 +21,9 @@
 #import "CSKDocumentController.h"
 #import "CSKLayers.h"
 
+// Sass
+#import "CocoaSass.h"
+
 #ifdef DEBUG
     #define DEBUG 1
 #else

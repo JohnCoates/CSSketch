@@ -85,9 +85,9 @@
     }
     
     // process @import
-    // un-escaped regex: @import[\s]+?(\([^)]+\)[\s]+)?['"]([^'"]+)['"];
+    // un-escaped regex: @import[\s]+?(\([^)]+\)[\s]+)?['"]?([^'"\n]+)['"]?;?
     // targetting: @import (keyword) "filename";
-    NSArray *importMatches = [lessStylesheet matchesWithDetails:RX(@"@import[\\s]+?(\\([^)]+\\)[\\s]+)?['\"]([^'\"]+)['\"];")];
+    NSArray *importMatches = [lessStylesheet matchesWithDetails:RX(@"@import[\\s]+?(\\([^)]+\\)[\\s]+)?['\"]([^'\"\\n]+)['\"]?;?")];
     
     if (importMatches.count) {
         for (RxMatch *match in importMatches) {
@@ -125,18 +125,39 @@
         NSLog(@"less stylesheet: %@", lessStylesheet);
     }
     
-    [CSKLess compileLessStylesheet:lessStylesheet completion:^(NSError *error, NSString *compiledCSS) {
-        if (error) {
-            NSLog(@"error compiling stylesheet: %@", error);
-        }
-        
-        if (DEBUG) {
-            NSLog(@"css stylesheet: %@", compiledCSS);
-        }
-        
-        completionBlock(error, compiledCSS);
-        
-    }];
+    NSString *extension = [self fileURL].path.pathExtension.lowercaseString;
+    
+    if ([extension isEqualToString:@"less"]) {
+        [CSKLess compileLessStylesheet:lessStylesheet completion:^(NSError *error, NSString *compiledCSS) {
+            if (error) {
+                NSLog(@"error compiling stylesheet: %@", error);
+            }
+            
+            if (DEBUG) {
+                NSLog(@"css stylesheet: %@", compiledCSS);
+            }
+            
+            completionBlock(error, compiledCSS);
+            
+        }];
+    }
+    else if ([extension isEqualToString:@"sass"] || [extension isEqualToString:@"scss"]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            NSError *error = nil;
+            NSString *compiledCSS = [CocoaSass compileSass:lessStylesheet extension:extension error:&error];
+            error = nil;
+            
+            if (error != nil) {
+                NSLog(@"Error compiling Sass stylesheet: %@", error);
+                compiledCSS = @"";
+            }
+            
+            completionBlock(error, compiledCSS);
+        });
+    }
+    else {
+        completionBlock(nil, lessStylesheet);
+    }
     
     return TRUE;
 }
