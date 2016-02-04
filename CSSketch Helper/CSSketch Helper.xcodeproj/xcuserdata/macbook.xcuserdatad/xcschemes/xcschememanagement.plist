@@ -9,14 +9,24 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>CSS Launcher.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>CSSketch Helper.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>FA4B27BB1C64182500C82A0C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>FA56F7CE1BC0D6C4005673E0</key>
 		<dict>
 			<key>primary</key>

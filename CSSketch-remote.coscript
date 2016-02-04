@@ -1,23 +1,50 @@
 // Check if we're in Sketch
 if (!NSClassFromString("MSDocument")){
-	// launch sketch
-	// TODO: fix hardcoded path
-	var url = [NSURL fileURLWithPath:"/Users/macbook/Dev/Extensions/Sketch/CSSketch/CSSketch-remote.coscript"];
+	// launch Sketch with document then run this plugin
+	var currentScript = [COScript currentCOScript];
+	var scriptEnvironment = [currentScript env];
+	var scriptURL = scriptEnvironment["scriptURL"];
+	var scriptPath = [scriptURL path];
+	
+	var projectFolder = [scriptPath stringByDeletingLastPathComponent];	
+	var sketchDocumentsFolder = [projectFolder stringByAppendingPathComponent:"Examples"];
+	var documentPath = [sketchDocumentsFolder stringByAppendingPathComponent:"CSSketch - flexBox.sketch"];
+	
+	// Open Sketch document
+    [[NSWorkspace sharedWorkspace] openFile:documentPath];
+	
+	var url = [NSURL fileURLWithPath:scriptPath];
 	var app = [COScript app:"Sketch"];
 	var delegate = [app delegate];
-
+	
 	[delegate runPluginAtURL:url];
 }
 else {
-	if (!NSClassFromString("CSKFileMonitor")) {
-		//TODO: fix hardcoded path
-		var bundlePath;
-		bundlePath = "/Users/macbook/Dev/Extensions/Sketch/CSSketch/CSSketch.sketchplugin/CSSketch Helper.bundle";
+	var pluginsPath = @"~/Library/Application Support/com.bohemiancoding.sketch3/Plugins";
+	pluginsPath = [pluginsPath stringByExpandingTildeInPath];
+	// Load SketchKit
+	if (!NSClassFromString("SKK_MSLayer")) {
+		
+		var frameworkPluginFolder = [pluginsPath stringByAppendingPathComponent:"SketchKit.sketchplugin"];
+		var frameworkBundlePath = [frameworkPluginFolder stringByAppendingPathComponent:"SketchKit.framework"];
+
+		var error = null;
+		if (!loadBundle(frameworkBundlePath)) {
+			log("error");
+		}
+	}
+	
+	// Load CSSketch
+	if (!NSClassFromString("CSKMainController")) {
+		var pluginFolder = [pluginsPath stringByAppendingPathComponent:"CSSKetch.sketchplugin"];
+		var bundlePath = [pluginFolder stringByAppendingPathComponent:"CSSketch Helper.bundle"];
+
 		var error = null;
 		if (!loadBundle(bundlePath)) {
 			log("error");
 		}
 	}
+
 	var mainController = CSKMainController.sharedInstance();
 	mainController.layoutLayersWithContext(sketch);
 }
@@ -35,7 +62,7 @@ function loadBundle(filePath) {
 	var loaded = [bundle load];
 	
 	if (!loaded) {
-		showNotification("Couldn't load CSSketch bundle.");
+		showNotification("Couldn't load SketchKit bundle.");
 	}
 	else {
 //		log("loaded bundle!")
@@ -45,7 +72,7 @@ function loadBundle(filePath) {
 
 function showNotification(message) {
 	var notification =  [[NSUserNotification alloc] init];
-	notification.title = @"CSSketch";
+	notification.title = @"SketchKit";
 	notification.informativeText = message;
 	notification.soundName = NSUserNotificationDefaultSoundName;
 	[[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];

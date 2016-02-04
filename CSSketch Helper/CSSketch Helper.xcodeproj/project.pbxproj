@@ -16,6 +16,7 @@
 		FA38F4B71BC33AB900787508 /* icon-layout.png in Resources */ = {isa = PBXBuildFile; fileRef = FA38F4B61BC33AB900787508 /* icon-layout.png */; };
 		FA38F4B91BC3A70F00787508 /* icon-layout24.png in Resources */ = {isa = PBXBuildFile; fileRef = FA38F4B81BC3A70F00787508 /* icon-layout24.png */; };
 		FA38F4BE1BC3C93F00787508 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38F4BD1BC3C93F00787508 /* RegExCategories.m */; };
+		FA4B27BF1C64182500C82A0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4B27BE1C64182500C82A0C /* main.m */; };
 		FA56F7E01BC0DDE7005673E0 /* CSKFileMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = FA56F7DF1BC0DDE7005673E0 /* CSKFileMonitor.m */; };
 		FA56F7E31BC0E15E005673E0 /* CSSketch Helper.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA56F7CF1BC0D6C4005673E0 /* CSSketch Helper.bundle */; };
 		FA6F46F41C5EB0A0002EE579 /* libCocoaSass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F46F31C5EB095002EE579 /* libCocoaSass.a */; };
@@ -34,6 +35,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FA4B27AC1C63FE3900C82A0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA4B27A61C63FE3800C82A0C /* SketchKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FADCE72B1C5FC8C300F746B8;
+			remoteInfo = SketchKit;
+		};
+		FA4B27AE1C63FE3900C82A0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA4B27A61C63FE3800C82A0C /* SketchKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FADCE7481C5FE25000F746B8;
+			remoteInfo = "Test Launcher";
+		};
+		FA4B27B01C63FE3F00C82A0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA4B27A61C63FE3800C82A0C /* SketchKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FADCE72A1C5FC8C200F746B8;
+			remoteInfo = SketchKit;
+		};
 		FA6F46F21C5EB095002EE579 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */;
@@ -44,6 +66,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		FA4B27B21C64003700C82A0C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA4B27BA1C64182500C82A0C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		FA56F7E21BC0E153005673E0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,6 +111,9 @@
 		FA38F4B81BC3A70F00787508 /* icon-layout24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-layout24.png"; sourceTree = "<group>"; };
 		FA38F4BC1BC3C93F00787508 /* RegExCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegExCategories.h; sourceTree = "<group>"; };
 		FA38F4BD1BC3C93F00787508 /* RegExCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegExCategories.m; sourceTree = "<group>"; };
+		FA4B27A61C63FE3800C82A0C /* SketchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SketchKit.xcodeproj; path = ../External/SketchKit/SketchKit.xcodeproj; sourceTree = "<group>"; };
+		FA4B27BC1C64182500C82A0C /* CSS Launcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CSS Launcher"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA4B27BE1C64182500C82A0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA56F7CF1BC0D6C4005673E0 /* CSSketch Helper.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSSketch Helper.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA56F7D21BC0D6C4005673E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA56F7D81BC0D72F005673E0 /* CSSketch Helper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSSketch Helper-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -104,6 +147,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FA4B27B91C64182500C82A0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA56F7CC1BC0D6C4005673E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -197,10 +247,28 @@
 			path = Regex;
 			sourceTree = "<group>";
 		};
+		FA4B27A71C63FE3800C82A0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA4B27AD1C63FE3900C82A0C /* SketchKit.framework */,
+				FA4B27AF1C63FE3900C82A0C /* Test Launcher */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA4B27BD1C64182500C82A0C /* CSS Launcher */ = {
+			isa = PBXGroup;
+			children = (
+				FA4B27BE1C64182500C82A0C /* main.m */,
+			);
+			path = "CSS Launcher";
+			sourceTree = "<group>";
+		};
 		FA56F7C61BC0D6C4005673E0 = {
 			isa = PBXGroup;
 			children = (
 				FA6F46ED1C5EB088002EE579 /* External */,
+				FA4B27BD1C64182500C82A0C /* CSS Launcher */,
 				FA7D76EF1BC1CC2900FCDEF5 /* Frameworks */,
 				FA56F7D11BC0D6C4005673E0 /* CSSketch Helper */,
 				FA7D76D61BC1AB6900FCDEF5 /* CSK Tests */,
@@ -215,6 +283,7 @@
 			children = (
 				FA56F7CF1BC0D6C4005673E0 /* CSSketch Helper.bundle */,
 				FA7D76D51BC1AB6900FCDEF5 /* CSK Tests.xctest */,
+				FA4B27BC1C64182500C82A0C /* CSS Launcher */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				FA6F46F51C5EB0B7002EE579 /* CocoaSass.h */,
+				FA4B27A61C63FE3800C82A0C /* SketchKit.xcodeproj */,
 				FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */,
 			);
 			name = External;
@@ -351,6 +421,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FA4B27BB1C64182500C82A0C /* CSS Launcher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA4B27C01C64182500C82A0C /* Build configuration list for PBXNativeTarget "CSS Launcher" */;
+			buildPhases = (
+				FA4B27B81C64182500C82A0C /* Sources */,
+				FA4B27B91C64182500C82A0C /* Frameworks */,
+				FA4B27BA1C64182500C82A0C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CSS Launcher";
+			productName = "CSS Launcher";
+			productReference = FA4B27BC1C64182500C82A0C /* CSS Launcher */;
+			productType = "com.apple.product-type.tool";
+		};
 		FA56F7CE1BC0D6C4005673E0 /* CSSketch Helper */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA56F7D51BC0D6C4005673E0 /* Build configuration list for PBXNativeTarget "CSSketch Helper" */;
@@ -359,10 +446,12 @@
 				FA56F7CC1BC0D6C4005673E0 /* Frameworks */,
 				FA56F7CD1BC0D6C4005673E0 /* Resources */,
 				FA56F7E21BC0E153005673E0 /* CopyFiles */,
+				FA4B27B21C64003700C82A0C /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FA4B27B11C63FE3F00C82A0C /* PBXTargetDependency */,
 			);
 			name = "CSSketch Helper";
 			productName = "CSSketch Helper";
@@ -396,6 +485,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "John Coates";
 				TargetAttributes = {
+					FA4B27BB1C64182500C82A0C = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					FA56F7CE1BC0D6C4005673E0 = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -419,16 +511,35 @@
 					ProductGroup = FA6F46EF1C5EB095002EE579 /* Products */;
 					ProjectRef = FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */;
 				},
+				{
+					ProductGroup = FA4B27A71C63FE3800C82A0C /* Products */;
+					ProjectRef = FA4B27A61C63FE3800C82A0C /* SketchKit.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
 				FA56F7CE1BC0D6C4005673E0 /* CSSketch Helper */,
 				FA7D76D41BC1AB6900FCDEF5 /* CSK Tests */,
+				FA4B27BB1C64182500C82A0C /* CSS Launcher */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		FA4B27AD1C63FE3900C82A0C /* SketchKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SketchKit.framework;
+			remoteRef = FA4B27AC1C63FE3900C82A0C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FA4B27AF1C63FE3900C82A0C /* Test Launcher */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = "Test Launcher";
+			remoteRef = FA4B27AE1C63FE3900C82A0C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		FA6F46F31C5EB095002EE579 /* libCocoaSass.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -460,6 +571,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FA4B27B81C64182500C82A0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA4B27BF1C64182500C82A0C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA56F7CB1BC0D6C4005673E0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -489,7 +608,31 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FA4B27B11C63FE3F00C82A0C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SketchKit;
+			targetProxy = FA4B27B01C63FE3F00C82A0C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		FA4B27C11C64182500C82A0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FA4B27C21C64182500C82A0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		FA56F7D31BC0D6C4005673E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -631,6 +774,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FA4B27C01C64182500C82A0C /* Build configuration list for PBXNativeTarget "CSS Launcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA4B27C11C64182500C82A0C /* Debug */,
+				FA4B27C21C64182500C82A0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		FA56F7CA1BC0D6C4005673E0 /* Build configuration list for PBXProject "CSSketch Helper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
