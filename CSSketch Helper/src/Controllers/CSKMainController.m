@@ -188,8 +188,8 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
                 [self layoutLayersWithContext:context];
             }
             
-        }];
-    }); // Open Panel file callback
+        }]; // Open Panel file callback
+    }); // async dispatch
 }
 
 - (void)layoutLayersWithContext:(NSDictionary *)context {
