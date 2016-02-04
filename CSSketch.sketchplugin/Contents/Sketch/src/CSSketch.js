@@ -19,7 +19,7 @@ var setPageStylesheet = function(context) {
 }
 
 function loadCSSketchAsNeeded() {
-  if (!NSClassFromString("CSKFileMonitor")){
+  if (!NSClassFromString("CSKFileMonitor")) {
     if (!loadBundle("CSSketch Helper.bundle")) {
       log("Couldn't load bundle!");
       return false;
