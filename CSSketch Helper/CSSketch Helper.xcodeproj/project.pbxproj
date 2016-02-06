@@ -83,6 +83,13 @@
 			remoteGlobalIDString = FADCE72A1C5FC8C200F746B8;
 			remoteInfo = SketchKit;
 		};
+		FA4B28031C6672F500C82A0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FA6F46121C5EA968002EE579;
+			remoteInfo = CocoaSass;
+		};
 		FA6F46F21C5EB095002EE579 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */;
@@ -101,15 +108,6 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FA4B27BA1C64182500C82A0C /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
 		};
 		FA56F7E21BC0E153005673E0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -496,7 +494,6 @@
 			buildPhases = (
 				FA4B27B81C64182500C82A0C /* Sources */,
 				FA4B27B91C64182500C82A0C /* Frameworks */,
-				FA4B27BA1C64182500C82A0C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -541,6 +538,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				FA4B28041C6672F500C82A0C /* PBXTargetDependency */,
 				FA4B27B11C63FE3F00C82A0C /* PBXTargetDependency */,
 			);
 			name = "CSSketch Helper";
@@ -758,6 +756,11 @@
 			isa = PBXTargetDependency;
 			name = SketchKit;
 			targetProxy = FA4B27F91C65A09A00C82A0C /* PBXContainerItemProxy */;
+		};
+		FA4B28041C6672F500C82A0C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CocoaSass;
+			targetProxy = FA4B28031C6672F500C82A0C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

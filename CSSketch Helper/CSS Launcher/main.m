@@ -24,7 +24,7 @@ int main(int argc, const char * argv[]) {
         NSString *launcherFolder =  [currentSourcePath stringByDeletingLastPathComponent];
         NSString *helperFolder = [launcherFolder stringByDeletingLastPathComponent];
         NSString *projectFolder = [helperFolder stringByDeletingLastPathComponent];
-        NSString *scriptsfolder = [projectFolder stringByAppendingPathComponent:@"scripts"];
+        NSString *scriptsfolder = [projectFolder stringByAppendingPathComponent:@"Scripts"];
 
         NSString *scriptPath = [scriptsfolder stringByAppendingPathComponent:@"CSSketch-remote.coscript"];
         NSLog(@"Launching CSSketch with script: %@", scriptPath);
