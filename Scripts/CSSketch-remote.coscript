@@ -12,7 +12,7 @@ if (!NSClassFromString("MSDocument")){
 	var documentPath = [sketchDocumentsFolder stringByAppendingPathComponent:"CSSketch - flexBox.sketch"];
 	
 	// Open Sketch document
-    [[NSWorkspace sharedWorkspace] openFile:documentPath];
+	[[NSWorkspace sharedWorkspace] openFile:documentPath];
 	
 	var url = [NSURL fileURLWithPath:scriptPath];
 	var app = [COScript app:"Sketch"];
