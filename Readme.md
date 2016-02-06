@@ -1,6 +1,6 @@
 ## CSSketch - CSS for Sketch 3
 CSSketch is a Sketch 3 plugin that enables you to modify your designs quickly by attaching it a stylesheet to it that you can use to lay out your designs, change colors and shadows quickly, etc.
-It supports [{less}](http://lesscss.org) stylesheets, which means you can put functions and variables in your stylesheet to make your workflow even more efficient.
+It supports [Sass](http://sass-lang.com/) and [{less}](http://lesscss.org) stylesheets, which means you can put functions and variables in your stylesheet to make your workflow even more efficient.
 
 CSSketch is completely open source, so feel free to contribute to its development!
 
@@ -12,16 +12,7 @@ CSSketch is completely open source, so feel free to contribute to its developmen
 ![Screencast](https://raw.githubusercontent.com/JohnCoates/CSSketch/master/screencast.gif)
 
 ## Download & Install
-#### CSSketch is available through [Sketch Toolbox](http://sketchtoolbox.com/). This is the best option for installation, as it automatically keeps CSSketch up to date.
-
-## Download & Install Manually
-Download from [Github](https://github.com/JohnCoates/CSSketch/archive/master.zip)
-
-Two ways to install:
-
-**Option A:** Open CSSketch.sketchplugin and Sketch will ask if you'd like it installed
-
-**Option B:** While Sketch 3 is open, go to Plugins -> Reveal Plugins Folder, and place CSSketch.sketchplugin there.
+###Download **CSSKetch_Install.zip** from the [latest release.](https://github.com/JohnCoates/CSSketch/releases/latest)
 
 ## Using CSSketch
 
@@ -70,7 +61,7 @@ Lot of CSS rules have yet to be added. They're decently easy to add. I appreciat
 * Sketch Header Stubs: [CSketch Helper/src/Headers/CSSketchHeaders.h](https://github.com/JohnCoates/CSSketch/blob/master/CSSketch%20Helper/src/Headers/CSKSketchHeaders.h)
 
 ## Changelog
-
+- February 2016 - 1.1: Sass support, installer, now uses [SketchKit](https://github.com/JohnCoates/SketchKit)
 - October 2015 - 1.0: first release
 
 ## License
