@@ -5,8 +5,9 @@ if (!NSClassFromString("MSDocument")){
 	var scriptEnvironment = [currentScript env];
 	var scriptURL = scriptEnvironment["scriptURL"];
 	var scriptPath = [scriptURL path];
-	
-	var projectFolder = [scriptPath stringByDeletingLastPathComponent];	
+
+	var scriptsFolder = [scriptPath stringByDeletingLastPathComponent];		
+	var projectFolder = [scriptsFolder stringByDeletingLastPathComponent];	
 	var sketchDocumentsFolder = [projectFolder stringByAppendingPathComponent:"Examples"];
 	var documentPath = [sketchDocumentsFolder stringByAppendingPathComponent:"CSSketch - flexBox.sketch"];
 	

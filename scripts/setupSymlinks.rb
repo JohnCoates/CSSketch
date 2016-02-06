@@ -3,7 +3,7 @@
 require 'fileutils'
 require 'open3'
 
-projectDirectory = File.expand_path(File.dirname(__FILE__))
+projectDirectory = File.expand_path(File.dirname(__FILE__) + "/../")
 plugin = projectDirectory + "/CSSketch.sketchplugin"
 frameworkPlugin = projectDirectory + "/External/SketchKit/SketchKit.sketchplugin"
 
