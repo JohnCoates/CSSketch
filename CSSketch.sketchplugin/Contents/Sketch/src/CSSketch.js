@@ -19,36 +19,48 @@ var setPageStylesheet = function(context) {
 }
 
 function loadCSSketchAsNeeded() {
-  if (!NSClassFromString("CSKFileMonitor")) {
-    if (!loadBundle("CSSketch Helper.bundle")) {
-      log("Couldn't load bundle!");
+var pluginsPath = @"~/Library/Application Support/com.bohemiancoding.sketch3/Plugins";
+  pluginsPath = [pluginsPath stringByExpandingTildeInPath];
+  // Load SketchKit
+  if (!NSClassFromString("SKK_MSLayer")) {
+    
+    var frameworkPluginFolder = [pluginsPath stringByAppendingPathComponent:"SketchKit.sketchplugin"];
+    var frameworkBundlePath = [frameworkPluginFolder stringByAppendingPathComponent:"SketchKit.framework"];
+
+    var error = null;
+    if (!loadBundle(frameworkBundlePath)) {
       return false;
     }
   }
+  
+  // Load CSSketch
+  if (!NSClassFromString("CSKMainController")) {
+    var pluginFolder = [pluginsPath stringByAppendingPathComponent:"CSSKetch.sketchplugin"];
+    var bundlePath = [pluginFolder stringByAppendingPathComponent:"CSSketch Helper.bundle"];
 
+    var error = null;
+    if (!loadBundle(bundlePath)) {
+      return false;
+    }
+  }
   return true;
 }
 
-function loadBundle(filename) {
-  var pluginURL = pluginPathURL();
-  var bundleURL = pluginURL.URLByAppendingPathComponent(filename);
+function loadBundle(filePath) {
+  var bundleURL = NSURL.fileURLWithPath(filePath);
   var bundle = [NSBundle bundleWithURL: bundleURL];
-	if (!bundle) {
-		showNotification("Bundle missing!");
-		return false;
-	}
-
-	var loaded = [bundle load];
-	if (!loaded) {
-		showNotification("Couldn't load CSSketch bundle! Try allowing apps downloaded from anywhere (System Preferences -> Security & Privacy)");
+  if (bundle == null) {
+    showNotification("Bundle missing at " + bundleURL + "");
+    error = error;
     return false;
-	}
-
-	return loaded;
-}
-
-function pluginPathURL() {
-  return CSSketchContext.plugin.url();
+  }
+  
+  var loaded = [bundle load];
+  
+  if (!loaded) {
+		showNotification("Couldn't load CSSketch bundle! Try allowing apps downloaded from anywhere (System Preferences -> Security & Privacy)");
+  }
+  return loaded;
 }
 
 function showNotification(message) {
