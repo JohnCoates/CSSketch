@@ -35,6 +35,15 @@
 
         // font-size
         [self handleFontSizeWithDOMLeaf:leaf layer:layer];
+        
+        // font-family
+        [self handleFontFamilyWithDOMLeaf:leaf layer:layer];
+        
+        // line-height
+        [self handleLineHeightWithDOMLeaf:leaf layer:layer];
+        
+        // letter-spacing
+        [self handleLetterSpacingWithDOMLeaf:leaf layer:layer];
     }
     
 }
@@ -306,6 +315,56 @@
     
     [textLayer invalidateLightweightCopy:nil];
     
+}
+
++ (void)handleFontFamilyWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer{
+    NSDictionary *rules = DOMLeaf[@"rules"];
+    NSString *fontFamily = rules[@"font-family"];
+    if (!fontFamily) {
+        return;
+    }
+    
+    STUB_MSTextLayer *textLayerStub = (STUB_MSTextLayer *)layer;
+    SKK_MSTextLayer *textLayer = [[SKK_MSTextLayer alloc] initWithTextLayer:textLayerStub];
+    if (DEBUG) {
+        NSLog(@"setting font-family to %@", fontFamily);
+    }
+
+    NSFont *font = textLayer.font;
+    font = [[NSFontManager sharedFontManager] convertFont:font toFamily:fontFamily];
+    textLayer.font = font;
+}
+
++ (void)handleLineHeightWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer{
+    NSDictionary *rules = DOMLeaf[@"rules"];
+    NSString *lineHeight = rules[@"line-height"];
+    if (!lineHeight) {
+        return;
+    }
+    
+    STUB_MSTextLayer *textLayerStub = (STUB_MSTextLayer *)layer;
+    SKK_MSTextLayer *textLayer = [[SKK_MSTextLayer alloc] initWithTextLayer:textLayerStub];
+    if (DEBUG) {
+        NSLog(@"setting line-height to %@", lineHeight);
+    }
+    
+    textLayer.lineSpacing = lineHeight.doubleValue;
+}
+
++ (void)handleLetterSpacingWithDOMLeaf:(NSDictionary *)DOMLeaf layer:(CSK_MSLayer *)layer{
+    NSDictionary *rules = DOMLeaf[@"rules"];
+    NSString *letterSpacing = rules[@"letter-spacing"];
+    if (!letterSpacing) {
+        return;
+    }
+    
+    STUB_MSTextLayer *textLayerStub = (STUB_MSTextLayer *)layer;
+    SKK_MSTextLayer *textLayer = [[SKK_MSTextLayer alloc] initWithTextLayer:textLayerStub];
+    if (DEBUG) {
+        NSLog(@"setting letter-spacing to %@", letterSpacing);
+    }
+    
+    textLayer.characterSpacing = letterSpacing.doubleValue;
 }
 
 

@@ -6,15 +6,14 @@
 //  Copyright © 2015 John Coates. All rights reserved.
 //
 
-#ifndef PrecompiledHeader_pch
-#define PrecompiledHeader_pch
+#import <AppKit/Appkit.h>
+#import <SketchKit/SketchKit-Private.h>
 
 #import "CSKSketchHeaders.h"
 #import "CSKStylesheet.h"
 #import "CSKMainController.h"
 #import "CSKDom.h"
 #import "CSKFileMonitor.h"
-#import <AppKit/Appkit.h>
 #import "RegExCategories.h"
 #import "CSKLayerCSS.h"
 #import "NSString+Paths.h"
@@ -29,5 +28,3 @@
 #else
     #define DEBUG 0
 #endif
-
-#endif /* PrecompiledHeader_pch */

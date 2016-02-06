@@ -46,11 +46,6 @@
     @property(nonatomic) double thickness;
     @property(nonatomic) long long position;
     @property(copy, nonatomic) CSK_MSColor *color;
-typedef NS_ENUM(long long, MSStyleBorderPosition) {
-    MSStyleBorderPositionCenter = 0,
-    MSStyleBorderPositionInside = 1,
-    MSStyleBorderPositionOutside = 2,
-};
 @end
 
 @interface CSK_MSStyleShadow

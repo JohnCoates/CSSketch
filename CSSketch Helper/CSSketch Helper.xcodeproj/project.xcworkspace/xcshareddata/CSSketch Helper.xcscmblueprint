@@ -5,12 +5,14 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "DB0AA8B77050AFE7C658D7A871F99ECFEA6230C3" : 0,
-    "3F4433ED5A780EDFF7B8C0257D51FE25CD8299D4" : 0
+    "3F4433ED5A780EDFF7B8C0257D51FE25CD8299D4" : 0,
+    "B5579E252A63267B1B29E4E7A348EF9ECB94F757" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1F81B77F-C239-4FCF-B140-193D31D526C3",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "DB0AA8B77050AFE7C658D7A871F99ECFEA6230C3" : "CSSketch\/",
-    "3F4433ED5A780EDFF7B8C0257D51FE25CD8299D4" : "CSSketch\/external\/libsass\/"
+    "3F4433ED5A780EDFF7B8C0257D51FE25CD8299D4" : "CSSketch\/external\/libsass\/",
+    "B5579E252A63267B1B29E4E7A348EF9ECB94F757" : "CSSketch\/External\/SketchKit\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "CSSketch Helper",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -20,6 +22,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sass\/libsass",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3F4433ED5A780EDFF7B8C0257D51FE25CD8299D4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JohnCoates\/SketchKit",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B5579E252A63267B1B29E4E7A348EF9ECB94F757"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:JohnCoates\/CSSketch.git",

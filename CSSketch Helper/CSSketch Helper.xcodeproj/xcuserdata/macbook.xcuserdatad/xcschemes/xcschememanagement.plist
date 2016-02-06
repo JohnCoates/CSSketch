@@ -19,10 +19,20 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>CSSketch-Installer.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>FA4B27BB1C64182500C82A0C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA4B27DE1C6542DF00C82A0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
