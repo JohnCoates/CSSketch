@@ -313,7 +313,15 @@
     [textLayer syncTextStyleAttributes];
     [textLayer layerDidChange];
     
-    [textLayer invalidateLightweightCopy:nil];
+    if ([textLayer respondsToSelector:@selector(invalidateCachedImmutableModelObjects)]) {
+        [textLayer invalidateCachedImmutableModelObjects];
+    }
+    else if ([textLayer respondsToSelector:@selector(invalidateLightweightCopy:)]) {
+        [textLayer invalidateLightweightCopy:nil];
+    }
+    else {
+        NSLog(@"Couldn't vfind way to invalidate cached immutable model objects for: %@", textLayer);
+    }
     
 }
 

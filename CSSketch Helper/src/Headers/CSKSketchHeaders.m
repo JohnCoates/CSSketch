@@ -18,11 +18,16 @@
     return true;
 }
 
+- (void)hideSelectionTemporarily {
+    
+}
+
+// OLD Version of invalidateCachedImmutableModelObjects
 - (void)invalidateLightweightCopy:(id)arg1 {
     
 }
 
-- (void)hideSelectionTemporarily {
+- (void)invalidateCachedImmutableModelObjects {
     
 }
 @end
