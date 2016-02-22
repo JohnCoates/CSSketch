@@ -11,6 +11,10 @@ if (!NSClassFromString("MSDocument")){
 	var sketchDocumentsFolder = [projectFolder stringByAppendingPathComponent:"Examples"];
 	var documentPath = [sketchDocumentsFolder stringByAppendingPathComponent:"CSSketch - flexBox.sketch"];
 	
+	// Submitted tests
+//	var testsFolder = [projectFolder stringByAppendingPathComponent:"test"];
+//	var documentPath = [testsFolder stringByAppendingPathComponent:"twoClasses.sketch"];
+	
 	// Open Sketch document
 	[[NSWorkspace sharedWorkspace] openFile:documentPath];
 	
