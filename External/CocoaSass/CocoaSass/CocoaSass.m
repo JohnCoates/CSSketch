@@ -40,12 +40,9 @@
     sass_compiler_execute(compiler);
     
     int errorStatus = sass_context_get_error_status((struct Sass_Context *)context);
-    
     if (errorStatus) {
         const char *errorMessage = sass_context_get_error_message((struct Sass_Context *)context);
-        NSError *error;
         NSString *errorString;
-        NSDictionary *userInfo;
         
         if (errorMessage) {
             errorString = [NSString stringWithFormat:@"Error compiling Sass #%d: %s",
@@ -56,22 +53,39 @@
             errorString = [NSString stringWithFormat:@"Error compiling Sass #%d", errorStatus];
         }
         
-        userInfo = @{
-                     NSLocalizedDescriptionKey : errorString
-                     };
-        error = [NSError errorWithDomain:@"CSK"
-                                    code:801
-                                userInfo:userInfo];
-        
-        *errorOut = error;
+        *errorOut = [self errorWithMessage:errorString];
+        sass_delete_compiler(compiler);
         return nil;
     }
     
     const char *output = sass_context_get_output_string((struct Sass_Context *)context);
+    if (!output) {
+        NSString *errorString = [NSString stringWithFormat:@"Couldn't generate Sass output. Error code (%d)", errorStatus];
+        *errorOut = [self errorWithMessage:errorString];
+        NSLog(@"%@", errorString);
+        sass_delete_compiler(compiler);
+        return nil;
+        
+    }
     NSString *compiledContents = [NSString stringWithUTF8String:output];
     sass_delete_compiler(compiler);
     
     return compiledContents;
 }
+
++ (NSError *)errorWithMessage:(NSString *)message {
+    NSError *error;
+    NSDictionary *userInfo;
+    
+    userInfo = @{
+                 NSLocalizedDescriptionKey : message
+                 };
+    error = [NSError errorWithDomain:@"CSKSass"
+                                code:801
+                            userInfo:userInfo];
+    
+    return error;
+}
+
 
 @end

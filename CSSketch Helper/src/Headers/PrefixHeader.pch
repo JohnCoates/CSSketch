@@ -23,6 +23,9 @@
 // Sass
 #import "CocoaSass.h"
 
+// Errors
+#import "NSError+CSSketch.h"
+
 #ifdef DEBUG
     #define DEBUG 1
 #else

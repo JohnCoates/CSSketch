@@ -27,6 +27,7 @@
 		FA56F7E31BC0E15E005673E0 /* CSSketch Helper.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA56F7CF1BC0D6C4005673E0 /* CSSketch Helper.bundle */; };
 		FA6F46F41C5EB0A0002EE579 /* libCocoaSass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F46F31C5EB095002EE579 /* libCocoaSass.a */; };
 		FA6F46F71C5EB74F002EE579 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F46F61C5EB74F002EE579 /* libc++.tbd */; };
+		FA795BCD1C9A8FB20050571B /* NSError+CSSketch.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795BCC1C9A8FB20050571B /* NSError+CSSketch.m */; };
 		FA7D76C21BC1A5BA00FCDEF5 /* CSKLess.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76C11BC1A5BA00FCDEF5 /* CSKLess.m */; };
 		FA7D76D81BC1AB6900FCDEF5 /* CSK_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D76D71BC1AB6900FCDEF5 /* CSK_Tests.m */; };
 		FA7D76E41BC1ABFD00FCDEF5 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D76E21BC1ABF600FCDEF5 /* JavaScriptCore.framework */; };
@@ -156,6 +157,8 @@
 		FA6F46EE1C5EB095002EE579 /* CocoaSass.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaSass.xcodeproj; path = ../external/CocoaSass/CocoaSass.xcodeproj; sourceTree = "<group>"; };
 		FA6F46F51C5EB0B7002EE579 /* CocoaSass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CocoaSass.h; path = ../external/CocoaSass/CocoaSass/CocoaSass.h; sourceTree = "<group>"; };
 		FA6F46F61C5EB74F002EE579 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		FA795BCB1C9A8FB20050571B /* NSError+CSSketch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+CSSketch.h"; sourceTree = "<group>"; };
+		FA795BCC1C9A8FB20050571B /* NSError+CSSketch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+CSSketch.m"; sourceTree = "<group>"; };
 		FA7BFD801BCCAD5C000D9AFB /* RS_MSTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RS_MSTextLayer.h; sourceTree = "<group>"; };
 		FA7BFD811BCCAD5C000D9AFB /* RS_MSTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RS_MSTextLayer.m; sourceTree = "<group>"; };
 		FA7D76C01BC1A5BA00FCDEF5 /* CSKLess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKLess.h; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 			children = (
 				FA0E95D91BCB279C00CDD8EF /* NSString+Paths.h */,
 				FA0E95DA1BCB279C00CDD8EF /* NSString+Paths.m */,
+				FA795BCB1C9A8FB20050571B /* NSError+CSSketch.h */,
+				FA795BCC1C9A8FB20050571B /* NSError+CSSketch.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -720,6 +725,7 @@
 				FACF8FBA1BCC28320062D8F8 /* CSKDocumentController.m in Sources */,
 				FACF8FBE1BCC2DB10062D8F8 /* CSKLayers.m in Sources */,
 				FA38F4BE1BC3C93F00787508 /* RegExCategories.m in Sources */,
+				FA795BCD1C9A8FB20050571B /* NSError+CSSketch.m in Sources */,
 				FA56F7E01BC0DDE7005673E0 /* CSKFileMonitor.m in Sources */,
 				FA0E95DB1BCB279C00CDD8EF /* NSString+Paths.m in Sources */,
 				FA38F4B41BC3272100787508 /* CSKToolbarProxy.m in Sources */,

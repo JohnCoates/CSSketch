@@ -71,14 +71,14 @@
     if ([CSKMainController inSandbox]) {
         [self.fileURL startAccessingSecurityScopedResource];
     }
-    NSString *lessStylesheet = [NSString stringWithContentsOfFile:self.fileURL.path encoding:NSUTF8StringEncoding error:&error];
+    NSString *stylesheet = [NSString stringWithContentsOfFile:self.fileURL.path encoding:NSUTF8StringEncoding error:&error];
     
     if ([CSKMainController inSandbox]) {
         [self.fileURL stopAccessingSecurityScopedResource];
     }
     
     if (error) {
-        NSLog(@"error retrieving contents of Less stylesheet: %@", error);
+        NSLog(@"error retrieving contents of stylesheet: %@", error);
         NSString *errorString = [NSString stringWithFormat:@"Couldn't read stylesheet %@", self.fileURL.path];
         [CSKMainController displayError:errorString];
         return FALSE;
@@ -87,7 +87,7 @@
     // process @import
     // un-escaped regex: @import[\s]+?(\([^)]+\)[\s]+)?['"]?([^'"\n]+)['"]?;?
     // targetting: @import (keyword) "filename";
-    NSArray *importMatches = [lessStylesheet matchesWithDetails:RX(@"@import[\\s]+?(\\([^)]+\\)[\\s]+)?['\"]([^'\"\\n]+)['\"]?;?")];
+    NSArray *importMatches = [stylesheet matchesWithDetails:RX(@"@import[\\s]+?(\\([^)]+\\)[\\s]+)?['\"]([^'\"\\n]+)['\"]?;?")];
     
     if (importMatches.count) {
         for (RxMatch *match in importMatches) {
@@ -109,7 +109,7 @@
                     [CSKMainController displayError:errorString];
                     return FALSE;
                 }
-                lessStylesheet = [lessStylesheet stringByReplacingOccurrencesOfString:wholeMatch.value withString:importContents];
+                stylesheet = [stylesheet stringByReplacingOccurrencesOfString:wholeMatch.value withString:importContents];
                 
             }
             else {
@@ -122,15 +122,21 @@
     }
     
     if (DEBUG) {
-        NSLog(@"less stylesheet: %@", lessStylesheet);
+        NSLog(@"stylesheet length %d: %@", (int)stylesheet.length, stylesheet);
+    }
+    if (stylesheet.length == 0) {
+        completionBlock(nil, stylesheet);
+        return TRUE;
     }
     
     NSString *extension = [self fileURL].path.pathExtension.lowercaseString;
     
     if ([extension isEqualToString:@"less"]) {
-        [CSKLess compileLessStylesheet:lessStylesheet completion:^(NSError *error, NSString *compiledCSS) {
+        [CSKLess compileLessStylesheet:stylesheet completion:^(NSError *error, NSString *compiledCSS) {
             if (error) {
-                NSLog(@"error compiling stylesheet: %@", error);
+                NSString *errorMessage = [NSString stringWithFormat:@"CSSketch: Error compiling {less} stylesheet: %@", error];
+                [CSKMainController displayError:errorMessage];
+                NSLog(@"%@", errorMessage);
             }
             
             if (DEBUG) {
@@ -144,10 +150,11 @@
     else if ([extension isEqualToString:@"sass"] || [extension isEqualToString:@"scss"]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             NSError *error = nil;
-            NSString *compiledCSS = [CocoaSass compileSass:lessStylesheet extension:extension error:&error];
+            NSString *compiledCSS = [CocoaSass compileSass:stylesheet
+                                                 extension:extension
+                                                     error:&error];
             
             if (error != nil || !compiledCSS) {
-                NSLog(@"Error compiling Sass stylesheet: %@", error);
                 compiledCSS = @"";
             }
             
@@ -161,7 +168,7 @@
         });
     }
     else {
-        completionBlock(nil, lessStylesheet);
+        completionBlock(nil, stylesheet);
     }
     
     return TRUE;
