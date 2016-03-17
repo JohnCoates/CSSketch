@@ -490,6 +490,12 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 }
 
 + (void)displayError:(NSString *)error {
+    // avoid warning about performing UI op from background thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self displayErrorFromMainThread:error];
+    });
+}
++ (void)displayErrorFromMainThread:(NSString *)error {
     NSString *prefixedMessage = [@"CSSketch: " stringByAppendingString:error];
     
     // message only shows if app is active
