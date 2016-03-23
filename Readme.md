@@ -12,7 +12,7 @@ CSSketch is completely open source, so feel free to contribute to its developmen
 ![Screencast](https://raw.githubusercontent.com/JohnCoates/CSSketch/master/screencast.gif)
 
 ## Download & Install
-###Download **CSSKetch_Install.zip** from the [latest release.](https://github.com/JohnCoates/CSSketch/releases/latest)
+### Download **CSSKetch_Install.zip** from the [latest release.](https://github.com/JohnCoates/CSSketch/releases/latest)
 
 ## Using CSSketch
 
@@ -49,6 +49,9 @@ You can use the following attributes to target various components of your sketch
 * Shadow is supported
 * Color is supported
 * Text-transform is supported
+
+## Extra Resources Posted On Dribbble!
+[![Dribbble](https://raw.githubusercontent.com/JohnCoates/CSSketch/master/Documentation/dribbbleFollow.png)](https://dribbble.com/johncoates)
 
 
 ## Community
