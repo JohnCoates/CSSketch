@@ -70,8 +70,10 @@
     
     NSArray *points = shapePath.points;
     NSLog(@"points: %@", points);
+    int count = (int)points.count;
     
-    for (STUB_MSCurvePoint *point in points) {
+    for (int index = 0; index < count; index += 1) {
+        STUB_MSCurvePoint *point = points[index];
 //        NSLog(@"point: %@", point);
 //        NSLog(@"point: %@, curveMode: %lld curveFrom (%d): %@, curveTo (%d): %@",
 //              NSStringFromPoint(point.point),
@@ -81,14 +83,17 @@
 //              point.hasCurveTo,
 //              NSStringFromPoint(point.curveTo)
 //              );
-        NSLog(@"facebook.addPoint([%f, %f], %lld, %d, [%f, %f], %d, [%f, %f]);",
-              point.point.x, point.point.y,
+        
+        
+        NSString *output = [NSString stringWithFormat:@"polygonManager.addPointEntry(polygon, [%.21Lg, %.21Lg], %lld, %d, [%.21Lg, %.21Lg], %d, [%.21Lg, %.21Lg]);",
+              (long double)point.point.x, (long double)point.point.y,
               point.curveMode,
               point.hasCurveFrom,
-              point.curveFrom.x, point.curveTo.y,
+              (long double)point.curveFrom.x, (long double)point.curveFrom.y,
               point.hasCurveTo,
-              point.curveTo.x, point.curveTo.y
-              );
+              (long double)point.curveTo.x, (long double)point.curveTo.y
+              ];
+        CFShow((__bridge CFStringRef)output);
         
     }
     
