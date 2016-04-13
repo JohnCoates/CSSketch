@@ -1,0 +1,20 @@
+{
+  "name": "CenterFinder",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Find center of shapes.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server -inline --devtool eval --progress --colors --hot"
+  },
+  "author": "John Coates",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "webpack": "^1.12.14"
+  }
+}
