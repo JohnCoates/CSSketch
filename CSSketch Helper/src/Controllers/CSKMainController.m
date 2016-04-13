@@ -20,7 +20,6 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 
 @property (strong) CSKStylesheet *stylesheetController;
 @property (strong) NSArray *toolbarProxies;
-@property (weak) CSK_MSDocument *document;
 @property (strong) CSK_MSPluginCommand *pluginCommand;
 @property (strong) NSArray *domModels;
 @property (strong) NSString *documentStylesheetRules;
@@ -101,6 +100,8 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
     
     if (toolbar.visibleItems.count > 0) {
         [toolbar insertItemWithItemIdentifier:@"CSSketch"
+                                      atIndex:toolbar.visibleItems.count - 1];
+        [toolbar insertItemWithItemIdentifier:@"CSSketch-SVG"
                                       atIndex:toolbar.visibleItems.count - 1];
     }
 }

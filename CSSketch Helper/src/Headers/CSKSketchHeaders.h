@@ -63,6 +63,8 @@
 - (CSK_MSContentDrawView *)currentView;
 - (void)displayMessage:(NSString *)message;
 - (void)reloadInspector;
+
+- (NSArray *)selectedLayers;
 @end
 
 

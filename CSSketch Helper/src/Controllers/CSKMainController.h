@@ -14,6 +14,7 @@
 @property BOOL inSketch;
 @property (nonatomic, strong) NSString *embeddedStylesheet;
 @property (nonatomic, strong) NSBundle *pluginBundle;
+@property (weak) CSK_MSDocument *document;
 
 // Plugin Entry Points
 - (void)layoutLayersWithContext:(NSDictionary *)context;
