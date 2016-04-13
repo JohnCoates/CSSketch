@@ -11,6 +11,17 @@ define(function() {
   	targetArray.push(entry)
   }
 
+  polygonManager.addBezierCurveEntry = function (targetArray, point, controlPoint1, controlPoint2) {
+    var entry = {};
+    entry.point = {x: point[0], y: point[1]};
+    if (typeof controlPoint1 != 'undefined') {
+        entry.controlPoint1 = {x: controlPoint1[0], y: controlPoint1[1]};
+        entry.controlPoint2 = {x: controlPoint2[0], y: controlPoint2[1]};
+    }
+    targetArray.push(entry)
+  }
+
+
   // from https://github.com/mapbox/fontnik/blob/37a5e17d7ab27c6e4db255b23448544dc07bd8ac/lib/curve4_div.js
   function Curve4Div() {}
 
@@ -394,15 +405,7 @@ define(function() {
         y = point.y;
     x1 = x0 + (x - x0) * Math.cos(theta) + (y - y0) * Math.sin(theta);
     y1 = y0 - (x - x0) * Math.sin(theta) + (y - y0) * Math.cos(theta);
-    return { x: x1, y: y1};  }
-
-
-  polygonManager.rotatedBoundingRect = function (originalPolygon, rotatedPolygon, rect) {
-    var originX = rect[0];
-    var originY = rect[1];
-    var width = rect[2];
-    var height = rect[3];
-
+    return { x: x1, y: y1};
   }
 
   return polygonManager;
