@@ -4,11 +4,12 @@ define(function() {
     canvasDraw.canvas = document.getElementById(canvasID);
     canvasDraw.context = canvasDraw.canvas.getContext("2d");
     canvasDraw.drawStrokedClosedPath = function (points, rect) {
-      canvasDraw.context.lineWidth = 4;
+      canvasDraw.context.lineWidth = 1;
       var x = rect[0];
       var y = rect[1];
       var width = rect[2];
       var height = rect[3];
+      
 
       var previousPoint = null;
       var nextPreviousPoint = null;
@@ -35,11 +36,12 @@ define(function() {
           canvasDraw.context.lineTo(pointX, pointY);
           continue;
         }
+
         if (curvePoint.curveMode == 1) {
           canvasDraw.context.lineTo(pointX, pointY);
           continue;
         }
-        console.log("curveFrom:", curvePoint.curveFrom);
+
         var curveFrom = {x: curvePoint.curveFrom.x, y: curvePoint.curveFrom.y};
         curveFrom.x = x + (width * curveFrom.x);
         curveFrom.y = y + (height * curveFrom.y);
@@ -63,7 +65,6 @@ define(function() {
         }
 
         if (previousPoint.curveMode == 1) {
-          console.log("previousX:", previousX);
           controlPoint1x = previousX;
           controlPoint1y = previousY;
         }
@@ -85,12 +86,12 @@ define(function() {
                           controlPoint2x, controlPoint2y,
                           pointX, pointY);
 
-        console.log("point: x:", pointX, "y:", pointY,
-                    "cp1x:", controlPoint1x,
-                    "cp2y:", controlPoint1y,
-                    "cp2x:", controlPoint2x,
-                    "cp2y:", controlPoint2y
-                   );
+        // console.log("point: x:", pointX, "y:", pointY,
+        //             "cp1x:", controlPoint1x,
+        //             "cp2y:", controlPoint1y,
+        //             "cp2x:", controlPoint2x,
+        //             "cp2y:", controlPoint2y
+        //            );
       }
       // close
       // context.lineTo(x, y);
@@ -102,8 +103,27 @@ define(function() {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
+    canvasDraw.drawCentroid = function (centroid, rect) {
+      var originX = rect[0];
+      var originY = rect[1];
+      var width = rect[2];
+      var height = rect[3];
+
+      this.context.fillStyle = 'green';
+      var x = originX + (width  * centroid.x);
+      var y = originY + (height * centroid.y);
+
+      var centroidWidth = 2;
+      var centroidHeight = 2;
+      x = x - (centroidWidth / 2);
+      y = y - (centroidHeight / 2);
+
+      this.context.fillRect(x, y, centroidWidth, centroidHeight);
+    }
+
     return canvasDraw;
   };
+
 
   return init;
 });
