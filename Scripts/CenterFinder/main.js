@@ -23,6 +23,9 @@ polygonManager.addPointEntry(facebook, [0.666667, 0.500000], 1, 0, [0.666667, 0.
 polygonManager.addPointEntry(facebook, [0.960417, 0.500000], 1, 0, [0.960417, 0.500000], 0, [0.960417, 0.500000]);
 polygonManager.addPointEntry(facebook, [1.000000, 0.333333], 1, 0, [1.000000, 0.333333], 0, [1.000000, 0.333333]);
 polygonManager.addPointEntry(facebook, [0.666667, 0.333333], 1, 0, [0.666667, 0.333333], 0, [0.666667, 0.333333]);
+var ratio = { x: 192, y: 384 };
+facebook = polygonManager.convertPolygonToSquarePixels(facebook, ratio);
+
 // canvasDraw.drawStrokedClosedPath(facebook, [300, 50, 192/2, 384/2]);
 
 
@@ -89,6 +92,7 @@ polygonManager.addPointEntry(polygon, [0.977080337814620780712, 0.72967546265987
 polygonManager.addPointEntry(polygon, [0.989117743662426440743, 0.725947543210902712651], 2, 1, [0.999868709190619431304, 0.718642836182516897559], 1, [0.985350311297846004344, 0.728516784993300636764]);
 polygonManager.addPointEntry(polygon, [0.996606664094458305492, 0.691287967793458135723], 4, 0, [0.996606664094458305492, 0.691287967793458135723], 1, [1.00322264288103846219, 0.703126630908428307265]);
 
+polygon = polygonManager.convertPolygonToSquarePixels(polygon, { x: 350, y: 318 });
 var rotateLeft = polygon;
 rect = [500, 50, 350/2, 318/2];
 // canvasDraw.drawStrokedClosedPath(rotateLeft, rect);

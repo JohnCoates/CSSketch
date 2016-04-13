@@ -21,6 +21,33 @@ define(function() {
     targetArray.push(entry)
   }
 
+  polygonManager.convertPolygonToSquarePixels = function (path, ratio) {
+    var length = path.length;
+    var farthestDistanceFromCentroid = {x: 0, y: 0};
+    var xScale = ratio.x / ratio.y;
+    var yScale = ratio.y / ratio.x;
+
+    for (var index = 0; index < length; index +=1 ) {
+      var entry = path[index];
+      var point = entry.point;
+      point.y = point.y * yScale;
+      entry.point = point;
+
+      if (typeof entry.controlPoint1 != 'undefined') {
+          entry.controlPoint1.y *= yScale;
+          entry.controlPoint2.y *= yScale;
+      }
+
+      if (typeof entry.curveFrom != 'undefined') {
+          entry.curveFrom.y *= yScale;
+          entry.curveTo.y *= yScale;
+      }
+
+      path[index] = entry;
+    }
+
+    return path;
+  }
 
   // from https://github.com/mapbox/fontnik/blob/37a5e17d7ab27c6e4db255b23448544dc07bd8ac/lib/curve4_div.js
   function Curve4Div() {}
@@ -364,19 +391,12 @@ define(function() {
     var newEntries = [];
     var length = pointEntries.length;
     var radians = rotationDegrees * (Math.PI / 180);
-    // account for non-square bounds
-    var xScale = size.width / size.height;
-    var yScale = size.height / size.width;
 
     for (var index = 0; index < length; index++) {
       var point = pointEntries[index].point;
-      var scaledPoint = {x: point.x, y: point.y * yScale};
+      var rotatedPoint = this.rotatePointAroundOrigin(point, radians, origin);
 
-      // var rotatedPoint = this.rotatePoint(scaledPoint, radians);
-      var rotatedPoint = this.rotatePointAroundOrigin(scaledPoint, radians, origin);
-      var scaledRotatedPoint = {x: rotatedPoint.x, y: rotatedPoint.y * xScale};
-
-      var newEntry = { point: scaledRotatedPoint };
+      var newEntry = { point: rotatedPoint };
       newEntries.push(newEntry);
     }
 

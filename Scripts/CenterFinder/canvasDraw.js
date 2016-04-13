@@ -6,14 +6,15 @@ define(function() {
     canvasDraw.drawStrokedClosedPath = function (pathEntries, rect) {
       canvasDraw.context.lineWidth = 1;
       rect = { x: rect[0], y: rect[1], width: rect[2], height: rect[3]};
+      var scale = rect.width;
 
       // translate point to screen pixel
       var screenX = function (x) {
-        return rect.x + (rect.width * x);
+        return rect.x + (scale * x);
       }
 
       var screenY = function (y) {
-        return rect.y + (rect.height * y);
+        return rect.y + (scale * y);
       }
 
       var length = pathEntries.length;
@@ -78,10 +79,11 @@ define(function() {
       var originY = rect[1];
       var width = rect[2];
       var height = rect[3];
+      var scale = width;
 
       this.context.fillStyle = 'green';
-      var x = originX + (width  * centroid.x);
-      var y = originY + (height * centroid.y);
+      var x = originX + (scale * centroid.x);
+      var y = originY + (scale * centroid.y);
 
       var centroidWidth = 2;
       var centroidHeight = 2;
