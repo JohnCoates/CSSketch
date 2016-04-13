@@ -23,33 +23,35 @@ polygonManager.addPointEntry(facebook, [0.666667, 0.500000], 1, 0, [0.666667, 0.
 polygonManager.addPointEntry(facebook, [0.960417, 0.500000], 1, 0, [0.960417, 0.500000], 0, [0.960417, 0.500000]);
 polygonManager.addPointEntry(facebook, [1.000000, 0.333333], 1, 0, [1.000000, 0.333333], 0, [1.000000, 0.333333]);
 polygonManager.addPointEntry(facebook, [0.666667, 0.333333], 1, 0, [0.666667, 0.333333], 0, [0.666667, 0.333333]);
-canvasDraw.drawStrokedClosedPath(facebook, [300, 50, 192/2, 384/2]);
+// canvasDraw.drawStrokedClosedPath(facebook, [300, 50, 192/2, 384/2]);
 
 
 var extrudedFacebook = polygonManager.extrudeBezierPath(facebook);
 var rect = [300, 50 + 250, 192/2, 384/2];
 var centroid = polygonManager.findExtrudedPathCentroid(extrudedFacebook);
+canvasDraw.drawStrokedClosedPath(extrudedFacebook, rect);
+canvasDraw.drawCentroid(centroid, rect);
 // canvasDraw.context.rotate(20*Math.PI/180);
 var rect = [300, 50 + 250, 192/2, 384/2];
-canvasDraw.context.fillStyle = 'grey';
-canvasDraw.context.fillRect(rect[0], rect[1], rect[2], rect[3]);
+// canvasDraw.context.fillStyle = 'grey';
+// canvasDraw.context.fillRect(rect[0], rect[1], rect[2], rect[3]);
 var rotationDegrees = 20;
 // rect = polygonManager.rotatedBoundingRect(rect, rotationDegrees);
 var size = {width: rect[2], height: rect[3]};
 // extrudedFacebook = polygonManager.rotatedExtrudedPath(extrudedFacebook, rotationDegrees, size, centroid);
 // canvasDraw.drawStrokedClosedPath(extrudedFacebook, rect);
 
-function drawRotatedPath(path, rect) {
+function drawRotatedPath(path, rect, degreesPerRotation) {
   var centroid = polygonManager.findExtrudedPathCentroid(path);
   var size = {width: rect[2], height: rect[3]};
-  for (var rotation = 0; rotation < 360; rotation += 90) {
+  for (var rotation = 0; rotation < 360; rotation += degreesPerRotation) {
 
     var rotated = polygonManager.rotatedExtrudedPath(path, rotation, size, centroid);
     canvasDraw.drawStrokedClosedPath(rotated, rect);
   }
 }
 
-drawRotatedPath(extrudedFacebook, rect);
+// drawRotatedPath(extrudedFacebook, rect, 90);
 
 // rotate left
 var polygon = [];
@@ -89,7 +91,124 @@ polygonManager.addPointEntry(polygon, [0.996606664094458305492, 0.69128796779345
 
 var rotateLeft = polygon;
 rect = [500, 50, 350/2, 318/2];
-canvasDraw.drawStrokedClosedPath(rotateLeft, rect);
+// canvasDraw.drawStrokedClosedPath(rotateLeft, rect);
+
+var extrudedRotateLeft = polygonManager.extrudeBezierPath(rotateLeft);
+// drawRotatedPath(extrudedRotateLeft, rect, 180);
+drawCenteredRotatedExtrudedPath(extrudedRotateLeft, rect, 180);
+
+function drawCenteredRotatedExtrudedPath(path, rect, degreesPerRotation) {
+  var size = {width: rect[2], height: rect[3]};
+  var centroid = polygonManager.findExtrudedPathCentroid(path);
+  var center = centerOfPath(path);
+
+  var allPaths = [];
+
+  // canvasDraw.drawCentroid(centroid, rect);
+
+  for (var rotation = 0; rotation < 360; rotation += degreesPerRotation) {
+    var rotated = polygonManager.rotatedExtrudedPath(path, rotation, size, centroid);
+    // var pathCentered = centeredPath(rotated, center);
+    var pathCentered = centroidCenteredPath(rotated, centroid);
+    allPaths = allPaths.concat(pathCentered);
+
+    canvasDraw.drawStrokedClosedPath(pathCentered, rect);
+    var centroid = polygonManager.findExtrudedPathCentroid(pathCentered);
+    // canvasDraw.drawCentroid(centroid, rect);
+
+  }
+
+  console.log("center of all paths");
+  var allCenter = centerOfPath(allPaths);
+  canvasDraw.drawCentroid(allCenter, rect);
+  var pathCentered = centeredPath(path, allCenter);
+  // canvasDraw.drawStrokedClosedPath(path, rect);
+
+  // clamp furthest point from center to edge
+
+}
+function minMaxForPath(path) {
+  var min = {x: 0, y:0 };
+  var max = {x: 0, y:0 };
+  var length = path.length;
+  for (var index = 0; index < length; index +=1 ) {
+    var entry = path[index];
+    var point = entry.point;
+    if (point.x < min.x) {
+      min.x = point.x;
+    }
+
+    if (point.y < min.y) {
+      min.y = point.y;
+    }
+
+    if (point.x > max.x) {
+      max.x = point.x;
+    }
+
+    if (point.y > max.y) {
+      max.y = point.y;
+    }
+  }
+
+  return {min: min, max: max};
+}
+function centerOfPath(path) {
+  var minMax = minMaxForPath(path);
+  var min = minMax.min;
+  var max = minMax.max;
+  var size = {x: max.x - min.x, y: max.y - min.y};
+  console.log("size: ", size);
+  return {x: min.x + (size.x / 2), y: min.y + (size.y / 2)};
+}
+
+function centeredPath(path, targetCenter) {
+  var currentCenter = centerOfPath(path);
+  var translate = {x: targetCenter.x - currentCenter.x, y: targetCenter.y - currentCenter.y};
+  var length = path.length;
+  for (var index = 0; index < length; index +=1 ) {
+    var entry = path[index];
+    var point = entry.point;
+    point.x = point.x + translate.x;
+    point.y = point.y + translate.y;
+
+    path[index].point = point;
+  }
+
+  return path;
+}
+
+function centroidCenteredPath(path, targetCentroid) {
+  var centroid = polygonManager.findExtrudedPathCentroid(path);
+  var translate = {x: targetCentroid.x - centroid.x, y: targetCentroid.y - centroid.y};
+  var length = path.length;
+  for (var index = 0; index < length; index +=1 ) {
+    var entry = path[index];
+    var point = entry.point;
+    point.x = point.x + translate.x;
+    point.y = point.y + translate.y;
+
+    path[index].point = point;
+  }
+
+  return path;
+}
+
+function hydratePathWithCenteringInformatio(path) {
+  var centroid = polygonManager.findExtrudedPathCentroid(path);
+  var minMax = minMaxForPath(path);
+  var length = path.length;
+  var farthestDistanceFromCentroid = {x: 0, y: 0};
+
+  for (var index = 0; index < length; index +=1 ) {
+    var entry = path[index];
+    var point = entry.point;
+    point.x = point.x + translate.x;
+    point.y = point.y + translate.y;
+
+    path[index].point = point;
+  }
+}
 
 // check if HMR is enabled
 if(module && module.hot) {
