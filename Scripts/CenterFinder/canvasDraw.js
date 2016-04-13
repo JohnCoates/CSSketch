@@ -3,120 +3,72 @@ define(function() {
     var canvasDraw = {};
     canvasDraw.canvas = document.getElementById(canvasID);
     canvasDraw.context = canvasDraw.canvas.getContext("2d");
-    canvasDraw.drawStrokedClosedPath = function (points, rect) {
+    canvasDraw.drawStrokedClosedPath = function (pathEntries, rect) {
       canvasDraw.context.lineWidth = 1;
-      var originX = rect[0];
-      var originY = rect[1];
-      var width = rect[2];
-      var height = rect[3];
+      rect = { x: rect[0], y: rect[1], width: rect[2], height: rect[3]};
 
+      // translate point to screen pixel
       var screenX = function (x) {
-        return originX + (width * x);
+        return rect.x + (rect.width * x);
       }
 
       var screenY = function (y) {
-        return originY + (height * y);
+        return rect.y + (rect.height * y);
       }
 
-      var calculatedEntries = [];
-      var length = points.length;
+      var length = pathEntries.length;
       for (var key = 0; key < length; key++) {
-
-        var curvePoint = points[key]
-        var point = curvePoint.point
-        var pointX = point.x;
-        var pointY = point.y;
+        var entry = pathEntries[key]
+        var point = entry.point
 
         if (key == 0) {
-          canvasDraw.context.moveTo(screenX(pointX), screenY(pointY));
-          canvasDraw.context.beginPath();
-          calculatedEntries.push(curvePoint);
+          this.context.moveTo(screenX(point.x), screenY(point.y));
+          this.context.beginPath();
           continue;
         }
-        var previousPoint = points[key - 1];
+        var previousEntry = pathEntries[key - 1];
 
-        canvasDraw.context.fillStyle = 'green';
-        this.context.fillRect(screenX(previousPoint.point.x), screenY(previousPoint.point.y), 3, 3);
-        if (typeof curvePoint.controlPoint1 != 'undefined') {
-          // console.log("curve point: ", curvePoint);
-          // console.log("drawing pre-calculated curve #" + key, curvePoint.point);
-
-          canvasDraw.context.fillStyle = 'red';
-          this.context.fillRect(screenX(curvePoint.controlPoint1.x), screenY(curvePoint.controlPoint1.y), 4, 4);
-          canvasDraw.context.fillStyle = 'blue';
-          this.context.fillRect(screenX(curvePoint.controlPoint2.x), screenY(curvePoint.controlPoint2.y), 4, 4);
-
-          canvasDraw.context.bezierCurveTo(
-                            screenX(curvePoint.controlPoint1.x), screenY(curvePoint.controlPoint1.y),
-                            screenX(curvePoint.controlPoint2.x), screenY(curvePoint.controlPoint2.y),
-                            screenX(pointX), screenY(pointY));
-                            // console.log("point x:", screenX(pointX));
+        if (typeof entry.controlPoint1 != 'undefined') {
+          this.context.bezierCurveTo(
+                            screenX(entry.controlPoint1.x), screenY(entry.controlPoint1.y),
+                            screenX(entry.controlPoint2.x), screenY(entry.controlPoint2.y),
+                            screenX(point.x), screenY(point.y));
           continue;
         }
 
-        if (typeof curvePoint.curveMode == 'undefined') {
-          canvasDraw.context.lineTo(screenX(pointX), screenY(pointY));
+        if (typeof entry.curveMode == 'undefined') {
+          this.context.lineTo(screenX(point.x), screenY(point.y));
           continue;
         }
 
-        // if (curvePoint.curveMode == 1) {
-        //   canvasDraw.context.lineTo(screenX(pointX), screenY(pointY));
-        //   continue;
-        // }
+        var curveFrom = entry.curveFrom;
+        var curveTo = entry.curveTo;
+        var previousPoint = previousEntry.point;
 
-        var curveFrom = curvePoint.curveFrom;
-        var curveTo = curvePoint.curveTo;
+        var controlPoint1 = { x: previousEntry.curveFrom.x, y: previousEntry.curveFrom.y };
+        var controlPoint2 = { x: curveTo.x, y: curveTo.y };
 
-        var previousX = previousPoint.point.x;
-        var previousY = previousPoint.point.y;
-
-        var controlPoint1x = previousPoint.curveFrom.x;
-        var controlPoint1y = previousPoint.curveFrom.y;
-        var controlPoint2x = curveTo.x;
-        var controlPoint2y = curveTo.y;
-
-        if (curvePoint.curveMode == 1) {
-          console.log("curve mode 1");
-          controlPoint2x = pointX;
-          controlPoint2y = pointY;
+        if (entry.curveMode == 1) {
+          controlPoint2.x = point.x;
+          controlPoint2.y = point.y;
         }
 
-        if (previousPoint.curveMode == 1) {
-          console.log("curve mode 1");
-          controlPoint1x = previousX;
-          controlPoint1y = previousY;
+        if (previousEntry.curveMode == 1) {
+          controlPoint1.x = previousPoint.x;
+          controlPoint1.y = previousPoint.y;
         }
+        // canvasDraw.context.fillStyle = 'blue';
+        // this.context.fillRect(screenX(controlPoint2x), screenY(controlPoint2y), 4, 4);
 
-        canvasDraw.context.fillStyle = 'red';
-        this.context.fillRect(screenX(controlPoint1x), screenY(controlPoint1y), 4, 4);
-        canvasDraw.context.fillStyle = 'blue';
-        this.context.fillRect(screenX(controlPoint2x), screenY(controlPoint2y), 4, 4);
-
-        // context.bezierCurveTo(curveFrom.x, curveFrom.y,
-        //                       curveTo.x, curveTo.y,
-        //                       pointX, pointY);
-        canvasDraw.context.bezierCurveTo(screenX(controlPoint1x), screenY(controlPoint1y),
-                          screenX(controlPoint2x), screenY(controlPoint2y),
-                          screenX(pointX), screenY(pointY));
-
-        var calculatedEntry = {point: point};
-        calculatedEntry.controlPoint1 = {x: controlPoint1x, y: controlPoint1y};
-        calculatedEntry.controlPoint2 = {x: controlPoint2x, y: controlPoint2y};
-        calculatedEntries.push(calculatedEntry);
-        // console.log("drawing bezier #" + key, pointX, pointY);
-        // console.log("point: x:", pointX, "y:", pointY,
-        //             "cp1x:", controlPoint1x,
-        //             "cp2y:", controlPoint1y,
-        //             "cp2x:", controlPoint2x,
-        //             "cp2y:", controlPoint2y
-        //            );
+        this.context.bezierCurveTo(screenX(controlPoint1.x), screenY(controlPoint1.y),
+                          screenX(controlPoint2.x), screenY(controlPoint2.y),
+                          screenX(point.x), screenY(point.y));
       }
-      // close
-      // context.lineTo(x, y);
-      canvasDraw.context.closePath();
-      canvasDraw.context.stroke();
-      return calculatedEntries;
+
+      this.context.closePath();
+      this.context.stroke();
     }
+
     canvasDraw.clear = function () {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
