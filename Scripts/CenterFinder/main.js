@@ -34,6 +34,7 @@ var rect = [300, 50 + 250, 192/2, 384/2];
 var centroid = polygonManager.findExtrudedPathCentroid(extrudedFacebook);
 canvasDraw.drawStrokedClosedPath(extrudedFacebook, rect);
 canvasDraw.drawCentroid(centroid, rect);
+console.log("facebook centroid: ", centroid);
 // canvasDraw.context.rotate(20*Math.PI/180);
 var rect = [300, 50 + 250, 192/2, 384/2];
 // canvasDraw.context.fillStyle = 'grey';
@@ -105,28 +106,47 @@ function drawCenteredRotatedExtrudedPath(path, rect, degreesPerRotation) {
   var size = {width: rect[2], height: rect[3]};
   var centroid = polygonManager.findExtrudedPathCentroid(path);
   var center = centerOfPath(path);
-
   var allPaths = [];
 
   // canvasDraw.drawCentroid(centroid, rect);
+  path = hydratePathWithCenteringInformation(path);
 
   for (var rotation = 0; rotation < 360; rotation += degreesPerRotation) {
     var rotated = polygonManager.rotatedExtrudedPath(path, rotation, size, centroid);
     // var pathCentered = centeredPath(rotated, center);
-    var pathCentered = centroidCenteredPath(rotated, centroid);
-    allPaths = allPaths.concat(pathCentered);
+    // var pathCentered = centroidCenteredPath(rotated, centroid);
+    // allPaths = allPaths.concat(pathCentered);
 
-    canvasDraw.drawStrokedClosedPath(pathCentered, rect);
-    var centroid = polygonManager.findExtrudedPathCentroid(pathCentered);
-    // canvasDraw.drawCentroid(centroid, rect);
+    canvasDraw.drawStrokedClosedPath(rotated, rect);
+    var centroid = polygonManager.findExtrudedPathCentroid(rotated);
+    canvasDraw.drawCentroid(centroid, rect);
 
   }
 
-  console.log("center of all paths");
-  var allCenter = centerOfPath(allPaths);
-  canvasDraw.drawCentroid(allCenter, rect);
-  var pathCentered = centeredPath(path, allCenter);
+  // console.log("center of all paths");
+  // var allCenter = centerOfPath(allPaths);
+  // canvasDraw.drawCentroid(allCenter, rect);
+  // var pathCentered = centeredPath(path, allCenter);
   // canvasDraw.drawStrokedClosedPath(path, rect);
+
+  return;
+  var scale = rect[2];
+  var numberOfSides = 360,
+      size = scale / 2,
+      Xcenter = rect[0] + (centroid.x * scale),
+      Ycenter = rect[1] + (centroid.y * scale);
+
+  canvasDraw.context.beginPath();
+  canvasDraw.context.moveTo (Xcenter +  size * Math.cos(0), Ycenter +  size *  Math.sin(0));
+
+  for (var i = 1; i <= numberOfSides;i += 1) {
+      canvasDraw.context.lineTo (Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
+  }
+
+  canvasDraw.context.strokeStyle = "#000000";
+  canvasDraw.context.lineWidth = 1;
+  canvasDraw.context.stroke();
+
 
   // clamp furthest point from center to edge
 
@@ -198,20 +218,46 @@ function centroidCenteredPath(path, targetCentroid) {
   return path;
 }
 
-function hydratePathWithCenteringInformatio(path) {
+function hydratePathWithCenteringInformation(path) {
   var centroid = polygonManager.findExtrudedPathCentroid(path);
   var minMax = minMaxForPath(path);
   var length = path.length;
-  var farthestDistanceFromCentroid = {x: 0, y: 0};
+  var farthestDistanceFromCentroid = 0;
+  var closestDistanceFromCentroid = 99999;
 
   for (var index = 0; index < length; index +=1 ) {
     var entry = path[index];
     var point = entry.point;
-    point.x = point.x + translate.x;
-    point.y = point.y + translate.y;
 
-    path[index].point = point;
+    entry.distanceFromCentroid = Math.abs(centroid.x - point.x) + Math.abs(centroid.y - point.y);
+    if (entry.distanceFromCentroid > farthestDistanceFromCentroid) {
+      farthestDistanceFromCentroid = entry.distanceFromCentroid;
+    }
+    if (entry.distanceFromCentroid < closestDistanceFromCentroid) {
+      closestDistanceFromCentroid = entry.distanceFromCentroid;
+    }
+
+    path[index] = entry;
   }
+
+  for (var index = 0; index < length; index +=1 ) {
+    var entry = path[index];
+    if (entry.distanceFromCentroid == closestDistanceFromCentroid) {
+      entry.shouldCentroidClamp = true;
+      console.log("should centroid clamp: ", entry);
+    }
+    if (entry.distanceFromCentroid == farthestDistanceFromCentroid) {
+      entry.shouldEdgeClamp = true;
+      console.log("should edge clamp:", entry);
+    }
+    else {
+      entry.shouldEdgeClamp = false;
+    }
+
+    path[index] = entry;
+  }
+
+  return path;
 }
 
 // check if HMR is enabled
