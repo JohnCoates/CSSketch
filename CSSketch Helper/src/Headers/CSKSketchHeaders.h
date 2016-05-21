@@ -132,4 +132,6 @@ forPluginIdentifier:(NSString *)pluginIdentifier;
 - (void)refresh;
 // Sketch >= 3.5
 - (void)refreshTiles;
+// Sketch >= 3.8
+- (void)refreshOverlayOfViews;
 @end

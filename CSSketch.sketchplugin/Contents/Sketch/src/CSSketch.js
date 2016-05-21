@@ -21,18 +21,6 @@ var setPageStylesheet = function(context) {
 function loadCSSketchAsNeeded() {
 var pluginsPath = @"~/Library/Application Support/com.bohemiancoding.sketch3/Plugins";
   pluginsPath = [pluginsPath stringByExpandingTildeInPath];
-  // Load SketchKit
-  if (!NSClassFromString("SKK_MSLayer")) {
-    
-    var frameworkPluginFolder = [pluginsPath stringByAppendingPathComponent:"SketchKit.sketchplugin"];
-    var frameworkBundlePath = [frameworkPluginFolder stringByAppendingPathComponent:"SketchKit.framework"];
-
-    var error = null;
-    if (!loadBundle(frameworkBundlePath)) {
-      return false;
-    }
-  }
-  
   // Load CSSketch
   if (!NSClassFromString("CSKMainController")) {
     var pluginFolder = [pluginsPath stringByAppendingPathComponent:"CSSKetch.sketchplugin"];
@@ -40,7 +28,7 @@ var pluginsPath = @"~/Library/Application Support/com.bohemiancoding.sketch3/Plu
 
     var error = null;
     if (!loadBundle(bundlePath)) {
-      return false;
+      return false
     }
   }
   return true;
@@ -50,13 +38,12 @@ function loadBundle(filePath) {
   var bundleURL = NSURL.fileURLWithPath(filePath);
   var bundle = [NSBundle bundleWithURL: bundleURL];
   if (bundle == null) {
-    showNotification("Bundle missing at " + bundleURL + "");
-    error = error;
+    showNotification("CSSketch bundle missing from " + filePath);
     return false;
   }
-  
+
   var loaded = [bundle load];
-  
+
   if (!loaded) {
 		showNotification("Couldn't load CSSketch bundle! Try allowing apps downloaded from anywhere (System Preferences -> Security & Privacy)");
   }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA026D011CBCA06600D83D34 /* CSKSVGEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA026D001CBCA06600D83D34 /* CSKSVGEditorController.m */; };
 		FA0E95DB1BCB279C00CDD8EF /* NSString+Paths.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0E95DA1BCB279C00CDD8EF /* NSString+Paths.m */; };
 		FA20626E1BC21C4B003079A1 /* CSKStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FA20626D1BC21C4B003079A1 /* CSKStylesheet.m */; };
 		FA2FE3B71BC71BCD0017A90A /* embedded.css in Resources */ = {isa = PBXBuildFile; fileRef = FA2FE3B61BC71BCD0017A90A /* embedded.css */; };
@@ -39,6 +40,7 @@
 		FACF8FBE1BCC2DB10062D8F8 /* CSKLayers.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF8FBD1BCC2DB10062D8F8 /* CSKLayers.m */; };
 		FADE15451BC2644D002FDE5C /* CSKSketchHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15441BC2644D002FDE5C /* CSKSketchHeaders.m */; };
 		FADE15481BC26492002FDE5C /* CSKMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = FADE15471BC26492002FDE5C /* CSKMainController.m */; };
+		FAE5F81C1CF11E2C004D7D40 /* SketchKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA4B27AD1C63FE3900C82A0C /* SketchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,8 +107,9 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 7;
+			dstSubfolderSpec = 10;
 			files = (
+				FAE5F81C1CF11E2C004D7D40 /* SketchKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +126,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA026CFF1CBCA06600D83D34 /* CSKSVGEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKSVGEditorController.h; sourceTree = "<group>"; };
+		FA026D001CBCA06600D83D34 /* CSKSVGEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKSVGEditorController.m; sourceTree = "<group>"; };
 		FA0E95D91BCB279C00CDD8EF /* NSString+Paths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Paths.h"; sourceTree = "<group>"; };
 		FA0E95DA1BCB279C00CDD8EF /* NSString+Paths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Paths.m"; sourceTree = "<group>"; };
 		FA20626C1BC21C4B003079A1 /* CSKStylesheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKStylesheet.h; sourceTree = "<group>"; };
@@ -242,6 +247,8 @@
 				FADE15471BC26492002FDE5C /* CSKMainController.m */,
 				FACF8FB81BCC28320062D8F8 /* CSKDocumentController.h */,
 				FACF8FB91BCC28320062D8F8 /* CSKDocumentController.m */,
+				FA026CFF1CBCA06600D83D34 /* CSKSVGEditorController.h */,
+				FA026D001CBCA06600D83D34 /* CSKSVGEditorController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -537,8 +544,8 @@
 				FA56F7CB1BC0D6C4005673E0 /* Sources */,
 				FA56F7CC1BC0D6C4005673E0 /* Frameworks */,
 				FA56F7CD1BC0D6C4005673E0 /* Resources */,
-				FA56F7E21BC0E153005673E0 /* CopyFiles */,
 				FA4B27B21C64003700C82A0C /* CopyFiles */,
+				FA56F7E21BC0E153005673E0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -725,6 +732,7 @@
 				FACF8FBA1BCC28320062D8F8 /* CSKDocumentController.m in Sources */,
 				FACF8FBE1BCC2DB10062D8F8 /* CSKLayers.m in Sources */,
 				FA38F4BE1BC3C93F00787508 /* RegExCategories.m in Sources */,
+				FA026D011CBCA06600D83D34 /* CSKSVGEditorController.m in Sources */,
 				FA795BCD1C9A8FB20050571B /* NSError+CSSketch.m in Sources */,
 				FA56F7E01BC0DDE7005673E0 /* CSKFileMonitor.m in Sources */,
 				FA0E95DB1BCB279C00CDD8EF /* NSString+Paths.m in Sources */,

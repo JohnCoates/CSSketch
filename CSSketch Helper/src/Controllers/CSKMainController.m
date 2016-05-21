@@ -101,8 +101,8 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
     if (toolbar.visibleItems.count > 0) {
         [toolbar insertItemWithItemIdentifier:@"CSSketch"
                                       atIndex:toolbar.visibleItems.count - 1];
-        [toolbar insertItemWithItemIdentifier:@"CSSketch-SVG"
-                                      atIndex:toolbar.visibleItems.count - 1];
+//        [toolbar insertItemWithItemIdentifier:@"CSSketch-SVG"
+//                                      atIndex:toolbar.visibleItems.count - 1];
     }
 }
 
@@ -113,6 +113,9 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
     }
     else if([self.document.currentView respondsToSelector:@selector(refreshTiles)]) {
         [self.document.currentView refreshTiles];
+    }
+    else if([self.document.currentView respondsToSelector:@selector(refreshOverlayOfViews)]) {
+        [self.document.currentView refreshOverlayOfViews];
     }
     else {
         NSLog(@"Error: Can't refresh current view, missing refresh method!");

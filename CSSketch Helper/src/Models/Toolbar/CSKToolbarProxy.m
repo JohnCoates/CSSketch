@@ -100,7 +100,7 @@
                                    toolbarSelectableItemIdentifiers:toolbar] mutableCopy];
     // check if Edit is selectable
     // if it's not, then SVG edit shouldn't be either!
-    __block BOOL isEditSelectable = FALSE;
+//    __block BOOL isEditSelectable = FALSE;
     [selectable enumerateObjectsUsingBlock:^(NSString *  _Nonnull identifier, NSUInteger idx, BOOL * _Nonnull stop) {
 //        if ([identifier isEqualToString:@"])
 //        NSLog(@"checking identifier: %@", identifier);

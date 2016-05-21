@@ -496,7 +496,7 @@
 		FA6F460B1C5EA968002EE579 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "John Coates";
 				TargetAttributes = {
 					FA6F46121C5EA968002EE579 = {
@@ -692,6 +692,7 @@
 				FA6F461E1C5EA968002EE579 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

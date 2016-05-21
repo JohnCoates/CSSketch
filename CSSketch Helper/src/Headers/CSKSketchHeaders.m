@@ -49,6 +49,10 @@
     
 }
 
+- (NSArray *)selectedLayers {
+    return nil;
+}
+
 @end
 
 
@@ -66,6 +70,7 @@
 @implementation CSK_MSContentDrawView
 - (void)refresh {}
 - (void)refreshTiles {}
+- (void)refreshOverlayOfViews {}
 @end
 
 @implementation CSK_MSColor
