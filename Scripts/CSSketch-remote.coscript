@@ -9,7 +9,10 @@ if (!NSClassFromString("MSDocument")){
 	var scriptsFolder = [scriptPath stringByDeletingLastPathComponent];		
 	var projectFolder = [scriptsFolder stringByDeletingLastPathComponent];	
 	var sketchDocumentsFolder = [projectFolder stringByAppendingPathComponent:"Examples"];
-	var documentPath = [sketchDocumentsFolder stringByAppendingPathComponent:"CSSketch - flexBox.sketch"];
+//	var file = "CSSketch - Skyfall.sketch"
+//	var file = "CSSketch - Netflix Player Redesign.sketch"
+	var file = "CSSketch - flexBox.sketch"
+	var documentPath = [sketchDocumentsFolder stringByAppendingPathComponent:file];
 	
 	// Submitted tests
 //	var testsFolder = [projectFolder stringByAppendingPathComponent:"test"];
