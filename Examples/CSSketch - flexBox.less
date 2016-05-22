@@ -5,8 +5,8 @@
 // .reset counteracts these attributes
 .reset() {
   position: relative;
-  left: 0;
-  top: 0;
+  left: initial;
+  top: initial;
 }
 
 /* Mixins for support for systems before El Capitan */
@@ -42,6 +42,27 @@
   width: 200px;
   height: 200px;
   margin-left: 70px;
+  border: 12px solid rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+}
+
+[name="colors"] {
+  .reset;
+  top: initial;
+  left: initial;
+  position: absolute;
+  .flex-display(flex);
+  .flex-direction(row);
+  margin-top: 160px;
+  right: 100px;
+  width: 500px;
+}
+
+[name="color"] {
+  .reset;
+  width: 100px;
+  height: 100px;
+  margin-left: 60px;
   border: 12px solid rgba(0, 0, 0, .1);
   box-sizing: border-box;
 }
