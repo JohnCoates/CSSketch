@@ -20,15 +20,3 @@ if File.symlink(plugin, pluginDestination)  == false
 end
 
 puts "Made plugin symlink."
-
-frameworkDestination = pluginsFolder + "/SketchKit.sketchplugin"
-if File.exists?(frameworkDestination) == true
-	FileUtils.rm_r(frameworkDestination)
-end
-
-if File.symlink(frameworkPlugin, frameworkDestination)  == false
-	puts "Failed to make framework symlink!"
-	exit 1
-end
-
-puts "Made framework symlink."
