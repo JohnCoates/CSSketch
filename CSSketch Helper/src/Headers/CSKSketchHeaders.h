@@ -12,7 +12,7 @@
 #import <AppKit/AppKit.h>
 
 @class CSK_MSLayer, CSK_MSContentDrawView, CSK_MSStyle, CSK_MSStyleBorder, CSK_MSColor;
-@class CSK_MSStyleShadow, CSK_MSPage, CSK_MSStyleFill, CSK_MSTextLayer;
+@class CSK_MSStyleShadow, CSK_MSPage, CSK_MSStyleFill, CSK_MSTextLayer, CSK_MSAbsoluteRect;
 
 @interface CSK_MSColor : NSObject
 @property(readonly, nonatomic) double red;
@@ -67,7 +67,6 @@
 - (NSArray *)selectedLayers;
 @end
 
-
 @interface CSK_MSLayer : NSObject
     @property (readonly) NSString *name;
     @property (readonly) NSArray *layers;
@@ -75,6 +74,8 @@
     @property(nonatomic) struct CGRect frameInArtboard;
     @property(nonatomic) struct CGRect rect;
     @property (readonly) CSK_MSStyle *style;
+    @property(retain, nonatomic) CSK_MSAbsoluteRect *absoluteRect;
+    - (CSK_MSLayer *)parentArtboard;
 
 
     // OLD Version of invalidateCachedImmutableModelObjects
@@ -134,4 +135,9 @@ forPluginIdentifier:(NSString *)pluginIdentifier;
 - (void)refreshTiles;
 // Sketch >= 3.8
 - (void)refreshOverlayOfViews;
+@end
+
+@interface CSK_MSAbsoluteRect : NSObject
+- (CGRect)rect;
+- (void)setRect:(CGRect)rect;
 @end

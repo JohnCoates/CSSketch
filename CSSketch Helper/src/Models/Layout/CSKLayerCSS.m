@@ -51,22 +51,45 @@
 #pragma mark - Layout, Size
 
 + (void)handleFrameWithDOMLeaf:(NSDictionary *)leaf layer:(CSK_MSLayer *)layer {
-    NSRect artboardFrame = layer.frameInArtboard;
-    NSRect originalFrame = artboardFrame;
+    
+    CSK_MSLayer *artboard = [layer parentArtboard];
+    if (!artboard) {
+        if (DEBUG) {
+            NSLog(@"no parent artboard for: %@", layer);
+        }
+        return;
+    }
+    
+    CSK_MSAbsoluteRect *parentArtboardRect = [artboard absoluteRect];
+    if (!parentArtboardRect) {
+        if (DEBUG) {
+            NSLog(@"no artboard rect: %@", artboard);
+        }
+        return;
+    }
+    
+    NSRect parentArtboardFrame = [artboard rect];
+    
+    NSRect frameInArtboard = layer.frameInArtboard;
+    NSRect originalFrame = frameInArtboard;
     if (DEBUG) {
-        NSLog(@"artboard frame: %@", NSStringFromRect(artboardFrame));
+        NSLog(@"artboard frame: %@", NSStringFromRect(frameInArtboard));
     }
     NSDictionary *rules = leaf[@"rules"];
     NSNumber *offsetLeft = rules[@"offsetLeft"];
     NSNumber *offsetTop = rules[@"offsetTop"];
     
-    artboardFrame.origin.y = offsetTop.floatValue;
-    artboardFrame.origin.x = offsetLeft.floatValue;
-    if (NSEqualRects(artboardFrame, originalFrame) == FALSE) {
+    NSLog(@"rules: %@", rules);
+    
+    frameInArtboard.origin.y = offsetTop.floatValue;
+    frameInArtboard.origin.x = offsetLeft.floatValue;
+    if (NSEqualRects(frameInArtboard, originalFrame) == FALSE) {
         if (DEBUG) {
-            NSLog(@"new artboard frame: %@", NSStringFromRect(artboardFrame));
+            NSLog(@"new artboard frame: %@", NSStringFromRect(frameInArtboard));
         }
-        [layer setFrameInArtboard:artboardFrame];
+        NSRect absoluteFrame = NSOffsetRect(frameInArtboard,
+                                            parentArtboardFrame.origin.x, parentArtboardFrame.origin.y);
+        [[layer absoluteRect] setRect:absoluteFrame];
     }
     
     
