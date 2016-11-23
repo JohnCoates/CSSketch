@@ -69,8 +69,9 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 }
 
 - (void)addToolbarAsRequired:(NSDictionary *)context {
-    CSK_MSPluginCommand *command = context[@"command"];
-    CSK_MSDocument *document = context[@"document"];
+    NSDictionary *copyContext = [context mutableCopy];
+    CSK_MSPluginCommand *command = copyContext[@"command"];
+    CSK_MSDocument *document = copyContext[@"document"];
     
     NSWindow *documentWindow = document.documentWindow;
     
@@ -161,10 +162,11 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 
 
 - (void)selectStylesheetWithContext:(NSDictionary *)context {
+    NSDictionary *copyContext = [context mutableCopy];
     dispatch_async(dispatch_get_main_queue(), ^{
-        CSK_MSDocument *document = context[@"document"];
+        CSK_MSDocument *document = copyContext[@"document"];
         CSK_MSPage *page = document.currentPage;
-        CSK_MSPluginCommand *command = context[@"command"];
+        CSK_MSPluginCommand *command = copyContext[@"command"];
         
         NSOpenPanel *openPanel = [NSOpenPanel openPanel];
         
@@ -189,7 +191,7 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
                                       pluginCommand:command];
                 
                 // layout
-                [self layoutLayersWithContext:context];
+                [self layoutLayersWithContext:copyContext];
             }
             
         }]; // Open Panel file callback
@@ -197,20 +199,21 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
 }
 
 - (void)layoutLayersWithContext:(NSDictionary *)context {
+    NSDictionary *copyContext = [context mutableCopy];
     self.domModels = [NSArray array];
     
     if (DEBUG) {
-        NSLog(@"context (%@): %@", NSStringFromClass([context class]), context);
+        NSLog(@"context (%@): %@", NSStringFromClass([copyContext class]), copyContext);
     }
-    CSK_MSPluginCommand *command = context[@"command"];
-    CSK_MSDocument *document = context[@"document"];
+    CSK_MSPluginCommand *command = copyContext[@"command"];
+    CSK_MSDocument *document = copyContext[@"document"];
     CSK_MSPage *page = document.currentPage;
     self.document = document;
     self.pluginCommand = command;
     
     // add toolbar icon on UI Thread
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self addToolbarAsRequired:context];
+        [self addToolbarAsRequired:copyContext];
         
     });
     
@@ -219,7 +222,7 @@ static const char * kCSKDocumentControllerAssociatedObjectKey = "kCSKDocumentCon
     
     if (!stylesheetURL) {
         // No URL, select stylesheet!
-        [self selectStylesheetWithContext:context];
+        [self selectStylesheetWithContext:copyContext];
         
         return;
     }
