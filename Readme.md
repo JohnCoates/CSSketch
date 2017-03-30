@@ -1,3 +1,5 @@
+# broken in recent sketch, unmaintained
+
 ## CSSketch - CSS for Sketch 3
 CSSketch is a Sketch 3 plugin that enables you to modify your designs quickly by attaching it a stylesheet to it that you can use to lay out your designs, change colors and shadows quickly, etc.
 It supports [Sass](http://sass-lang.com/) and [{less}](http://lesscss.org) stylesheets, which means you can put functions and variables in your stylesheet to make your workflow even more efficient.
