@@ -17,6 +17,8 @@ CSSketch is available through [Sketch Toolbox](http://sketchtoolbox.com/).
 ## Install with Sketch Runner
 With Sketch Runner, just go to the `install` command and search for `CSSSketch`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).
 
+![Install with Sketch Runner](cssketch-runner.png)
+
 ## Download & Install Manually
 Download from [Github](https://github.com/JohnCoates/CSSketch/archive/master.zip)
 
