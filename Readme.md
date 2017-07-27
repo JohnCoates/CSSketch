@@ -15,7 +15,12 @@ CSSketch is completely open source, so feel free to contribute to its developmen
 ![Screencast](https://raw.githubusercontent.com/JohnCoates/CSSketch/master/screencast.gif)
 
 ## Download & Install
-#### CSSketch is available through [Sketch Toolbox](http://sketchtoolbox.com/). This is the best option for installation, as it automatically keeps CSSketch up to date.
+CSSketch is available through [Sketch Toolbox](http://sketchtoolbox.com/).
+
+## Install with Sketch Runner
+With Sketch Runner, just go to the `install` command and search for `CSSSketch`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).
+
+![Install with Sketch Runner](cssketch-runner.png)
 
 ## Download & Install Manually
 Download from [Github](https://github.com/JohnCoates/CSSketch/archive/master.zip)
