@@ -14,14 +14,14 @@
       "script" : "src/CSSketch_cached.js",
       "handler" : "setPageStylesheet",
       "identifier" : "setPageStylesheet",
-      "shortcut" : "cmd ctrl 4",
+      "shortcut" : "cmd ctrl 4"
     },
     {
       "name" : "Layout Layers",
       "script" : "src/CSSketch_cached.js",
       "handler" : "layoutLayers",
       "identifier" : "layoutLayers",
-      "shortcut" : "cmd ctrl 0",
+      "shortcut" : "cmd ctrl 0"
     }
   ],
   "menu" : {
